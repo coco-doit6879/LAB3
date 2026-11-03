@@ -56,6 +56,10 @@ void main() {
     expect(repo.creates, 1);
     expect(find.text('Bài tập Firebase'), findsOneWidget);
     expect(find.text('Chưa lưu được thay đổi. Hãy thử lại.'), findsOneWidget);
+    await tester.tap(find.text('Lưu deadline'));
+    await tester.pumpAndSettle();
+    expect(repo.creates, 2);
+    expect(repo.submittedIds, ['draft-test-1', 'draft-test-1']);
     await tester.pumpWidget(const SizedBox.shrink());
     vm.dispose();
     courses.dispose();

@@ -5,11 +5,11 @@
 ## Trạng thái đã kiểm chứng
 
 - Flutter analyze: No issues found.
-- 12 unit/widget tests pass; 10 Firestore Rules emulator tests pass.
+- 13 unit/widget tests pass; 10 Firestore Rules emulator tests pass.
 - APK debug build thành công và đã cài/mở trên emulator-5554. Ảnh thật: assets/evidence/android-login.png.
 - Android app được đăng ký trên Firebase; Google provider Enabled; google-services.json mới có OAuth Android/web và SHA-1 khớp máy.
 
-Chưa đăng nhập tài khoản Google trên Android, chưa kiểm chứng dữ liệu/dịch vụ Firebase thật hoặc chạy MobAI. Bài LAB chưa hoàn tất.
+Chưa đăng nhập tài khoản Google trên Android, chưa kiểm chứng dữ liệu/dịch vụ Firebase thật hoặc chạy đủ bộ MobAI bắt buộc. Có smoke MobAI DSL pass 3/3; runner .mob chưa khởi tạo test project. Bài LAB chưa hoàn tất.
 
 ## Mã nguồn hiện có
 
@@ -36,3 +36,4 @@ Rules tests dùng localhost:8188 với demo project, không chạm dữ liệu t
 Còn thiếu cloud database/rules deployment, xác minh Auth/CRUD/PDF/FCM/Remote Config/DebugView/Crashlytics, Figma fidelity/accessibility, MobAI exercises, PR review, AI log và báo cáo/slide/video. Storage adapter là Firebase Storage nhưng project Spark chưa bật billing; chưa quyết định nâng gói hay chuyển Cloudinary theo đề chính.
 
 Không commit credentials hoặc private keys. Public Firebase app config không thay thế Security Rules. Không công khai bearer download URL/token thiết bị trong bằng chứng nộp. Font Noto Sans và giấy phép ở assets/fonts/.
+

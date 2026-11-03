@@ -1,0 +1,9 @@
+# Deadline Mate unauthenticated smoke test
+# Precondition: app is signed out; no Google credentials are stored in this file.
+# This is supplemental coverage, not the required successful Google Sign-In scenario.
+# Timeout: 30000
+app "vn.deadlinemate.deadline_mate" fresh
+wait_for "Tiếp tục với Google" timeout:15000
+assert_exists "Deadline Mate"
+assert_exists "Tiếp tục với Google" type:button
+assert_not_exists "Tạo deadline"

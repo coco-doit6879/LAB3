@@ -29,3 +29,7 @@ MVVM + Provider; Google authentication/auth gate; deadline CRUD/realtime/query; 
 
 Bài LAB chưa hoàn tất. Xem test-report.md để biết chính xác phạm vi kiểm chứng, không dùng unit tests thay bằng chứng E2E.
 
+
+## Vòng review tiếp theo
+
+Đã sửa 5 phát hiện review cục bộ, ghi trong code-review.md; chưa thay thế review PR GitHub. 13 Flutter tests pass, analyze sạch và APK đã rebuild. MobAI CLI/bridge hoạt động, login-gate DSL pass 3/3; .mob runner còn lỗi test-project initialization. Log pass và log lỗi đều lưu nguyên trong assets/evidence/mobai. Chưa hoàn thành 10 E2E scripts.

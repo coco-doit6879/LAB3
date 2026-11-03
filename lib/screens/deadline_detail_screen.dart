@@ -31,10 +31,14 @@ class _DeadlineDetailScreenState extends State<DeadlineDetailScreen> {
       appBar: AppBar(title: const Text('Chi tiết deadline')),
       body: item == null
           ? StatusPanel(
-              message: vm.loading ? 'Đang tải…' : 'Deadline không còn tồn tại.',
+              message: vm.loading
+                  ? 'Đang tải…'
+                  : vm.error ?? 'Deadline không còn tồn tại.',
               loading: vm.loading,
-              action: 'Quay lại',
-              onAction: () => Navigator.of(context).pop(),
+              action: vm.error != null ? 'Thử lại' : 'Quay lại',
+              onAction: vm.error != null
+                  ? vm.retry
+                  : () => Navigator.of(context).pop(),
             )
           : ListView(
               padding: const EdgeInsets.all(AppTheme.wideGap),

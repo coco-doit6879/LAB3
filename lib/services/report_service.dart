@@ -102,32 +102,40 @@ class FirebaseReportService implements ReportRepository {
         customMetadata: {'ownerId': uid},
       ),
     );
-    final subscription = task.snapshotEvents.listen((snapshot) {
-      if (snapshot.totalBytes > 0) {
-        onProgress(snapshot.bytesTransferred / snapshot.totalBytes);
-      }
-    });
+    final subscription = task.snapshotEvents.listen(
+      (snapshot) {
+        if (snapshot.totalBytes > 0) {
+          onProgress(snapshot.bytesTransferred / snapshot.totalBytes);
+        }
+      },
+      onError: (Object error) {
+        // The awaited UploadTask below owns failure handling. Do not also emit an
+        // unhandled stream error into the global fatal-error handler.
+      },
+    );
+    var uploaded = false;
     try {
       await task;
+      uploaded = true;
       final url = await ref.getDownloadURL();
-      try {
-        await doc.set({
-          'fileName': fileName,
-          'url': url,
-          'ownerId': uid,
-          'createdAt': FieldValue.serverTimestamp(),
-          'itemCount': items.length,
-          'objectPath': objectPath,
-        });
-      } catch (_) {
-        // Best-effort cleanup prevents an untracked PDF after a metadata failure.
+      await doc.set({
+        'fileName': fileName,
+        'url': url,
+        'ownerId': uid,
+        'createdAt': FieldValue.serverTimestamp(),
+        'itemCount': items.length,
+        'objectPath': objectPath,
+      });
+    } catch (_) {
+      if (uploaded) {
+        // Also clean up if fetching the download URL fails after a completed upload.
         try {
           await ref.delete();
         } catch (_) {
           /* Record remediation in Firebase Console if cleanup fails. */
         }
-        rethrow;
       }
+      rethrow;
     } finally {
       await subscription.cancel();
     }

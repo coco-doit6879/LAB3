@@ -17,6 +17,7 @@ class DeadlinesViewModel extends ChangeNotifier {
   }
   final DeadlineRepository _repository;
   final Telemetry _telemetry;
+  String allocateDraftId() => _repository.allocateId();
   void recordView(String id) =>
       _telemetry.event('view_deadline', {'item_id': id});
   StreamSubscription<List<Deadline>>? _subscription;
@@ -66,7 +67,7 @@ class DeadlinesViewModel extends ChangeNotifier {
     _notify();
   }
 
-  Future<bool> save(Deadline item) async {
+  Future<bool> save(Deadline item, {bool create = false}) async {
     final validation = Deadline.validateTitle(item.title);
     if (validation != null || item.courseId.trim().isEmpty) {
       error = validation ?? 'Chọn môn học.';
@@ -74,7 +75,7 @@ class DeadlinesViewModel extends ChangeNotifier {
       return false;
     }
     return _perform(() async {
-      if (item.id.isEmpty) {
+      if (create || item.id.isEmpty) {
         final id = await _repository.create(item);
         await _telemetry.event('create_deadline', {'item_id': id});
       } else {

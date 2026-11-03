@@ -1,0 +1,13 @@
+{
+  "version": "0.2",
+  "steps": [
+    {"action": "open_app", "bundle_id": "vn.deadlinemate.deadline_mate", "fresh": true},
+    {"action": "wait_for", "predicate": {"text": "Tiếp tục với Google", "type": "button"}, "timeout_ms": 15000},
+    {"action": "assert_exists", "predicate": {"text": "Deadline Mate"}},
+    {"action": "assert_exists", "predicate": {"text": "Tiếp tục với Google", "type": "button"}},
+    {"action": "assert_not_exists", "predicate": {"text": "Tạo deadline"}},
+    {"action": "wait_for", "stable": true, "timeout_ms": 3000},
+    {"action": "observe", "include": ["ui_tree"]}
+  ],
+  "on_fail": {"strategy": "abort"}
+}

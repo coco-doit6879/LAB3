@@ -12,6 +12,9 @@ class FirestoreDeadlineService implements DeadlineRepository {
     if (uid.isEmpty) throw ArgumentError.value(uid, 'uid');
   }
   final CollectionReference<Map<String, dynamic>> _items;
+  static const _timeout = Duration(seconds: 20);
+  @override
+  String allocateId() => _items.doc().id;
 
   @override
   Stream<List<Deadline>> watch() => _items
@@ -42,20 +45,53 @@ class FirestoreDeadlineService implements DeadlineRepository {
 
   @override
   Future<String> create(Deadline item) async {
-    final doc = _items.doc();
-    await doc.set({..._data(item), 'createdAt': FieldValue.serverTimestamp()});
+    final doc = _items.doc(item.id.isEmpty ? allocateId() : item.id);
+    await _items.firestore.runTransaction(
+      (transaction) async {
+        // Retry the same draft ID after an ambiguous timeout without a second record.
+        if ((await transaction.get(doc)).exists) {
+          // A retry can include corrections made while the prior result was unknown.
+          transaction.update(doc, _data(item));
+        } else {
+          transaction.set(doc, {
+            ..._data(item),
+            'createdAt': FieldValue.serverTimestamp(),
+          });
+        }
+      },
+      timeout: _timeout,
+      maxAttempts: 3,
+    );
     return doc.id;
   }
 
   @override
   Future<void> update(Deadline item) {
     if (item.id.isEmpty) throw ArgumentError('Deadline ID required');
-    return _items.doc(item.id).update(_data(item));
+    final doc = _items.doc(item.id);
+    return _items.firestore.runTransaction(
+      (transaction) async {
+        if (!(await transaction.get(doc)).exists) {
+          throw StateError('Deadline no longer exists');
+        }
+        transaction.update(doc, _data(item));
+      },
+      timeout: _timeout,
+      maxAttempts: 3,
+    );
   }
 
   @override
   Future<void> delete(String id) {
     if (id.isEmpty) throw ArgumentError('Deadline ID required');
-    return _items.doc(id).delete();
+    final doc = _items.doc(id);
+    return _items.firestore.runTransaction(
+      (transaction) async {
+        await transaction.get(doc);
+        transaction.delete(doc);
+      },
+      timeout: _timeout,
+      maxAttempts: 3,
+    );
   }
 }

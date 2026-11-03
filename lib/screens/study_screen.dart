@@ -75,7 +75,48 @@ class StudyScreen extends StatelessWidget {
                                       FilledButton(
                                         onPressed: vm.busy
                                             ? null
-                                            : () => vm.finish(item.id),
+                                            : () async {
+                                                final confirmed =
+                                                    await showDialog<bool>(
+                                                      context: context,
+                                                      builder: (context) =>
+                                                          AlertDialog(
+                                                            title: const Text(
+                                                              'Kết thúc phiên học?',
+                                                            ),
+                                                            content: const Text(
+                                                              'Thời gian thực tế sẽ được lưu vào lịch sử.',
+                                                            ),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                      context,
+                                                                      false,
+                                                                    ),
+                                                                child:
+                                                                    const Text(
+                                                                      'Học tiếp',
+                                                                    ),
+                                                              ),
+                                                              FilledButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                      context,
+                                                                      true,
+                                                                    ),
+                                                                child:
+                                                                    const Text(
+                                                                      'Kết thúc',
+                                                                    ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                    );
+                                                if (confirmed == true) {
+                                                  await vm.finish(item.id);
+                                                }
+                                              },
                                         child: const Text('Kết thúc phiên học'),
                                       ),
                                   ],

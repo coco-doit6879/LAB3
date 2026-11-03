@@ -6,6 +6,9 @@ import 'package:deadline_mate/services/deadline_repository.dart';
 import 'package:deadline_mate/viewmodels/deadlines_viewmodel.dart';
 
 class TestRepository implements DeadlineRepository {
+  @override
+  String allocateId() => 'draft-test-1';
+  final List<String> submittedIds = [];
   final changes = StreamController<List<Deadline>>.broadcast(sync: true);
   int creates = 0;
   bool fail = false;
@@ -15,6 +18,7 @@ class TestRepository implements DeadlineRepository {
   @override
   Future<String> create(Deadline item) async {
     creates++;
+    submittedIds.add(item.id);
     if (gate != null) await gate!.future;
     if (fail) throw StateError('denied');
     return 'created';

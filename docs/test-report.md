@@ -38,3 +38,13 @@ MobAI: no scripts or results yet. The required 10 scenarios, healing, deliberate
 
 APK debug rebuilt successfully with refreshed OAuth config; adb install returned Success and am start launched MainActivity. Actual emulator screenshot assets/evidence/android-login.png shows the Google login screen. No fatal startup exception was observed in AndroidRuntime output at this check. This proves launch only, not successful Google authentication or any signed-in flow.
 
+
+## Review fixes and MobAI smoke update
+
+13 Flutter unit/widget tests passed after review fixes; analysis is clean and APK rebuilt successfully. New detail recovery test verifies a failed query is not labeled as a deleted record. The form test also retries twice and verifies both submissions carry the same draft ID. This does not alone prove native transaction timeout behavior.
+
+MobAI CLI 3.5.1 recognized emulator-5554 and started its Android automation bridge. A supplemental login-gate DSL smoke passed 3/3 runs, 7 successful steps per run. Actual result JSON files: assets/evidence/mobai/login-gate-dsl-run-1.json through run-3.json. These runs used the installed, signed-out app and tested startup/login-only access, not successful sign-in or signed-in business flows.
+
+The .mob script was created from the observed UI but the CLI test runner returned `testing not initialized - open a project first`; its real error is preserved in login-gate-run-1.json. The DSL execution is recorded separately and does not count as a passing .mob run. No healing, deliberate-bug exercise or required 10-script suite is claimed.
+
+Official standalone mobai-ci v0.13.2 release assets checked in this session have macOS/Linux binaries and no Windows binary. Do not claim that a Windows CI runner was installed. The desktop app test-project initialization or another supported MobAI setup still needs resolution.

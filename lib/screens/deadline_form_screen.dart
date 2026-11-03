@@ -21,10 +21,13 @@ class _DeadlineFormScreenState extends State<DeadlineFormScreen> {
   late final TextEditingController _course;
   late DateTime _due;
   late final DateTime _originalDue;
+  late final String _draftId;
   bool _saved = false;
   @override
   void initState() {
     super.initState();
+    _draftId =
+        widget.item?.id ?? context.read<DeadlinesViewModel>().allocateDraftId();
     _title = TextEditingController(text: widget.item?.title ?? '')
       ..addListener(_changed);
     _course = TextEditingController(text: widget.item?.courseId ?? '')
@@ -176,12 +179,13 @@ class _DeadlineFormScreenState extends State<DeadlineFormScreen> {
                         if (!_form.currentState!.validate()) return;
                         final success = await vm.save(
                           Deadline(
-                            id: widget.item?.id ?? '',
+                            id: _draftId,
                             title: _title.text.trim(),
                             courseId: _course.text.trim(),
                             dueAt: _due,
                             completed: widget.item?.completed ?? false,
                           ),
+                          create: widget.item == null,
                         );
                         if (success && mounted) {
                           setState(() => _saved = true);
