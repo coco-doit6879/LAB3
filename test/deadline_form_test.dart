@@ -5,6 +5,7 @@ import 'package:deadline_mate/screens/deadline_form_screen.dart';
 import 'package:deadline_mate/viewmodels/deadlines_viewmodel.dart';
 import 'package:deadline_mate/theme/app_theme.dart';
 import 'package:deadline_mate/models/course.dart';
+import 'package:deadline_mate/models/deadline.dart';
 import 'package:deadline_mate/services/course_service.dart';
 import 'package:deadline_mate/viewmodels/courses_viewmodel.dart';
 
@@ -60,6 +61,20 @@ void main() {
     await tester.pumpAndSettle();
     expect(repo.creates, 2);
     expect(repo.submittedIds, ['draft-test-1', 'draft-test-1']);
+    repo.fail = false;
+    // A real Firestore listener reflects the acknowledged saved draft.
+    repo.changes.add([
+      Deadline(
+        id: 'draft-test-1',
+        title: 'Bài tập Firebase',
+        courseId: 'course-1',
+        dueAt: DateTime(2026, 11, 15),
+      ),
+    ]);
+    await tester.tap(find.text('Lưu deadline'));
+    await tester.pumpAndSettle();
+    expect(find.text('Chi tiết deadline'), findsOneWidget);
+    expect(find.text('Sửa deadline'), findsOneWidget);
     await tester.pumpWidget(const SizedBox.shrink());
     vm.dispose();
     courses.dispose();

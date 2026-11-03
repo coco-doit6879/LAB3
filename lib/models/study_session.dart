@@ -17,6 +17,11 @@ class StudySession {
   final SessionStatus status;
   final DateTime? startedAt;
   final DateTime? endedAt;
+  String get statusLabel => switch (status) {
+    SessionStatus.planned => 'Đã lên kế hoạch',
+    SessionStatus.running => 'Đang học',
+    SessionStatus.completed => 'Đã hoàn thành',
+  };
   Duration elapsed(DateTime now) {
     if (startedAt == null) return Duration.zero;
     final duration = (endedAt ?? now).difference(startedAt!);

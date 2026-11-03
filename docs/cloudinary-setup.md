@@ -14,7 +14,9 @@ D:\PRM\tools\flutter\bin\flutter.bat build apk --debug --dart-define-from-file=c
 
 Observed on 2026-11-03: cloud name `dg5wyuwkp`; saved preset `deadline_mate_pdf`; Unsigned; overwrite disabled; generated public IDs; asset folder `deadline_mate/reports`.
 
-Still to verify in the preset editor: allowed formats `pdf` only and maximum file size 10485760 bytes (10 MiB). The application also checks the PDF header and size before sending a request, but server restrictions must be checked independently. No real upload or download has been verified yet.
+Current editor inspection: Optimize and Deliver → Allowed formats is blank. The student must enter `pdf` there and save; leave the separate Format conversion field empty. This format restriction is not yet saved or verified.
+
+Correction to earlier setup instructions: presets do **not** support a per-preset maximum file size. The application checks the PDF header and a 10485760-byte (10 MiB) cap before sending a request; account-wide server limits still apply. This client limit can be bypassed by a separate uploader and must not be described as server-side enforcement. See the official [upload preset documentation](https://cloudinary.com/documentation/upload_presets), Best practices → Security. No real upload or download has been verified yet.
 
 The adapter uploads bytes to the raw upload endpoint and accepts only HTTPS Cloudinary raw delivery URLs for the configured cloud. Firestore stores the returned URL, public ID, provider and owner ID. A file can remain in Cloudinary if uploading succeeds but saving Firestore metadata fails. Unsigned uploads do not authorize deleting arbitrary assets; clean such orphan files manually in Media Library. The app does not embed privileged deletion credentials.
 
@@ -22,6 +24,6 @@ Cloudinary delivery URLs are public bearer links, even though Firestore metadata
 
 ## Verification completed locally
 
-- Flutter analysis: clean; 16 Flutter tests passed, including multipart upload contract, rejection handling, URL validation and missing configuration.
+- Flutter analysis: clean; latest full suite has 21 passing tests. Adapter checks include multipart upload contract, rejection handling, URL validation, missing configuration, invalid PDF header and oversized PDF rejection before HTTP.
 - 18 emulator security rules tests passed: 11 Firestore and 7 Storage. Storage rules remain tested as an optional Firebase alternative; the active PDF adapter is Cloudinary.
 - These checks do not establish that Google sign-in, cloud Firestore deployment or PDF upload works against the live project.

@@ -66,6 +66,20 @@ void main() {
         configured.uploadPdf(Uint8List(1), 'report.pdf', (_) {}),
         throwsArgumentError,
       );
+      final oversized = Uint8List(CloudinaryFileStorage.maxBytes + 1)
+        ..setRange(0, 5, utf8.encode('%PDF-'));
+      await expectLater(
+        configured.uploadPdf(oversized, 'report.pdf', (_) {}),
+        throwsArgumentError,
+      );
+      await expectLater(
+        configured.uploadPdf(
+          Uint8List.fromList(utf8.encode('HELLO')),
+          'report.pdf',
+          (_) {},
+        ),
+        throwsArgumentError,
+      );
       expect(calls, 0);
     },
   );

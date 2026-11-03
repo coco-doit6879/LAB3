@@ -7,6 +7,7 @@ import '../theme/app_theme.dart';
 import '../viewmodels/deadlines_viewmodel.dart';
 import '../viewmodels/courses_viewmodel.dart';
 import 'courses_screen.dart';
+import 'deadline_detail_screen.dart';
 
 class DeadlineFormScreen extends StatefulWidget {
   const DeadlineFormScreen({super.key, this.item});
@@ -190,7 +191,20 @@ class _DeadlineFormScreenState extends State<DeadlineFormScreen> {
                         if (success && mounted) {
                           setState(() => _saved = true);
                           WidgetsBinding.instance.addPostFrameCallback((_) {
-                            if (mounted) Navigator.of(context).pop();
+                            if (!mounted) return;
+                            if (widget.item != null) {
+                              Navigator.of(context).pop();
+                            } else {
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute<void>(
+                                  settings: const RouteSettings(
+                                    name: 'deadline_detail',
+                                  ),
+                                  builder: (_) =>
+                                      DeadlineDetailScreen(id: _draftId),
+                                ),
+                              );
+                            }
                           });
                         }
                       },

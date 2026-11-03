@@ -2,7 +2,13 @@
 
 ## Latest verification after Cloudinary migration
 
+Latest flow-alignment follow-up: full suite rerun, **21 tests pass**, analysis clean. The existing failed-save form case now retries successfully after an injected matching snapshot and verifies arrival at Deadline detail (including edit action). This proves the fake-repository route behavior, not real cloud persistence. Calendar now displays the session status and completed elapsed minutes; that display still needs signed-in Android evidence.
+
 Latest search/filter implementation: **21 Flutter tests pass**, analysis clean. A ViewModel case combines case-insensitive trimmed title search, course and status, verifies that an incoming stream update respects active filters, and confirms reset preserves source records. A widget case renders Deadline list at 360×800 with a simulated 280 px keyboard inset, enters a nonmatching query, resets filters and verifies the original record and cleared search field with no layout exception. These are fake-repository checks; cloud query and signed-in Android demonstration remain pending.
+
+Cloudinary Console inspection found Allowed formats blank under Optimize and Deliver. Official preset documentation states that per-preset file size limits are unsupported; earlier instructions to find a 10 MiB preset field were incorrect. The app's local cap remains 10 MiB. Adapter negative coverage now also supplies a valid PDF header with oversized bytes and verifies no HTTP request occurs. Live format restriction and upload remain pending student Console action.
+
+The targeted Cloudinary test file was rerun after extending those negative cases: 3 tests passed. Production code did not change in this follow-up; the 21-test full-suite result above belongs to the preceding search/filter check.
 
 Subsequent theme/component change: **19 Flutter tests pass**, analysis clean. Three new widget cases check navigation/card layout and callbacks at 360/412/800 dp. They do not replace full-screen Android accessibility checks. See fidelity-check.md for scope and token contrast calculations.
 

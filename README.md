@@ -25,6 +25,7 @@ Rules tests dùng demo project, không chạm dữ liệu thật; lệnh trong d
 
 ## Tài liệu
 
+- docs/architecture.md: giải thích MVVM, dữ liệu, ba luồng và giới hạn hiện có để vấn đáp.
 - docs/progress.md: phạm vi hoàn thành và còn thiếu.
 - docs/firebase-setup.md: cấu hình thật, SHA-1 và dịch vụ còn phải bật.
 - docs/cloudinary-setup.md: cấu hình PDF không cần API secret, trạng thái Console và giới hạn triển khai.

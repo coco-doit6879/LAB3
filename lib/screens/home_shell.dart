@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../theme/app_theme.dart';
+import '../models/study_session.dart';
 import '../viewmodels/auth_viewmodel.dart';
 import '../viewmodels/deadlines_viewmodel.dart';
 import '../viewmodels/study_viewmodel.dart';
@@ -293,7 +294,10 @@ class _CalendarState extends State<_Calendar> {
               child: ListTile(
                 title: Text(item.title),
                 leading: const Icon(Icons.timer_outlined),
-                subtitle: Text('${item.plannedMinutes} phút'),
+                subtitle: Text(
+                  '${item.statusLabel} · ${item.plannedMinutes} phút dự kiến'
+                  '${item.status == SessionStatus.completed ? ' · ${item.elapsed(DateTime.now()).inMinutes} phút thực tế' : ''}',
+                ),
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute<void>(
                     settings: const RouteSettings(name: 'study_sessions'),
