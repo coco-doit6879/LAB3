@@ -67,7 +67,8 @@ test('study session duration limits and forged initial status are rejected', asy
 });
 test('report metadata must use matching UID and storage path', async () => {
   const report = {fileName: 'deadline-mate-r1.pdf', url: 'https://firebasestorage.googleapis.com/v0/b/example/o/report',
-    ownerId: 'alice', createdAt: serverTimestamp(), itemCount: 1, objectPath: 'reports/alice/deadline-mate-r1.pdf'};
+    ownerId: 'alice', createdAt: serverTimestamp(), itemCount: 1,
+    objectPath: 'reports/alice/deadline-mate-r1.pdf', storageProvider: 'firebase'};
   await assertSucceeds(setDoc(doc(db(), 'users/alice/reports/r1'), report));
   await assertFails(setDoc(doc(db(), 'users/alice/reports/r2'), {...report, ownerId: 'bob'}));
   await assertFails(getDoc(doc(db('bob'), 'users/alice/reports/r1')));
@@ -79,6 +80,16 @@ test('notification read updates cannot change message text or routing', async ()
   await assertSucceeds(updateDoc(ref, {read: true}));
   await assertFails(updateDoc(ref, {body: 'Changed', read: true}));
   await assertFails(getDoc(doc(db('bob'), 'users/alice/notifications/n1')));
+});
+test('Cloudinary reports remain owner-scoped and reject unapproved delivery hosts', async () => {
+  const report = {fileName: 'deadline-mate-r3.pdf',
+    url: 'https://res.cloudinary.com/test-cloud/raw/upload/v1/report.pdf',
+    ownerId: 'alice', createdAt: serverTimestamp(), itemCount: 2,
+    objectPath: 'report.pdf', storageProvider: 'cloudinary'};
+  await assertSucceeds(setDoc(doc(db(), 'users/alice/reports/r3'), report));
+  await assertFails(getDoc(doc(db('bob'), 'users/alice/reports/r3')));
+  await assertFails(setDoc(doc(db(), 'users/alice/reports/r4'), {...report,
+    fileName: 'deadline-mate-r4.pdf', url: 'https://evil.example/report.pdf'}));
 });
 test('unknown collections remain denied', async () => {
   await assertFails(setDoc(doc(db(), 'users/alice/private/x'), {value: 1}));

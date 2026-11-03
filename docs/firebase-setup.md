@@ -23,7 +23,7 @@ In Authentication → Sign-in method, enable Google and select the project suppo
 ## Remaining setup
 
 - Create Cloud Firestore database, then deploy the checked-in rules after emulator tests. Do not use open test-mode rules as the submission.
-- Firebase Storage is the implemented adapter, but project is currently Spark. No paid plan or billing was enabled. Resolve storage choice with the student/lecturer before paid setup; Cloudinary is an allowed free alternative in the main specification.
+- Student selected Cloudinary; the active PDF adapter now uses it. Project remains Spark and no billing was enabled. See cloudinary-setup.md for public build configuration and pending live verification. Firebase Storage rules remain as a tested alternative.
 - Analytics enabled status, DebugView, Crashlytics onboarding and event receipt need actual verification.
 - Remote Config: publish dashboard_item_limit=5 (Number), enable_pdf_export=true (Boolean), study_banner (String). App defaults exist; refresh minimum interval is one minute.
 - FCM instructions are in fcm-demo.md.

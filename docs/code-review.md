@@ -1,5 +1,11 @@
 # Local AI review before GitHub pull request
 
+## Cloudinary migration and security follow-up
+
+R2 and R3 below refer to the earlier Firebase Storage adapter. That upload path has now been replaced by Cloudinary multipart upload; there is no UploadTask snapshot subscription or separate getDownloadURL call. HTTP failure/progress/response validation have unit coverage. An upload followed by a Firestore failure can still leave an orphan asset: the unsigned client has no privileged delete permission. This limitation is documented in cloudinary-setup.md and must not be represented as guaranteed cleanup.
+
+R6 (security/high): Storage rules allowed replacement through overlapping delete/write authorization. The rule now distinguishes create (resource absent) and delete (incoming resource absent); owner overwrite is rejected. Seven Storage emulator cases pass. Combined with 11 Firestore cases, 18 Rules cases pass. This is a real local finding and fix, not an external PR review.
+
 Tool: Codex assistant in this working session. Baseline reviewed: commit 1b78e8d, branch feature/firebase-integration. This is a local pre-review, not a claim that a GitHub PR review or merge has occurred. Student decisions and external PR evidence remain pending.
 
 | ID | Baseline file and line | Finding and impact | Category/severity | Agent decision and fix | Verification |

@@ -9,8 +9,8 @@ MVVM + Provider; Google authentication/auth gate; deadline CRUD/realtime/query; 
 ## Đã kiểm chứng
 
 - Flutter analyze: No issues found.
-- 12 unit/widget tests pass.
-- 10 Firestore Rules emulator tests pass (project demo-deadlinemate, localhost:8188).
+- 19 unit/widget tests pass, gồm navigation/card tại 360/412/800 dp.
+- 18 Rules emulator tests pass: 11 Firestore và 7 Storage (project demo-deadlinemate).
 - Đăng ký Android app trên Firebase project thật.
 - Google provider Enabled đã xác minh trên Console; cấu hình mới có OAuth Android/web và SHA-1 khớp debug key của máy.
 - APK debug build thành công sau khi tắt Kotlin incremental compilation để xử lý cache khác ổ C/D. Đã rebuild với config OAuth mới, cài và mở thành công; ảnh assets/evidence/android-login.png.
@@ -20,9 +20,9 @@ MVVM + Provider; Google authentication/auth gate; deadline CRUD/realtime/query; 
 
 - Đã cài/chạy APK cập nhật và xem Login; còn đăng nhập bằng tài khoản test và kiểm tra UI/flows đầy đủ trên Android.
 - Tạo Firestore database thật, deploy rules sau review; CRUD và dữ liệu Console.
-- Storage adapter hiện là Firebase Storage, project Spark chưa có billing: cần chốt phương án storage; không tự nâng gói.
+- Đã chuyển adapter PDF sang Cloudinary theo lựa chọn sinh viên; preset Unsigned đã lưu. Còn kiểm chứng giới hạn preset, upload và mở PDF thật.
 - Firebase Console evidence cho FCM các trạng thái, Remote Config đổi hành vi, Analytics DebugView, Crashlytics handled/test crash.
-- Storage Rules tests; xử lý các phát hiện code review có thật.
+- Đã kiểm thử Storage Rules và sửa lỗi ghi đè; còn đưa bằng chứng review vào PR thật.
 - Figma/design LAB 2 cập nhật; đối chiếu từng màn hình, tokens/components và accessibility 360/412 dp.
 - MobAI 10 scripts, full runs, healing và bug-catching; nếu thay ARTEMIS cần theo giảng viên.
 - GitHub remote/PR review/merge, AI log có prompt nguyên văn và sinh viên xác nhận quyết định; report/slides/video.
@@ -31,5 +31,7 @@ Bài LAB chưa hoàn tất. Xem test-report.md để biết chính xác phạm v
 
 
 ## Vòng review tiếp theo
+
+Bản Cloudinary đã build thành công bằng `--no-pub --dart-define-from-file=config/cloudinary.json`, cài cập nhật vào emulator-5554 với kết quả Success và gửi lệnh mở MainActivity. Chưa có bằng chứng đăng nhập hay upload thật từ bản này. Tài liệu design-change-log.md và handoff-gaps.md đã được bổ sung, vẫn ghi rõ Figma và kiểm chứng cloud còn thiếu.
 
 Đã sửa 5 phát hiện review cục bộ, ghi trong code-review.md; chưa thay thế review PR GitHub. 13 Flutter tests pass, analyze sạch và APK đã rebuild. MobAI CLI/bridge hoạt động, login-gate DSL pass 3/3; .mob runner còn lỗi test-project initialization. Log pass và log lỗi đều lưu nguyên trong assets/evidence/mobai. Chưa hoàn thành 10 E2E scripts.

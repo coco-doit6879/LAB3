@@ -10,6 +10,8 @@ import '../viewmodels/config_viewmodel.dart';
 import '../viewmodels/notifications_viewmodel.dart';
 import '../services/telemetry_service.dart';
 import '../widgets/status_panel.dart';
+import '../widgets/deadline_card.dart';
+import '../widgets/app_navigation.dart';
 import 'courses_screen.dart';
 import 'deadline_detail_screen.dart';
 import 'deadline_form_screen.dart';
@@ -78,36 +80,16 @@ class _HomeShellState extends State<HomeShell> {
       onPopInvokedWithResult: (didPop, result) {
         if (!didPop) _select(0);
       },
-      child: Scaffold(
-        body: IndexedStack(
+      child: AppNavigation(
+        index: _index,
+        onSelected: _select,
+        child: IndexedStack(
           index: _index,
           children: const [
             _Dashboard(),
             DeadlinesScreen(),
             _Calendar(),
             ReportsScreen(),
-          ],
-        ),
-        bottomNavigationBar: NavigationBar(
-          selectedIndex: _index,
-          onDestinationSelected: _select,
-          destinations: const [
-            NavigationDestination(
-              icon: Icon(Icons.dashboard_outlined),
-              label: 'Tổng quan',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.checklist),
-              label: 'Deadline',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.calendar_month_outlined),
-              label: 'Lịch học',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.assessment_outlined),
-              label: 'Báo cáo',
-            ),
           ],
         ),
       ),
@@ -215,15 +197,12 @@ class _Dashboard extends StatelessWidget {
               in deadlines.items
                   .where((item) => !item.completed)
                   .take(config.dashboardLimit))
-            Card(
-              child: ListTile(
-                title: Text(item.title),
-                subtitle: Text(DateFormat('dd/MM HH:mm').format(item.dueAt)),
-                onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute<void>(
-                    settings: const RouteSettings(name: 'deadline_detail'),
-                    builder: (_) => DeadlineDetailScreen(id: item.id),
-                  ),
+            DeadlineCard(
+              deadline: item,
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  settings: const RouteSettings(name: 'deadline_detail'),
+                  builder: (_) => DeadlineDetailScreen(id: item.id),
                 ),
               ),
             ),

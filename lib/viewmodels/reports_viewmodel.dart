@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import '../models/deadline.dart';
 import '../models/report.dart';
 import '../services/report_service.dart';
+import '../services/file_storage_service.dart';
 import '../services/telemetry_service.dart';
 
 class ReportsViewModel extends ChangeNotifier {
@@ -64,9 +65,11 @@ class ReportsViewModel extends ChangeNotifier {
       });
       success = 'Đã tải PDF lên và lưu thông tin báo cáo.';
       await _telemetry.event('export_pdf', {'item_count': items.length});
-    } catch (_) {
+    } catch (exception) {
       await _telemetry.handled('pdf_export');
-      error = 'Chưa xuất được PDF. Kiểm tra mạng, quyền lưu trữ và cấu hình Firebase Storage rồi thử lại.';
+      error = exception is StorageConfigurationException
+          ? 'Tính năng xuất báo cáo chưa được cấu hình.'
+          : 'Chưa xuất được PDF. Kiểm tra kết nối rồi thử lại.';
     } finally {
       busy = false;
       _notify();

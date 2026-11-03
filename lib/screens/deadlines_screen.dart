@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../theme/app_theme.dart';
 import '../viewmodels/deadlines_viewmodel.dart';
 import '../widgets/status_panel.dart';
+import '../widgets/deadline_card.dart';
 import 'deadline_detail_screen.dart';
 import 'deadline_form_screen.dart';
 import 'profile_screen.dart';
@@ -73,25 +73,14 @@ class DeadlinesScreen extends StatelessWidget {
                     itemCount: vm.visible.length,
                     itemBuilder: (context, index) {
                       final item = vm.visible[index];
-                      return Card(
-                        child: ListTile(
-                          leading: Icon(
-                            item.completed
-                                ? Icons.check_circle_outline
-                                : Icons.schedule,
-                          ),
-                          title: Text(item.title),
-                          subtitle: Text(
-                            '${item.courseId} · ${DateFormat('dd/MM/yyyy HH:mm').format(item.dueAt)}\n${item.completed ? 'Đã hoàn thành' : 'Chưa hoàn thành'}',
-                          ),
-                          trailing: const Icon(Icons.chevron_right),
-                          onTap: () => Navigator.of(context).push(
-                            MaterialPageRoute<void>(
-                              settings: const RouteSettings(
-                                name: 'deadline_detail',
-                              ),
-                              builder: (_) => DeadlineDetailScreen(id: item.id),
+                      return DeadlineCard(
+                        deadline: item,
+                        onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            settings: const RouteSettings(
+                              name: 'deadline_detail',
                             ),
+                            builder: (_) => DeadlineDetailScreen(id: item.id),
                           ),
                         ),
                       );

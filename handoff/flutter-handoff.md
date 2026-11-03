@@ -4,7 +4,7 @@ New working specification. Figma screen exports and component instances are pend
 
 ## Global mappings
 
-Colors → AppTokens and ThemeData.colorScheme; typography → ThemeData.textTheme; spacing/radius/content width → AppTokens. Components → AppButton, AppField, DeadlineCard, AppNavigation, AppTopBar, AppDialog, LoadingState, EmptyState, ErrorState. Screens must not use Firebase APIs directly.
+Colors → AppTheme and ThemeData.colorScheme; typography → ThemeData.textTheme; spacing/radius/content width → AppTheme. Target components → AppButton, AppField, DeadlineCard, AppNavigation, AppTopBar, AppDialog, LoadingState, EmptyState, ErrorState. DeadlineCard and AppNavigation now exist; StatusPanel covers shared status presentation. The other named wrappers and their full state variants remain to implement; current screens still use themed Material controls in those places. Screens must not use Firebase APIs directly.
 
 All screens: SafeArea, scroll when content exceeds height, body ≥14 sp, targets ≥48 dp, label overflow wraps or truncates with accessible full text. Keyboard does not cover submit actions. Widths 360 and 412 dp require runtime checks. At ≥600 dp center forms with max width 640 dp and use rail for main destinations.
 

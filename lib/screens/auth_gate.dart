@@ -55,7 +55,7 @@ class _SessionGate extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => ReportsViewModel(
-            FirebaseReportService(auth.user!.uid),
+            FirestoreReportService(auth.user!.uid),
             telemetry: FirebaseTelemetry(),
           ),
         ),

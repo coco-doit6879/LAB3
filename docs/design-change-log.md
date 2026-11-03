@@ -1,0 +1,14 @@
+# Design change log
+
+These are changes in the newly authored Deadline Mate specification. There is no verified original Lab 2 Figma comparison yet. Dates reflect actual work on 2026-11-03; no earlier design history is claimed.
+
+| Change | Reason | Implementation and verification | Approval status |
+|---|---|---|---|
+| Topic becomes Deadline Mate | Student chose this topic after requesting alternatives to the earlier Lab 2 topic. | New design/DESIGN.md, ux/user-flow.md and handoff/flutter-handoff.md; original Figma and lecturer acceptance remain missing. | Student selected topic; lecturer acceptance unverified. |
+| Use Cloudinary for generated PDF files | Student explicitly chose Cloudinary without linking payment; main Lab 3 brief allows it. Preparation guide v5 describes Firebase Storage. | Cloudinary raw unsigned adapter; public build config; owner-scoped report metadata in Firestore. Unit contract tests pass; live upload and preset limits remain unverified. | Student selected provider. |
+| Stable deadline draft ID and recovery | Retrying after uncertain persistence must not create duplicate records. | Same draft ID reused; transaction handles existing draft. Widget test proves retry ID reuse; native transaction behavior still pending. | Agent implementation decision; student review pending. |
+| Detail query error has retry | A load failure must not claim that a record was deleted. | Separate error and missing-record states; widget regression test passes. | Agent correction of recovery behavior. |
+| Confirm ending a study session | Flow requires deliberate completion and cancel recovery. | Confirmation dialog before state transition; runtime evidence pending. | Agent implementation of specified flow. |
+| Explicit theme, shared deadline card and adaptive main navigation | Implementation used default typography and duplicated cards; wide layout was missing from handoff. | AppTheme tokens, DeadlineCard and AppNavigation; 19 tests pass, analysis clean; three layout cases at 360/412/800 dp. Android build succeeded. Full Figma comparison remains pending. | Agent implementation of existing specification; student visual review pending. |
+
+Before submission, add Figma node links, before/after images and measured differences for each affected screen. This document does not establish design fidelity.

@@ -1,5 +1,23 @@
 # Verification report
 
+## Latest verification after Cloudinary migration
+
+Subsequent theme/component change: **19 Flutter tests pass**, analysis clean. Three new widget cases check navigation/card layout and callbacks at 360/412/800 dp. They do not replace full-screen Android accessibility checks. See fidelity-check.md for scope and token contrast calculations.
+
+Current local checks: 16 Flutter tests passed; analysis clean. Cloudinary adapter tests cover multipart fields, no privileged credential, progress/result parsing, missing configuration, invalid PDF, rejected upload and invalid delivery URL. They use an HTTP fake and do not prove a live upload.
+
+Cloudinary-configured debug APK build completed successfully (`--no-pub --dart-define-from-file=config/cloudinary.json`); adb install -r returned Success and MainActivity start was accepted. Initial build with pub resolution failed due network/cache permissions; the cached dependency build succeeded. This remains launch/install evidence, not live PDF verification.
+
+Runtime recheck: initial MobAI observation saw the launcher. Reopening with `am start -W` returned Status ok, WARM, MainActivity, TotalTime 3709 ms. The following MobAI observation returned the app's actual Login semantics: “Deadline Mate”, “Bớt lo deadline. Tập trung từng phiên học.”, and button “Tiếp tục với Google”. No successful sign-in is claimed.
+
+18 combined emulator Rules tests passed: 11 Firestore and 7 Storage. The Storage suite uncovered an overwrite authorization bug; create now requires an absent resource and delete requires an absent incoming resource. The suite checks owner isolation, signed-out denial, PDF content type/size bounds, immutable objects, deletion and unknown paths. Test cleanup recursively removes only emulator fixtures because the library root cleanup did not clear nested prefixes.
+
+```powershell
+D:\PRM\tools\firebase-cli\node_modules\.bin\firebase.cmd emulators:exec --only 'firestore,storage' --project demo-deadlinemate 'node --test tests/rules/firestore.test.mjs tests/rules/storage.test.mjs'
+```
+
+Earlier sections below retain historical verification stages; their smaller counts and pending Storage checks are superseded by this section. No live cloud verification is implied.
+
 Student: SE194007. Product: Deadline Mate. Verification date: 2026-11-03.
 
 ## Completed checks

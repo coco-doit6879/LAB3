@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -7,6 +6,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../models/deadline.dart';
 import '../models/report.dart';
+import 'file_storage_service.dart';
+import 'telemetry_service.dart';
 
 abstract interface class ReportRepository {
   Stream<List<Report>> watch();
@@ -14,8 +15,10 @@ abstract interface class ReportRepository {
   Future<void> open(String url);
 }
 
-class FirebaseReportService implements ReportRepository {
-  FirebaseReportService(this.uid);
+class FirestoreReportService implements ReportRepository {
+  FirestoreReportService(this.uid, {FileStorageService? storage})
+    : _storage = storage ?? CloudinaryFileStorage.fromEnvironment();
+  final FileStorageService _storage;
   final String uid;
   CollectionReference<Map<String, dynamic>> get _reports => FirebaseFirestore
       .instance
@@ -45,6 +48,7 @@ class FirebaseReportService implements ReportRepository {
     List<Deadline> items,
     void Function(double) onProgress,
   ) async {
+    if (!_storage.configured) throw const StorageConfigurationException();
     final regular = pw.Font.ttf(
       await rootBundle.load('assets/fonts/NotoSans-Regular.ttf'),
     );
@@ -93,51 +97,22 @@ class FirebaseReportService implements ReportRepository {
     final bytes = await pdf.save();
     final doc = _reports.doc();
     final fileName = 'deadline-mate-${doc.id}.pdf';
-    final objectPath = 'reports/$uid/$fileName';
-    final ref = FirebaseStorage.instance.ref(objectPath);
-    final task = ref.putData(
-      bytes,
-      SettableMetadata(
-        contentType: 'application/pdf',
-        customMetadata: {'ownerId': uid},
-      ),
-    );
-    final subscription = task.snapshotEvents.listen(
-      (snapshot) {
-        if (snapshot.totalBytes > 0) {
-          onProgress(snapshot.bytesTransferred / snapshot.totalBytes);
-        }
-      },
-      onError: (Object error) {
-        // The awaited UploadTask below owns failure handling. Do not also emit an
-        // unhandled stream error into the global fatal-error handler.
-      },
-    );
-    var uploaded = false;
+    final uploaded = await _storage.uploadPdf(bytes, fileName, onProgress);
     try {
-      await task;
-      uploaded = true;
-      final url = await ref.getDownloadURL();
       await doc.set({
         'fileName': fileName,
-        'url': url,
+        'url': uploaded.url,
         'ownerId': uid,
         'createdAt': FieldValue.serverTimestamp(),
         'itemCount': items.length,
-        'objectPath': objectPath,
+        'objectPath': uploaded.objectPath,
+        'storageProvider': uploaded.provider,
       });
     } catch (_) {
-      if (uploaded) {
-        // Also clean up if fetching the download URL fails after a completed upload.
-        try {
-          await ref.delete();
-        } catch (_) {
-          /* Record remediation in Firebase Console if cleanup fails. */
-        }
-      }
+      // Unsigned clients cannot use the signed destroy API. An untracked asset
+      // may require cleanup in the owner's Cloudinary Media Library.
+      await FirebaseTelemetry().handled('report_metadata_after_upload');
       rethrow;
-    } finally {
-      await subscription.cancel();
     }
   }
 
@@ -146,7 +121,8 @@ class FirebaseReportService implements ReportRepository {
     final uri = Uri.tryParse(url);
     if (uri == null ||
         uri.scheme != 'https' ||
-        uri.host != 'firebasestorage.googleapis.com') {
+        (uri.host != 'firebasestorage.googleapis.com' &&
+            uri.host != 'res.cloudinary.com')) {
       throw ArgumentError('Unsupported report URL');
     }
     if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {

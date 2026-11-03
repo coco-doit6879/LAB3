@@ -55,13 +55,18 @@ service cloud.firestore {
     match /users/{uid}/reports/{reportId} {
       allow read: if owner(uid);
       allow create: if owner(uid)
-        && request.resource.data.keys().hasAll(['fileName', 'url', 'ownerId', 'createdAt', 'itemCount', 'objectPath'])
-        && request.resource.data.keys().hasOnly(['fileName', 'url', 'ownerId', 'createdAt', 'itemCount', 'objectPath'])
+        && request.resource.data.keys().hasAll(['fileName', 'url', 'ownerId', 'createdAt', 'itemCount', 'objectPath', 'storageProvider'])
+        && request.resource.data.keys().hasOnly(['fileName', 'url', 'ownerId', 'createdAt', 'itemCount', 'objectPath', 'storageProvider'])
         && request.resource.data.ownerId == uid
         && request.resource.data.fileName == 'deadline-mate-' + reportId + '.pdf'
-        && request.resource.data.objectPath == 'reports/' + uid + '/' + request.resource.data.fileName
+        && request.resource.data.objectPath is string
+        && request.resource.data.objectPath.size() > 0 && request.resource.data.objectPath.size() <= 1024
         && request.resource.data.url is string && request.resource.data.url.size() <= 4096
-        && request.resource.data.url.matches('https://firebasestorage[.]googleapis[.]com/.*')
+        && ((request.resource.data.storageProvider == 'firebase'
+          && request.resource.data.objectPath == 'reports/' + uid + '/' + request.resource.data.fileName
+          && request.resource.data.url.matches('https://firebasestorage[.]googleapis[.]com/.*'))
+          || (request.resource.data.storageProvider == 'cloudinary'
+          && request.resource.data.url.matches('https://res[.]cloudinary[.]com/[a-zA-Z0-9_-]+/raw/upload/.*')))
         && request.resource.data.itemCount is int && request.resource.data.itemCount >= 0
         && request.resource.data.createdAt == request.time;
     }
