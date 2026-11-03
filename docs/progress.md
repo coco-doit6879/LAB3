@@ -25,7 +25,7 @@ MVVM + Provider; Google authentication/auth gate; deadline CRUD/realtime/query; 
 - Đã kiểm thử Storage Rules và sửa lỗi ghi đè; còn đưa bằng chứng review vào PR thật.
 - Figma/design LAB 2 cập nhật; đối chiếu từng màn hình, tokens/components và accessibility 360/412 dp.
 - MobAI 10 scripts, full runs, healing và bug-catching; nếu thay ARTEMIS cần theo giảng viên.
-- GitHub remote/PR review/merge, AI log có prompt nguyên văn và sinh viên xác nhận quyết định; report/slides/video.
+- GitHub remote/PR review/merge; implementation-ai-log.md đã có sáu mục tác nghiệp từ yêu cầu thật, ghi rõ objective lặp lại và chưa có quyết định sinh viên; còn xác nhận/hoàn thiện log và report/slides/video.
 
 Bài LAB chưa hoàn tất. Xem test-report.md để biết chính xác phạm vi kiểm chứng, không dùng unit tests thay bằng chứng E2E.
 

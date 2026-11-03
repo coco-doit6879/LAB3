@@ -27,6 +27,8 @@ Rules tests dùng demo project, không chạm dữ liệu thật; lệnh trong d
 
 - docs/architecture.md: giải thích MVVM, dữ liệu, ba luồng và giới hạn hiện có để vấn đáp.
 - docs/backend-deployment.md: database/Rules và Remote Config đã triển khai thật, cùng phần còn cần kiểm chứng.
+- docs/implementation-ai-log.md: nhật ký thật theo yêu cầu/lượt tiếp tục; quyết định của sinh viên còn chờ xác nhận.
+- docs/live-verification-plan.md: thứ tự thu bằng chứng và điều kiện cho mười bài MobAI; chưa phải kết quả pass.
 - docs/components.md: mapping thư viện widget, trạng thái và các ngoại lệ cần đối chiếu Figma.
 - docs/progress.md: phạm vi hoàn thành và còn thiếu.
 - docs/firebase-setup.md: cấu hình thật, SHA-1 và dịch vụ còn phải bật.
