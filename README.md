@@ -27,6 +27,7 @@ Rules tests dùng demo project, không chạm dữ liệu thật; lệnh trong d
 
 - docs/architecture.md: giải thích MVVM, dữ liệu, ba luồng và giới hạn hiện có để vấn đáp.
 - docs/backend-deployment.md: database/Rules và Remote Config đã triển khai thật, cùng phần còn cần kiểm chứng.
+- docs/remote-config-demo.md: hai hành vi RC đã chạy trước/sau và khôi phục, gồm ảnh và server readback.
 - docs/implementation-ai-log.md: nhật ký thật theo yêu cầu/lượt tiếp tục; quyết định của sinh viên còn chờ xác nhận.
 - docs/live-verification-plan.md: thứ tự thu bằng chứng và điều kiện cho mười bài MobAI; chưa phải kết quả pass.
 - docs/live-flow-results.md: các bước đã chạy thật, log pass/fail và phạm vi chưa kiểm chứng.

@@ -1,0 +1,37 @@
+{
+  "artifactKind": "Filtered MobAI result summary; account identity excluded",
+  "success": true,
+  "steps": [
+    {
+      "action": "assert_exists",
+      "success": true,
+      "started_at_ms": 1793725609365
+    },
+    {
+      "action": "scroll",
+      "success": true,
+      "started_at_ms": 1793725609490
+    },
+    {
+      "action": "assert_exists",
+      "success": true,
+      "started_at_ms": 1793725611941
+    },
+    {
+      "action": "assert_not_exists",
+      "success": true,
+      "started_at_ms": 1793725611976
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725612016
+    },
+    {
+      "action": "observe",
+      "success": true,
+      "started_at_ms": 1793725612361
+    }
+  ],
+  "observedUi": "                          [17] Button \"RC Demo 1\\nPRM393 — Flutter và Firebase · 05/11/2026 00:03\\nChưa hoàn thành\" (66,290 948x26)\n                          [19] Button \"RC Demo 2\\nPRM393 — Flutter và Firebase · 05/11/2026 00:04\\nChưa hoàn thành\" (66,316 948x418)\n                          [21] Button \"RC Demo 3\\nPRM393 — Flutter và Firebase · 05/11/2026 00:04\\nChưa hoàn thành\" (66,734 948x418)\n                          [23] Button \"RC Demo 4\\nPRM393 — Flutter và Firebase · 05/11/2026 00:04\\nChưa hoàn thành\" (66,1152 948x418)\n                          [25] Button \"RC Demo 5\\nPRM393 — Flutter và Firebase · 05/11/2026 00:04\\nChưa hoàn thành\" (66,1570 948x418)\n"
+}

@@ -8,6 +8,8 @@ MVVM + Provider; Google authentication/auth gate; deadline CRUD/realtime/query; 
 
 ## Đã kiểm chứng
 
+Trạng thái thiết bị gần nhất: sau khi hoàn tất assertions RC 5→2→5, emulator đã dừng (adb devices rỗng, không có qemu process); ảnh dashboard restored cuối chưa chụp được. Các ảnh trước đó và log pass đã lưu. Cần mở lại emulator cho bước kiểm thử tiếp theo; không coi dòng kiểm chứng lịch sử dưới đây là xác nhận thiết bị vẫn đang chạy.
+
 - Flutter analyze: No issues found.
 - 22 unit/widget tests pass, gồm navigation/card tại 360/412/800 dp, tìm kiếm và regression dialog/provider với Navigator lồng nhau.
 - 18 Rules emulator tests pass: 11 Firestore và 7 Storage (project demo-deadlinemate).
@@ -21,7 +23,7 @@ MVVM + Provider; Google authentication/auth gate; deadline CRUD/realtime/query; 
 - Đã đăng nhập Google, tạo/list môn demo; Deadline CRUD/complete/cancel-delete và Study plan/start/finish/cancel đã chạy trên app Firebase thật. Xem live-flow-results.md; còn PDF, lỗi mạng, Console evidence, logout/isolation và suite .mob.
 - Database thật đã tạo (Standard/freeTier, asia-southeast1) và Rules đã deploy; còn CRUD theo UID và dữ liệu Console. Remote Config đã publish/đọc lại ba tham số; còn bằng chứng app phản ứng. Xem backend-deployment.md.
 - Đã chuyển adapter PDF sang Cloudinary theo lựa chọn sinh viên; preset Unsigned đã lưu. Còn kiểm chứng giới hạn preset, upload và mở PDF thật.
-- Firebase Console evidence cho FCM các trạng thái, Remote Config đổi hành vi, Analytics DebugView, Crashlytics handled/test crash.
+- Hai hành vi Remote Config đã kiểm thử thật và khôi phục baseline (remote-config-demo.md). Còn ảnh/video Console, FCM các trạng thái, Analytics DebugView và Crashlytics handled/test crash.
 - Đã kiểm thử Storage Rules và sửa lỗi ghi đè; còn đưa bằng chứng review vào PR thật.
 - Figma/design LAB 2 cập nhật; đối chiếu từng màn hình, tokens/components và accessibility 360/412 dp.
 - MobAI 10 scripts, full runs, healing và bug-catching; nếu thay ARTEMIS cần theo giảng viên.

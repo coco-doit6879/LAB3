@@ -1,0 +1,11 @@
+{
+  "version": "0.2",
+  "steps": [
+    { "action": "tap", "predicate": { "text_contains": "Tab 2 of 4", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text": "Hồ sơ", "type": "button" }, "timeout_ms": 10000 },
+    { "action": "tap", "predicate": { "text": "Hồ sơ", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text_contains": "enable_pdf_export:" }, "timeout_ms": 10000 },
+    { "action": "wait_for", "stable": true, "timeout_ms": 3000 },
+    { "action": "observe", "include": ["ui_tree"], "filter": { "text_regex": "dashboard_item_limit|enable_pdf_export|study_banner|cấu hình|Cấu hình" } }
+  ]
+}

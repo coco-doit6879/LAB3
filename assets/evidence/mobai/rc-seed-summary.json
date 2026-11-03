@@ -1,0 +1,417 @@
+{
+  "artifactKind": "Filtered MobAI result summary; account identity excluded",
+  "success": true,
+  "steps": [
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725449156
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725451541
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725451677
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725453446
+    },
+    {
+      "action": "type",
+      "success": true,
+      "started_at_ms": 1793725453603
+    },
+    {
+      "action": "press_key",
+      "success": true,
+      "started_at_ms": 1793725455346
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725457585
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725459639
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725459963
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725462097
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725462681
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725464337
+    },
+    {
+      "action": "assert_exists",
+      "success": true,
+      "started_at_ms": 1793725466469
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725466505
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725467578
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725469151
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725470992
+    },
+    {
+      "action": "type",
+      "success": true,
+      "started_at_ms": 1793725471255
+    },
+    {
+      "action": "press_key",
+      "success": true,
+      "started_at_ms": 1793725472738
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725476276
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725477023
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725477828
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725479237
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725479977
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725482591
+    },
+    {
+      "action": "assert_exists",
+      "success": true,
+      "started_at_ms": 1793725484690
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725484718
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725486555
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725486921
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725489092
+    },
+    {
+      "action": "type",
+      "success": true,
+      "started_at_ms": 1793725489241
+    },
+    {
+      "action": "press_key",
+      "success": true,
+      "started_at_ms": 1793725491122
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725495959
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725497900
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725498158
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725499652
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725499976
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725501593
+    },
+    {
+      "action": "assert_exists",
+      "success": true,
+      "started_at_ms": 1793725503478
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725503784
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725506034
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725506262
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725507618
+    },
+    {
+      "action": "type",
+      "success": true,
+      "started_at_ms": 1793725508016
+    },
+    {
+      "action": "press_key",
+      "success": true,
+      "started_at_ms": 1793725509785
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725512253
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725514740
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725515050
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725516434
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725517063
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725519236
+    },
+    {
+      "action": "assert_exists",
+      "success": true,
+      "started_at_ms": 1793725521614
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725521643
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725523170
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725523943
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725525972
+    },
+    {
+      "action": "type",
+      "success": true,
+      "started_at_ms": 1793725526286
+    },
+    {
+      "action": "press_key",
+      "success": true,
+      "started_at_ms": 1793725530131
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725532089
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725533779
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725534419
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725536073
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725537324
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725538620
+    },
+    {
+      "action": "assert_exists",
+      "success": true,
+      "started_at_ms": 1793725540595
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725540639
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725542031
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725542315
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725544025
+    },
+    {
+      "action": "type",
+      "success": true,
+      "started_at_ms": 1793725544194
+    },
+    {
+      "action": "press_key",
+      "success": true,
+      "started_at_ms": 1793725546142
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725549687
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725551923
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725552260
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725554689
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725555100
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725557846
+    },
+    {
+      "action": "assert_exists",
+      "success": true,
+      "started_at_ms": 1793725559510
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725559539
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725560888
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725561202
+    },
+    {
+      "action": "observe",
+      "success": true,
+      "started_at_ms": 1793725561539
+    }
+  ],
+  "observedUi": "                          [20] View \"6 deadline chưa xong\\n0 deadline đã hoàn thành\" (66,582 948x297)\n                        [28] View \"Deadline sắp tới\" (66,1341 948x77)\n                          [30] Button \"RC Demo 1\\nPRM393 — Flutter và Firebase · 05/11/2026 00:03\\nChưa hoàn thành\" (66,1418 948x418)\n                          [32] Button \"RC Demo 2\\nPRM393 — Flutter và Firebase · 05/11/2026 00:04\\nChưa hoàn thành\" (66,1836 948x218)\n"
+}

@@ -1,0 +1,11 @@
+{
+  "version": "0.2",
+  "steps": [
+    { "action": "assert_exists", "predicate": { "text_contains": "6 deadline chưa xong" } },
+    { "action": "scroll", "direction": "down", "to_element": { "predicate": { "text_contains": "RC Demo 5" }, "fully_visible": true }, "max_scrolls": 10 },
+    { "action": "assert_exists", "predicate": { "text_contains": "RC Demo 5" } },
+    { "action": "assert_not_exists", "predicate": { "text_contains": "RC Demo 6" } },
+    { "action": "wait_for", "stable": true, "timeout_ms": 3000 },
+    { "action": "observe", "include": ["ui_tree"], "filter": { "text_regex": "RC Demo|deadline chưa|Deadline sắp tới" } }
+  ]
+}

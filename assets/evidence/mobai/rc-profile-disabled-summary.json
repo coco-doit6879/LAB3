@@ -1,0 +1,32 @@
+{
+  "artifactKind": "Filtered MobAI result summary; account identity excluded",
+  "success": true,
+  "steps": [
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725186154
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725188549
+    },
+    {
+      "action": "assert_exists",
+      "success": true,
+      "started_at_ms": 1793725191091
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725191597
+    },
+    {
+      "action": "observe",
+      "success": true,
+      "started_at_ms": 1793725192460
+    }
+  ],
+  "configUi": "                        [20] View \"Cấu hình từ xa\" (66,890 948x77)\n                        [21] View \"dashboard_item_limit: 5\" (66,967 948x66)\n                        [22] View \"enable_pdf_export: false\" (66,1033 948x66)\n                        [23] View \"study_banner: Một việc mỗi lúc. Một bước gần mục tiêu hơn.\" (66,1099 948x132)\n                          [26] Button \"Tải cấu hình mới\" (66,1363 948x132)\n"
+}

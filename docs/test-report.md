@@ -2,6 +2,8 @@
 
 ## Latest verification after Cloudinary migration
 
+Remote Config live behavior: export flag true→false→true was observed in Profile and Reports, including enabled=false assertion. Six demo deadlines were created through the app (82 successful DSL steps); dashboard limit 5→2→5 was verified while source count stayed 6. Server baseline restored byte-for-byte; templates, summaries and screenshots recorded in remote-config-demo.md. Profile artifacts are explicitly filtered summaries to exclude identity. This does not claim Console screenshots, full .mob suite or offline network recovery.
+
 Live Flow 1 and Flow 2 follow-up: Deadline create/edit/complete/cancel-delete/delete and Study plan/start/navigate/cancel-finish/finish were exercised on the signed-in Firebase-backed Android app. See live-flow-results.md for exact per-run pass/fail scope, logs and images. Validation-label and merged-card selectors caused two preserved failed runs; successful resume steps are recorded separately. These are DSL results, not ten passing `.mob` tests, Console proof, network-recovery proof or full completion of the LAB.
 
 Latest runtime regression: student supplied an Android screenshot of ProviderNotFoundException in _CourseDialog. Saved unchanged as assets/evidence/course-dialog-provider-error.png. A new widget test reproducing the actual nested Navigator/provider tree failed with that same exception before the fix. Dialogs/pickers now use the session Navigator (`useRootNavigator: false`). The test then creates a course successfully and verifies an open dialog disappears when the session subtree is removed. Full suite: **22 tests passed**, analyze clean. This is a real runtime bug/regression test, not the required MobAI deliberate-bug exercise.

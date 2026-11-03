@@ -1,0 +1,13 @@
+{
+  "version": "0.2",
+  "steps": [
+    { "action": "tap", "predicate": { "text": "Back", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text": "Deadline của bạn" }, "timeout_ms": 10000 },
+    { "action": "tap", "predicate": { "text_contains": "Tab 4 of 4", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text": "Xuất PDF đang tắt theo cấu hình từ xa." }, "timeout_ms": 10000 },
+    { "action": "assert_exists", "predicate": { "text": "Xuất báo cáo PDF", "type": "button", "enabled": false } },
+    { "action": "assert_not_exists", "predicate": { "text": "Xuất báo cáo PDF", "type": "button", "enabled": true } },
+    { "action": "wait_for", "stable": true, "timeout_ms": 3000 },
+    { "action": "observe", "include": ["ui_tree"] }
+  ]
+}

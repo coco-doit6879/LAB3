@@ -1,0 +1,62 @@
+{
+  "artifactKind": "Filtered MobAI result summary; account identity excluded",
+  "success": true,
+  "steps": [
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725742871
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725745170
+    },
+    {
+      "action": "tap",
+      "success": true,
+      "started_at_ms": 1793725745805
+    },
+    {
+      "action": "scroll",
+      "success": true,
+      "started_at_ms": 1793725747414
+    },
+    {
+      "action": "assert_exists",
+      "success": true,
+      "started_at_ms": 1793725747600
+    },
+    {
+      "action": "scroll",
+      "success": true,
+      "started_at_ms": 1793725747647
+    },
+    {
+      "action": "assert_exists",
+      "success": true,
+      "started_at_ms": 1793725748895
+    },
+    {
+      "action": "assert_exists",
+      "success": true,
+      "started_at_ms": 1793725748972
+    },
+    {
+      "action": "assert_not_exists",
+      "success": true,
+      "started_at_ms": 1793725749030
+    },
+    {
+      "action": "wait_for",
+      "success": true,
+      "started_at_ms": 1793725749130
+    },
+    {
+      "action": "observe",
+      "success": true,
+      "started_at_ms": 1793725749491
+    }
+  ],
+  "observedUi": "                          [18] View \"6 deadline chưa xong\\n0 deadline đã hoàn thành\" (66,316 948x297)\n                        [26] View \"Deadline sắp tới\" (66,1075 948x77)\n                          [28] Button \"RC Demo 1\\nPRM393 — Flutter và Firebase · 05/11/2026 00:03\\nChưa hoàn thành\" (66,1152 948x418)\n                          [30] Button \"RC Demo 2\\nPRM393 — Flutter và Firebase · 05/11/2026 00:04\\nChưa hoàn thành\" (66,1570 948x418)\n"
+}

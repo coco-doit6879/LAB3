@@ -1,0 +1,10 @@
+{
+  "version": "0.2",
+  "steps": [
+    { "action": "tap", "predicate": { "text_contains": "Tab 4 of 4", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text": "Nhìn lại tiến độ" }, "timeout_ms": 10000 },
+    { "action": "assert_exists", "predicate": { "text": "Xuất báo cáo PDF", "type": "button", "enabled": true }, "timeout_ms": 10000 },
+    { "action": "wait_for", "stable": true, "timeout_ms": 3000 },
+    { "action": "observe", "include": ["ui_tree"] }
+  ]
+}
