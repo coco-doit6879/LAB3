@@ -1,3 +1,6 @@
+import '../widgets/app_top_bar.dart';
+import '../widgets/app_button.dart';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -106,7 +109,7 @@ class _Dashboard extends StatelessWidget {
     final user = context.watch<AuthViewModel>().user;
     final config = context.watch<ConfigViewModel>().config;
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppTopBar(
         title: const Text('Deadline Mate'),
         actions: [
           IconButton(
@@ -157,7 +160,7 @@ class _Dashboard extends StatelessWidget {
               ),
             ),
           ),
-          FilledButton.icon(
+          AppButton.icon(
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute<void>(
                 settings: const RouteSettings(name: 'deadline_form'),
@@ -236,7 +239,7 @@ class _CalendarState extends State<_Calendar> {
         .where((item) => _sameDay(item.plannedAt))
         .toList();
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppTopBar(
         title: const Text('Lịch học'),
         actions: [
           IconButton(

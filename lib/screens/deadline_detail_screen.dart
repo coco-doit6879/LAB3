@@ -1,3 +1,7 @@
+import '../widgets/app_dialog.dart';
+import '../widgets/app_top_bar.dart';
+import '../widgets/app_button.dart';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -28,9 +32,10 @@ class _DeadlineDetailScreenState extends State<DeadlineDetailScreen> {
       });
     }
     return Scaffold(
-      appBar: AppBar(title: const Text('Chi tiết deadline')),
+      appBar: AppTopBar(title: const Text('Chi tiết deadline')),
       body: item == null
           ? StatusPanel(
+              kind: vm.error != null ? StatusKind.error : StatusKind.empty,
               message: vm.loading
                   ? 'Đang tải…'
                   : vm.error ?? 'Deadline không còn tồn tại.',
@@ -55,7 +60,7 @@ class _DeadlineDetailScreenState extends State<DeadlineDetailScreen> {
                 Text(item.completed ? 'Đã hoàn thành' : 'Chưa hoàn thành'),
                 const SizedBox(height: AppTheme.wideGap),
                 if (vm.error != null) Text(vm.error!),
-                FilledButton.icon(
+                AppButton.icon(
                   onPressed: vm.saving
                       ? null
                       : () =>
@@ -86,7 +91,7 @@ class _DeadlineDetailScreenState extends State<DeadlineDetailScreen> {
                       : () async {
                           final confirmed = await showDialog<bool>(
                             context: context,
-                            builder: (context) => AlertDialog(
+                            builder: (context) => AppDialog(
                               title: const Text('Xóa deadline?'),
                               content: const Text(
                                 'Thao tác này không thể hoàn tác.',
@@ -97,7 +102,7 @@ class _DeadlineDetailScreenState extends State<DeadlineDetailScreen> {
                                       Navigator.pop(context, false),
                                   child: const Text('Giữ lại'),
                                 ),
-                                FilledButton(
+                                AppButton(
                                   onPressed: () => Navigator.pop(context, true),
                                   child: const Text('Xóa'),
                                 ),

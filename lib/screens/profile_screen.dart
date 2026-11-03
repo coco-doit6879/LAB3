@@ -1,3 +1,7 @@
+import '../widgets/app_dialog.dart';
+import '../widgets/app_top_bar.dart';
+import '../widgets/app_button.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +22,7 @@ class ProfileScreen extends StatelessWidget {
     final diagnostics = context.watch<DiagnosticsViewModel>();
     final notifications = context.watch<NotificationsViewModel>();
     return Scaffold(
-      appBar: AppBar(title: const Text('Hồ sơ')),
+      appBar: AppTopBar(title: const Text('Hồ sơ')),
       body: ListView(
         padding: const EdgeInsets.all(AppTheme.wideGap),
         children: [
@@ -37,7 +41,7 @@ class ProfileScreen extends StatelessWidget {
           const SizedBox(height: AppTheme.gap),
           Text(
             user?.name ?? 'Sinh viên',
-            style: Theme.of(context).textTheme.headlineSmall,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
           Text(user?.email ?? ''),
           const SizedBox(height: AppTheme.wideGap),
@@ -93,7 +97,7 @@ class ProfileScreen extends StatelessWidget {
               onPressed: () async {
                 final confirmed = await showDialog<bool>(
                   context: context,
-                  builder: (context) => AlertDialog(
+                  builder: (context) => AppDialog(
                     title: const Text('Thử crash ứng dụng?'),
                     content: const Text(
                       'Ứng dụng sẽ đóng. Chỉ dùng khi trình diễn Crashlytics.',
@@ -103,7 +107,7 @@ class ProfileScreen extends StatelessWidget {
                         onPressed: () => Navigator.pop(context, false),
                         child: const Text('Hủy'),
                       ),
-                      FilledButton(
+                      AppButton(
                         onPressed: () => Navigator.pop(context, true),
                         child: const Text('Thử crash'),
                       ),
@@ -114,7 +118,8 @@ class ProfileScreen extends StatelessWidget {
               },
               child: const Text('Tạo test crash (debug)'),
             ),
-          FilledButton.icon(
+          AppButton.icon(
+            loading: auth.busy,
             onPressed: auth.busy ? null : auth.signOut,
             icon: const Icon(Icons.logout),
             label: const Text('Đăng xuất'),

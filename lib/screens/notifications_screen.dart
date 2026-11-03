@@ -1,3 +1,5 @@
+import '../widgets/app_top_bar.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,7 +13,7 @@ class NotificationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final vm = context.watch<NotificationsViewModel>();
     return Scaffold(
-      appBar: AppBar(title: const Text('Thông báo')),
+      appBar: AppTopBar(title: const Text('Thông báo')),
       body: vm.loading
           ? const StatusPanel(message: 'Đang tải thông báo…', loading: true)
           : Column(

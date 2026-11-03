@@ -1,3 +1,8 @@
+import '../widgets/app_dialog.dart';
+import '../widgets/app_top_bar.dart';
+import '../widgets/app_button.dart';
+import '../widgets/app_field.dart';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -59,7 +64,7 @@ class _DeadlineFormScreenState extends State<DeadlineFormScreen> {
         if (didPop || vm.saving) return;
         final discard = await showDialog<bool>(
           context: context,
-          builder: (context) => AlertDialog(
+          builder: (context) => AppDialog(
             title: const Text('Bỏ thay đổi?'),
             content: const Text('Nội dung chưa lưu sẽ bị mất.'),
             actions: [
@@ -67,7 +72,7 @@ class _DeadlineFormScreenState extends State<DeadlineFormScreen> {
                 onPressed: () => Navigator.pop(context, false),
                 child: const Text('Tiếp tục sửa'),
               ),
-              FilledButton(
+              AppButton(
                 onPressed: () => Navigator.pop(context, true),
                 child: const Text('Bỏ thay đổi'),
               ),
@@ -82,7 +87,7 @@ class _DeadlineFormScreenState extends State<DeadlineFormScreen> {
         }
       },
       child: Scaffold(
-        appBar: AppBar(
+        appBar: AppTopBar(
           title: Text(widget.item == null ? 'Tạo deadline' : 'Sửa deadline'),
         ),
         body: Form(
@@ -90,7 +95,7 @@ class _DeadlineFormScreenState extends State<DeadlineFormScreen> {
           child: ListView(
             padding: const EdgeInsets.all(AppTheme.wideGap),
             children: [
-              TextFormField(
+              AppField(
                 controller: _title,
                 enabled: !vm.saving,
                 maxLength: 120,
@@ -173,7 +178,8 @@ class _DeadlineFormScreenState extends State<DeadlineFormScreen> {
               ),
               if (vm.error != null) Text(vm.error!),
               const SizedBox(height: AppTheme.gap),
-              FilledButton(
+              AppButton(
+                loading: vm.saving,
                 onPressed: vm.saving
                     ? null
                     : () async {

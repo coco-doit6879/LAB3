@@ -22,7 +22,7 @@ These selected enabled text pairs exceed 4.5:1. This is a token calculation, not
 
 - DeadlineCard is used by Dashboard and Deadline list, with explicit text/icon completion state and full wrapping title.
 - AppNavigation uses bottom navigation below 600 dp and a NavigationRail from 600 dp; destination definitions and selection callback are shared. Main content is capped at 640 dp.
-- StatusPanel is shared by loading/empty/error presentations; full named component library and variants are still incomplete.
+- All nine named components now exist; StatusPanel delegates to LoadingState, EmptyState and ErrorState. Screen buttons, text inputs, top bars and dialogs use the shared widgets. See components.md for variants and exceptions. Visual equality with Figma variants remains unverified.
 - Three widget tests render the navigation and a long-title deadline at 360×800, 412×800 and 800×800 logical pixels; no layout exception occurs, the correct navigation variant is present, and destination/card taps invoke callbacks. All 19 Flutter tests passed after this change; analysis clean.
 
 These checks cover only the tested components. Every screen, keyboard, text scaling, TalkBack reading order, focus, touch targets and phone rotation still require runtime review.

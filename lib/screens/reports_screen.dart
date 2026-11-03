@@ -1,3 +1,6 @@
+import '../widgets/app_top_bar.dart';
+import '../widgets/app_button.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +17,7 @@ class ReportsScreen extends StatelessWidget {
     final deadlines = context.watch<DeadlinesViewModel>();
     final config = context.watch<ConfigViewModel>().config;
     return Scaffold(
-      appBar: AppBar(title: const Text('Báo cáo')),
+      appBar: AppTopBar(title: const Text('Báo cáo')),
       body: ListView(
         padding: const EdgeInsets.all(AppTheme.wideGap),
         children: [
@@ -28,7 +31,8 @@ class ReportsScreen extends StatelessWidget {
           const SizedBox(height: AppTheme.gap),
           if (!config.enableExport)
             const Text('Xuất PDF đang tắt theo cấu hình từ xa.'),
-          FilledButton.icon(
+          AppButton.icon(
+            loading: vm.busy,
             onPressed:
                 vm.busy ||
                     deadlines.loading ||

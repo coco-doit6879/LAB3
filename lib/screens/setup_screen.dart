@@ -1,3 +1,5 @@
+import '../widgets/app_button.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +24,7 @@ class SetupScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Icons.school_outlined, size: 48),
+                  const Icon(Icons.school_outlined, size: AppTheme.heroIcon),
                   const SizedBox(height: AppTheme.wideGap),
                   Text(
                     'Deadline Mate',
@@ -39,13 +41,8 @@ class SetupScreen extends StatelessWidget {
                     const Center(child: CircularProgressIndicator()),
                   if (vm.error != null)
                     Text(vm.error!, textAlign: TextAlign.center),
-                  if (vm.ready)
-                    const Text(
-                      'Firebase đã khởi tạo. Phần đăng nhập đang được phát triển.',
-                      textAlign: TextAlign.center,
-                    ),
                   if (!vm.loading && !vm.ready)
-                    FilledButton.icon(
+                    AppButton.icon(
                       onPressed: vm.initialize,
                       icon: const Icon(Icons.refresh),
                       label: const Text('Thử kết nối lại'),

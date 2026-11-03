@@ -1,3 +1,6 @@
+import '../widgets/app_top_bar.dart';
+import '../widgets/app_field.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -37,7 +40,7 @@ class _DeadlinesScreenState extends State<DeadlinesScreen> {
     final courses = context.watch<CoursesViewModel>();
     final visible = vm.visible;
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppTopBar(
         title: const Text('Deadline của bạn'),
         actions: [
           IconButton(
@@ -61,7 +64,7 @@ class _DeadlinesScreenState extends State<DeadlinesScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  TextField(
+                  AppField(
                     controller: _search,
                     onChanged: vm.setSearch,
                     textInputAction: TextInputAction.search,
@@ -145,6 +148,7 @@ class _DeadlinesScreenState extends State<DeadlinesScreen> {
                     )
                   : vm.error != null
                   ? StatusPanel(
+                      kind: StatusKind.error,
                       message: vm.error!,
                       action: 'Thử lại',
                       onAction: vm.retry,

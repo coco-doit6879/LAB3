@@ -2,6 +2,8 @@
 
 ## Latest verification after Cloudinary migration
 
+Shared component integration: all screens now use AppButton/AppField/AppTopBar/AppDialog where applicable; StatusPanel delegates loading/empty/error states. After loading indicators and token cleanup, full suite rerun: 21 passed; analyze clean. Tests cover the existing recovery/form/navigation behavior, not every component interaction state or visual Figma parity. See components.md for exact scope and exceptions.
+
 Latest flow-alignment follow-up: full suite rerun, **21 tests pass**, analysis clean. The existing failed-save form case now retries successfully after an injected matching snapshot and verifies arrival at Deadline detail (including edit action). This proves the fake-repository route behavior, not real cloud persistence. Calendar now displays the session status and completed elapsed minutes; that display still needs signed-in Android evidence.
 
 Latest search/filter implementation: **21 Flutter tests pass**, analysis clean. A ViewModel case combines case-insensitive trimmed title search, course and status, verifies that an incoming stream update respects active filters, and confirms reset preserves source records. A widget case renders Deadline list at 360×800 with a simulated 280 px keyboard inset, enters a nonmatching query, resets filters and verifies the original record and cleared search field with no layout exception. These are fake-repository checks; cloud query and signed-in Android demonstration remain pending.

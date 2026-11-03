@@ -1,3 +1,8 @@
+import '../widgets/app_dialog.dart';
+import '../widgets/app_top_bar.dart';
+import '../widgets/app_button.dart';
+import '../widgets/app_field.dart';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +18,7 @@ class StudyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final vm = context.watch<StudyViewModel>();
     return Scaffold(
-      appBar: AppBar(title: const Text('Phiên học')),
+      appBar: AppTopBar(title: const Text('Phiên học')),
       body: vm.loading
           ? const StatusPanel(message: 'Đang tải phiên học…', loading: true)
           : Column(
@@ -65,53 +70,50 @@ class StudyScreen extends StatelessWidget {
                                     ),
                                     Text(status),
                                     if (item.status == SessionStatus.planned)
-                                      FilledButton(
+                                      AppButton(
                                         onPressed: vm.busy
                                             ? null
                                             : () => vm.start(item.id),
                                         child: const Text('Bắt đầu học'),
                                       ),
                                     if (item.status == SessionStatus.running)
-                                      FilledButton(
+                                      AppButton(
                                         onPressed: vm.busy
                                             ? null
                                             : () async {
                                                 final confirmed =
                                                     await showDialog<bool>(
                                                       context: context,
-                                                      builder: (context) =>
-                                                          AlertDialog(
-                                                            title: const Text(
-                                                              'Kết thúc phiên học?',
+                                                      builder: (context) => AppDialog(
+                                                        title: const Text(
+                                                          'Kết thúc phiên học?',
+                                                        ),
+                                                        content: const Text(
+                                                          'Thời gian thực tế sẽ được lưu vào lịch sử.',
+                                                        ),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                  context,
+                                                                  false,
+                                                                ),
+                                                            child: const Text(
+                                                              'Học tiếp',
                                                             ),
-                                                            content: const Text(
-                                                              'Thời gian thực tế sẽ được lưu vào lịch sử.',
-                                                            ),
-                                                            actions: [
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                      context,
-                                                                      false,
-                                                                    ),
-                                                                child:
-                                                                    const Text(
-                                                                      'Học tiếp',
-                                                                    ),
-                                                              ),
-                                                              FilledButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                      context,
-                                                                      true,
-                                                                    ),
-                                                                child:
-                                                                    const Text(
-                                                                      'Kết thúc',
-                                                                    ),
-                                                              ),
-                                                            ],
                                                           ),
+                                                          AppButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                  context,
+                                                                  true,
+                                                                ),
+                                                            child: const Text(
+                                                              'Kết thúc',
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     );
                                                 if (confirmed == true) {
                                                   await vm.finish(item.id);
@@ -165,17 +167,17 @@ class _PlanSessionScreenState extends State<_PlanSessionScreen> {
   Widget build(BuildContext context) {
     final vm = context.watch<StudyViewModel>();
     return Scaffold(
-      appBar: AppBar(title: const Text('Lập phiên học')),
+      appBar: AppTopBar(title: const Text('Lập phiên học')),
       body: ListView(
         padding: const EdgeInsets.all(AppTheme.wideGap),
         children: [
-          TextField(
+          AppField(
             controller: _title,
             enabled: !vm.busy,
             maxLength: 120,
             decoration: const InputDecoration(labelText: 'Bạn sẽ học gì?'),
           ),
-          TextField(
+          AppField(
             controller: _minutes,
             enabled: !vm.busy,
             keyboardType: TextInputType.number,
@@ -213,7 +215,8 @@ class _PlanSessionScreenState extends State<_PlanSessionScreen> {
             child: Text(DateFormat('dd/MM/yyyy HH:mm').format(_plannedAt)),
           ),
           if (vm.error != null) Text(vm.error!),
-          FilledButton(
+          AppButton(
+            loading: vm.busy,
             onPressed: vm.busy
                 ? null
                 : () async {

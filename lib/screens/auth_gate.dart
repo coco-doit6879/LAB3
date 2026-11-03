@@ -1,3 +1,5 @@
+import '../widgets/app_button.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -115,7 +117,8 @@ class LoginScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: AppTheme.wideGap),
-                  FilledButton.icon(
+                  AppButton.icon(
+                    loading: auth.busy,
                     onPressed: auth.busy ? null : auth.signIn,
                     icon: const Icon(Icons.login),
                     label: Text(

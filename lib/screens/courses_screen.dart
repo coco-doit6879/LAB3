@@ -1,3 +1,8 @@
+import '../widgets/app_dialog.dart';
+import '../widgets/app_top_bar.dart';
+import '../widgets/app_button.dart';
+import '../widgets/app_field.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,11 +16,12 @@ class CoursesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final vm = context.watch<CoursesViewModel>();
     return Scaffold(
-      appBar: AppBar(title: const Text('Môn học')),
+      appBar: AppTopBar(title: const Text('Môn học')),
       body: vm.loading
           ? const StatusPanel(message: 'Đang tải môn học…', loading: true)
           : vm.error != null
           ? StatusPanel(
+              kind: StatusKind.error,
               message: vm.error!,
               action: 'Thử lại',
               onAction: vm.retry,
@@ -71,19 +77,19 @@ class _CourseDialogState extends State<_CourseDialog> {
     final vm = context.watch<CoursesViewModel>();
     return PopScope(
       canPop: !vm.busy,
-      child: AlertDialog(
+      child: AppDialog(
         title: const Text('Thêm môn học'),
         content: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              TextField(
+              AppField(
                 controller: _name,
                 enabled: !vm.busy,
                 maxLength: 80,
                 decoration: const InputDecoration(labelText: 'Tên môn'),
               ),
-              TextField(
+              AppField(
                 controller: _code,
                 enabled: !vm.busy,
                 maxLength: 20,
@@ -98,7 +104,8 @@ class _CourseDialogState extends State<_CourseDialog> {
             onPressed: vm.busy ? null : () => Navigator.of(context).pop(),
             child: const Text('Hủy'),
           ),
-          FilledButton(
+          AppButton(
+            loading: vm.busy,
             onPressed: vm.busy
                 ? null
                 : () async {
