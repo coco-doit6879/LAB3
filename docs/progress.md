@@ -1,31 +1,31 @@
-# Trạng thái LAB 3 của SE194007
+# Tiến độ Deadline Mate
 
-## Đã có mã nguồn
+Sinh viên: SE194007. Firebase project: deadline-mate-feff4. App hiển thị: Deadline Mate. Repository nộp: PRM393_Lab03_SE194007.
 
-- Flutter Android project và dependencies Firebase/Provider.
-- Theme, đặc tả 12 màn hình và 3 flow mới; chưa có Figma.
-- Auth service Google Sign-In, AuthViewModel, Login/Profile và user-scoped Navigator.
-- Deadline model, Firestore CRUD/orderBy/realtime service và ViewModel.
-- UI danh sách, chi tiết, tạo/sửa, xác nhận bỏ form/xóa; loading/empty/error/retry.
-- Firestore rules riêng cho deadlines, kiểm tra UID và schema. Chưa test emulator hoặc deploy; các collection chưa triển khai bị deny.
+## Có mã nguồn
 
-## Chưa được coi là hoàn thành
+MVVM + Provider; Google authentication/auth gate; deadline CRUD/realtime/query; Courses; Dashboard; Calendar; Study sessions transaction; PDF generation/upload/history; Remote Config; FCM inbox và routing; Analytics events; Crashlytics handlers và demo controls. Course form chọn dữ liệu môn học thật. Không coi có mã là có bằng chứng chạy dịch vụ thật.
 
-- Firebase project/config Android của sinh viên, SHA-1, Google provider; đăng nhập thật.
-- Courses, dashboard, calendar, sessions, reports, notifications.
-- PDF upload, FCM, Remote Config, Analytics, Crashlytics tích hợp thực tế.
-- Build/run Android và bằng chứng Firebase Console.
-- Rules emulator tests, 10 MobAI scripts thật/healing/bug-catching; quyết định MobAI/ARTEMIS.
-- Figma/handoff cập nhật đúng đề tài và độ bám sát UI.
-- GitHub/PR AI review, AI implementation log đầy đủ, báo cáo/slide/video.
+## Đã kiểm chứng
 
-## Môi trường kiểm tra thực tế
+- Flutter analyze: No issues found.
+- 12 unit/widget tests pass.
+- 10 Firestore Rules emulator tests pass (project demo-deadlinemate, localhost:8188).
+- Đăng ký Android app trên Firebase project thật.
+- Google provider Enabled đã xác minh trên Console; cấu hình mới có OAuth Android/web và SHA-1 khớp debug key của máy.
+- APK debug build thành công sau khi tắt Kotlin incremental compilation để xử lý cache khác ổ C/D. Đã rebuild với config OAuth mới, cài và mở thành công; ảnh assets/evidence/android-login.png.
+- Android emulator Pixel_4a đã khởi động, ADB thấy emulator-5554, sys.boot_completed=1.
 
-flutter doctor tìm thấy Java bundled trong Android Studio và Android SDK, nhưng thiếu Android cmdline-tools và chưa xác minh licenses. Chưa có Android device đang kết nối. Windows C++ toolchain không liên quan bản Android; không cần cài chỉ để làm LAB này.
+## Còn phải hoàn thành và chứng minh
 
-Chạy analyze và unit/widget tests không chứng minh app đã hoạt động với Firebase thật.
+- Đã cài/chạy APK cập nhật và xem Login; còn đăng nhập bằng tài khoản test và kiểm tra UI/flows đầy đủ trên Android.
+- Tạo Firestore database thật, deploy rules sau review; CRUD và dữ liệu Console.
+- Storage adapter hiện là Firebase Storage, project Spark chưa có billing: cần chốt phương án storage; không tự nâng gói.
+- Firebase Console evidence cho FCM các trạng thái, Remote Config đổi hành vi, Analytics DebugView, Crashlytics handled/test crash.
+- Storage Rules tests; xử lý các phát hiện code review có thật.
+- Figma/design LAB 2 cập nhật; đối chiếu từng màn hình, tokens/components và accessibility 360/412 dp.
+- MobAI 10 scripts, full runs, healing và bug-catching; nếu thay ARTEMIS cần theo giảng viên.
+- GitHub remote/PR review/merge, AI log có prompt nguyên văn và sinh viên xác nhận quyết định; report/slides/video.
 
-## Cập nhật triển khai
-
-Đã bổ sung mã Courses, Study sessions, Dashboard, Calendar, Reports PDF/Storage và Remote Config cùng các màn hình. Danh sách chưa hoàn thành phía trên phản ánh mốc trước; các mục vừa nêu hiện có mã nhưng vẫn chưa kiểm chứng Firebase thật. FCM, Analytics, Crashlytics và các yêu cầu nộp/bằng chứng vẫn còn thiếu. Tổng 10 unit/widget tests đã pass; chưa chạy E2E/rules tests.
+Bài LAB chưa hoàn tất. Xem test-report.md để biết chính xác phạm vi kiểm chứng, không dùng unit tests thay bằng chứng E2E.
 

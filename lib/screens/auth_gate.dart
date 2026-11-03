@@ -7,6 +7,8 @@ import '../services/course_service.dart';
 import '../services/study_service.dart';
 import '../services/config_service.dart';
 import '../services/report_service.dart';
+import '../services/telemetry_service.dart';
+import '../services/notification_service.dart';
 import '../theme/app_theme.dart';
 import '../viewmodels/auth_viewmodel.dart';
 import '../viewmodels/deadlines_viewmodel.dart';
@@ -14,6 +16,8 @@ import '../viewmodels/courses_viewmodel.dart';
 import '../viewmodels/study_viewmodel.dart';
 import '../viewmodels/config_viewmodel.dart';
 import '../viewmodels/reports_viewmodel.dart';
+import '../viewmodels/diagnostics_viewmodel.dart';
+import '../viewmodels/notifications_viewmodel.dart';
 import 'home_shell.dart';
 
 class AuthGate extends StatelessWidget {
@@ -38,28 +42,46 @@ class _SessionGate extends StatelessWidget {
     return MultiProvider(
       key: ValueKey(auth.user!.uid),
       providers: [
+        Provider<Telemetry>(create: (_) => FirebaseTelemetry()),
+        ChangeNotifierProvider(create: (_) => DiagnosticsViewModel()),
+        ChangeNotifierProvider(
+          create: (_) => NotificationsViewModel(
+            FirebaseNotificationService(auth.user!.uid),
+          ),
+          lazy: false,
+        ),
         ChangeNotifierProvider(
           create: (_) => ConfigViewModel(RemoteConfigService())..refresh(),
         ),
         ChangeNotifierProvider(
-          create: (_) =>
-              ReportsViewModel(FirebaseReportService(auth.user!.uid)),
+          create: (_) => ReportsViewModel(
+            FirebaseReportService(auth.user!.uid),
+            telemetry: FirebaseTelemetry(),
+          ),
         ),
         ChangeNotifierProvider(
-          create: (_) =>
-              DeadlinesViewModel(FirestoreDeadlineService(uid: auth.user!.uid)),
+          create: (_) => DeadlinesViewModel(
+            FirestoreDeadlineService(uid: auth.user!.uid),
+            telemetry: FirebaseTelemetry(),
+          ),
         ),
         ChangeNotifierProvider(
           create: (_) =>
               CoursesViewModel(FirestoreCourseService(auth.user!.uid)),
         ),
         ChangeNotifierProvider(
-          create: (_) => StudyViewModel(FirestoreStudyService(auth.user!.uid)),
+          create: (_) => StudyViewModel(
+            FirestoreStudyService(auth.user!.uid),
+            telemetry: FirebaseTelemetry(),
+          ),
         ),
       ],
       child: Navigator(
-        onGenerateRoute: (_) =>
-            MaterialPageRoute<void>(builder: (_) => const HomeShell()),
+        observers: [AnalyticsRouteObserver(FirebaseTelemetry())],
+        onGenerateRoute: (_) => MaterialPageRoute<void>(
+          settings: const RouteSettings(name: 'dashboard'),
+          builder: (_) => const HomeShell(),
+        ),
       ),
     );
   }

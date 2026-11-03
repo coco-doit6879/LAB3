@@ -92,6 +92,7 @@ class StudyScreen extends StatelessWidget {
             ? null
             : () => Navigator.of(context).push(
                 MaterialPageRoute<void>(
+                  settings: const RouteSettings(name: 'plan_session'),
                   builder: (_) => const _PlanSessionScreen(),
                 ),
               ),

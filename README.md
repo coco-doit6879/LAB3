@@ -1,40 +1,38 @@
 # Deadline Mate — SE194007
 
-Tên repository nộp: **PRM393_Lab03_SE194007**. Đây là mã nguồn đang phát triển, chưa phải bài nộp hoàn tất. Không có Firebase project/config của sinh viên trong repository hiện tại.
+Ứng dụng Android quản lý deadline và phiên học. Tên hiển thị: **Deadline Mate**. Firebase project: **deadline-mate-feff4**. Repository nộp theo đề: **PRM393_Lab03_SE194007**.
 
-## Đã triển khai trong mã nguồn
+## Trạng thái đã kiểm chứng
 
-- Android Flutter, MVVM + Provider, theme và đặc tả mới cho Deadline Mate.
-- Google Sign-In, auth gate, Login/Profile, xóa route stack và providers theo phiên đăng nhập.
-- Firestore deadlines CRUD, realtime orderBy dueAt; UI list/detail/create/edit, validation và recovery.
-- Courses list/create; study sessions plan/start/finish bằng transaction, thời gian dựa trên timestamps.
-- Tổng quan, Lịch học, bottom navigation và màn hình Báo cáo.
-- PDF tiếng Việt với Noto Sans, upload Firebase Storage có progress, lưu URL/metadata và mở báo cáo.
-- Remote Config: dashboard_item_limit, enable_pdf_export, study_banner; defaults và Profile refresh.
-- Firestore/Storage rules có schema và kiểm soát UID; chưa test emulator hoặc deploy.
+- Flutter analyze: No issues found.
+- 12 unit/widget tests pass; 10 Firestore Rules emulator tests pass.
+- APK debug build thành công và đã cài/mở trên emulator-5554. Ảnh thật: assets/evidence/android-login.png.
+- Android app được đăng ký trên Firebase; Google provider Enabled; google-services.json mới có OAuth Android/web và SHA-1 khớp máy.
 
-## Kiểm chứng hiện có
+Chưa đăng nhập tài khoản Google trên Android, chưa kiểm chứng dữ liệu/dịch vụ Firebase thật hoặc chạy MobAI. Bài LAB chưa hoàn tất.
 
-10 unit/widget tests pass: auth state, khởi tạo lỗi, validation, chống gửi trùng, filter realtime, giữ form khi lỗi, duration phiên học, lỗi chuyển trạng thái, config fallback và export failure. Các test dùng fake repositories, chưa chứng minh Firebase hoặc upload thật hoạt động. Chưa chạy MobAI.
+## Mã nguồn hiện có
 
-Chưa build/run Android. flutter doctor thấy Java bundled và Android SDK nhưng thiếu cmdline-tools, licenses chưa xác minh, không có Android device đang kết nối.
+MVVM + Provider; theme; Login/Profile và auth gate theo UID; deadline CRUD/realtime/sort/filter, list/detail/create/edit; Courses; Dashboard; Calendar; Study sessions plan/start/finish; PDF tiếng Việt/upload/history; Remote Config; FCM inbox/routing; Analytics; Crashlytics handlers/demo. Có mã không đồng nghĩa tính năng đã pass trên dịch vụ thật.
 
-## Còn phải hoàn thành
+## Chạy và kiểm tra
 
-FCM/Notification Center, Analytics và Crashlytics; courses selection trong form; token/component/fidelity/accessibility audit; Firebase config và các minh chứng Console; build/run Android; rules emulator tests; Figma cập nhật; AI log đầy đủ; GitHub/PR review; MobAI và hai bài tập; báo cáo, slide, video. Không coi chức năng có mã là đã kiểm chứng thực tế.
+Flutter cục bộ: D:\PRM\tools\flutter\bin\flutter.bat. Java: C:\Program Files\Android\Android Studio\jbr. Android package: vn.deadlinemate.deadline_mate.
 
-## Cách chạy khi đã cấu hình
+Chạy flutter pub get, flutter analyze, flutter test; flutter build apk --debug; flutter run -d emulator-5554. Android cần Google Play services để đăng nhập. Kotlin incremental compilation đã tắt để tránh lỗi cache khi package ở ổ C và dự án ở ổ D.
 
-Flutter cục bộ: D:\PRM\tools\flutter\bin\flutter.bat. Chạy flutter pub get, flutter analyze, flutter test. Tạo Firebase project của sinh viên, bật Analytics và Google provider, đăng ký Android **vn.deadlinemate.deadline_mate**, cấu hình SHA-1 và chạy flutterfire configure. Cần nối firebase_options.dart được sinh vào bootstrap và cấu hình Google Services/Crashlytics Gradle. Sau đó flutter run trên Android có Google Play services.
-
-Không dùng config Firebase giả. Chưa bật billing; phương án Firebase Storage cần tài khoản phù hợp hoặc thống nhất chuyển Cloudinary theo đề chính. Download URL là bearer link: không công khai URL báo cáo cá nhân trong bằng chứng nộp.
+Rules tests dùng localhost:8188 với demo project, không chạm dữ liệu thật; lệnh trong docs/test-report.md. Storage Rules chưa kiểm thử.
 
 ## Tài liệu
 
-- design/DESIGN.md: visual specification mới, chưa có Figma.
-- ux/user-flow.md: ba luồng và nhánh phục hồi.
-- handoff/flutter-handoff.md: screen handoff dự kiến; một số phần chưa hiện thực đầy đủ.
-- docs/progress.md: trạng thái và phần còn thiếu.
-- ../lab3-workspace/docs/: khung tài liệu nộp bài, chưa điền bằng chứng giả.
+- docs/progress.md: phạm vi hoàn thành và còn thiếu.
+- docs/firebase-setup.md: cấu hình thật, SHA-1 và dịch vụ còn phải bật.
+- docs/analytics-plan.md: events/triggers/parameters.
+- docs/fcm-demo.md: Console test payload và bảo vệ thông báo theo người dùng.
+- docs/test-report.md: kết quả thực tế và giới hạn kiểm chứng.
+- design/DESIGN.md, ux/user-flow.md, handoff/flutter-handoff.md: đặc tả mới; Figma còn phải cập nhật.
+- ../lab3-workspace/docs/: tài liệu chuẩn bị ban đầu, chưa phải hồ sơ nộp hoàn chỉnh.
 
-Font: Noto Sans từ notofonts/noto-fonts, giấy phép trong assets/fonts/OFL.txt.
+Còn thiếu cloud database/rules deployment, xác minh Auth/CRUD/PDF/FCM/Remote Config/DebugView/Crashlytics, Figma fidelity/accessibility, MobAI exercises, PR review, AI log và báo cáo/slide/video. Storage adapter là Firebase Storage nhưng project Spark chưa bật billing; chưa quyết định nâng gói hay chuyển Cloudinary theo đề chính.
+
+Không commit credentials hoặc private keys. Public Firebase app config không thay thế Security Rules. Không công khai bearer download URL/token thiết bị trong bằng chứng nộp. Font Noto Sans và giấy phép ở assets/fonts/.

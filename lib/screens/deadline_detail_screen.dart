@@ -7,13 +7,26 @@ import '../viewmodels/deadlines_viewmodel.dart';
 import '../widgets/status_panel.dart';
 import 'deadline_form_screen.dart';
 
-class DeadlineDetailScreen extends StatelessWidget {
+class DeadlineDetailScreen extends StatefulWidget {
   const DeadlineDetailScreen({super.key, required this.id});
   final String id;
+  @override
+  State<DeadlineDetailScreen> createState() => _DeadlineDetailScreenState();
+}
+
+class _DeadlineDetailScreenState extends State<DeadlineDetailScreen> {
+  String get id => widget.id;
+  bool _recorded = false;
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<DeadlinesViewModel>();
     final item = vm.items.where((item) => item.id == id).firstOrNull;
+    if (item != null && !_recorded) {
+      _recorded = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) vm.recordView(id);
+      });
+    }
     return Scaffold(
       appBar: AppBar(title: const Text('Chi tiết deadline')),
       body: item == null
@@ -55,6 +68,9 @@ class DeadlineDetailScreen extends StatelessWidget {
                       ? null
                       : () => Navigator.of(context).push(
                           MaterialPageRoute<void>(
+                            settings: const RouteSettings(
+                              name: 'deadline_form',
+                            ),
                             builder: (_) => DeadlineFormScreen(item: item),
                           ),
                         ),

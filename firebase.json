@@ -4,7 +4,7 @@
   },
   "storage": { "rules": "firebase/storage.rules" },
   "emulators": {
-    "firestore": { "port": 8080 },
-    "ui": { "enabled": true }
+    "firestore": { "port": 8188 },
+    "ui": { "enabled": false }
   }
 }

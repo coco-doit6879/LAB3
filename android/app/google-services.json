@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "106147478931",
+    "project_id": "deadline-mate-feff4",
+    "storage_bucket": "deadline-mate-feff4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106147478931:android:1c1cb783766a35d837fc66",
+        "android_client_info": {
+          "package_name": "vn.deadlinemate.deadline_mate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "106147478931-7uga414dhsk4go8mah1a9q9gak8nasv7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vn.deadlinemate.deadline_mate",
+            "certificate_hash": "d1b828a38c498da7c125fdd7b900e5fe5f50318a"
+          }
+        },
+        {
+          "client_id": "106147478931-n0qaupbih69rahkknkebpbp4lsaocd8j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpqahTlQ7dRkh26iTt-gnebUy0HI652PY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "106147478931-n0qaupbih69rahkknkebpbp4lsaocd8j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

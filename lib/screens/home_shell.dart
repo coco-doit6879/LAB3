@@ -7,6 +7,8 @@ import '../viewmodels/auth_viewmodel.dart';
 import '../viewmodels/deadlines_viewmodel.dart';
 import '../viewmodels/study_viewmodel.dart';
 import '../viewmodels/config_viewmodel.dart';
+import '../viewmodels/notifications_viewmodel.dart';
+import '../services/telemetry_service.dart';
 import '../widgets/status_panel.dart';
 import 'courses_screen.dart';
 import 'deadline_detail_screen.dart';
@@ -15,6 +17,7 @@ import 'deadlines_screen.dart';
 import 'profile_screen.dart';
 import 'study_screen.dart';
 import 'reports_screen.dart';
+import 'notifications_screen.dart';
 
 class HomeShell extends StatefulWidget {
   const HomeShell({super.key});
@@ -24,43 +27,92 @@ class HomeShell extends StatefulWidget {
 
 class _HomeShellState extends State<HomeShell> {
   int _index = 0;
+  void _select(int index) {
+    setState(() => _index = index);
+    context.read<Telemetry>().screen(
+      ['dashboard', 'deadlines', 'calendar', 'reports'][index],
+    );
+  }
+
   @override
-  Widget build(BuildContext context) => PopScope(
-    canPop: _index == 0,
-    onPopInvokedWithResult: (didPop, result) {
-      if (!didPop) setState(() => _index = 0);
-    },
-    child: Scaffold(
-      body: IndexedStack(
-        index: _index,
-        children: const [
-          _Dashboard(),
-          DeadlinesScreen(),
-          _Calendar(),
-          ReportsScreen(),
-        ],
+  Widget build(BuildContext context) {
+    final notifications = context.watch<NotificationsViewModel>();
+    final pending = notifications.pendingOpen;
+    final foreground = notifications.foregroundMessage;
+    if (pending != null || foreground != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        if (pending != null && identical(notifications.pendingOpen, pending)) {
+          notifications.acknowledgeOpen();
+          Navigator.of(context).push(
+            MaterialPageRoute<void>(
+              settings: RouteSettings(
+                name: pending.targetType == 'deadline'
+                    ? 'deadline_detail'
+                    : 'notifications',
+              ),
+              builder: (_) =>
+                  pending.targetType == 'deadline' && pending.targetId != null
+                  ? DeadlineDetailScreen(id: pending.targetId!)
+                  : const NotificationsScreen(),
+            ),
+          );
+        }
+        if (foreground != null &&
+            identical(notifications.foregroundMessage, foreground)) {
+          notifications.acknowledgeForeground();
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(foreground.title),
+              action: SnackBarAction(
+                label: 'Mở',
+                onPressed: () => notifications.open(foreground),
+              ),
+            ),
+          );
+        }
+      });
+    }
+    return PopScope(
+      canPop: _index == 0,
+      onPopInvokedWithResult: (didPop, result) {
+        if (!didPop) _select(0);
+      },
+      child: Scaffold(
+        body: IndexedStack(
+          index: _index,
+          children: const [
+            _Dashboard(),
+            DeadlinesScreen(),
+            _Calendar(),
+            ReportsScreen(),
+          ],
+        ),
+        bottomNavigationBar: NavigationBar(
+          selectedIndex: _index,
+          onDestinationSelected: _select,
+          destinations: const [
+            NavigationDestination(
+              icon: Icon(Icons.dashboard_outlined),
+              label: 'Tổng quan',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.checklist),
+              label: 'Deadline',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.calendar_month_outlined),
+              label: 'Lịch học',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.assessment_outlined),
+              label: 'Báo cáo',
+            ),
+          ],
+        ),
       ),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _index,
-        onDestinationSelected: (value) => setState(() => _index = value),
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.dashboard_outlined),
-            label: 'Tổng quan',
-          ),
-          NavigationDestination(icon: Icon(Icons.checklist), label: 'Deadline'),
-          NavigationDestination(
-            icon: Icon(Icons.calendar_month_outlined),
-            label: 'Lịch học',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.assessment_outlined),
-            label: 'Báo cáo',
-          ),
-        ],
-      ),
-    ),
-  );
+    );
+  }
 }
 
 class _Dashboard extends StatelessWidget {
@@ -75,9 +127,22 @@ class _Dashboard extends StatelessWidget {
         title: const Text('Deadline Mate'),
         actions: [
           IconButton(
+            tooltip: 'Thông báo',
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                settings: const RouteSettings(name: 'notifications'),
+                builder: (_) => const NotificationsScreen(),
+              ),
+            ),
+            icon: const Icon(Icons.notifications_outlined),
+          ),
+          IconButton(
             tooltip: 'Hồ sơ',
             onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(builder: (_) => const ProfileScreen()),
+              MaterialPageRoute<void>(
+                settings: const RouteSettings(name: 'profile'),
+                builder: (_) => const ProfileScreen(),
+              ),
             ),
             icon: const Icon(Icons.account_circle_outlined),
           ),
@@ -112,6 +177,7 @@ class _Dashboard extends StatelessWidget {
           FilledButton.icon(
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute<void>(
+                settings: const RouteSettings(name: 'deadline_form'),
                 builder: (_) => const DeadlineFormScreen(),
               ),
             ),
@@ -120,14 +186,20 @@ class _Dashboard extends StatelessWidget {
           ),
           OutlinedButton.icon(
             onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(builder: (_) => const CoursesScreen()),
+              MaterialPageRoute<void>(
+                settings: const RouteSettings(name: 'courses'),
+                builder: (_) => const CoursesScreen(),
+              ),
             ),
             icon: const Icon(Icons.book_outlined),
             label: const Text('Quản lý môn học'),
           ),
           OutlinedButton.icon(
             onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(builder: (_) => const StudyScreen()),
+              MaterialPageRoute<void>(
+                settings: const RouteSettings(name: 'study_sessions'),
+                builder: (_) => const StudyScreen(),
+              ),
             ),
             icon: const Icon(Icons.timer_outlined),
             label: const Text('Phiên học'),
@@ -149,6 +221,7 @@ class _Dashboard extends StatelessWidget {
                 subtitle: Text(DateFormat('dd/MM HH:mm').format(item.dueAt)),
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute<void>(
+                    settings: const RouteSettings(name: 'deadline_detail'),
                     builder: (_) => DeadlineDetailScreen(id: item.id),
                   ),
                 ),
@@ -189,7 +262,10 @@ class _CalendarState extends State<_Calendar> {
           IconButton(
             tooltip: 'Phiên học',
             onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(builder: (_) => const StudyScreen()),
+              MaterialPageRoute<void>(
+                settings: const RouteSettings(name: 'study_sessions'),
+                builder: (_) => const StudyScreen(),
+              ),
             ),
             icon: const Icon(Icons.timer_outlined),
           ),
@@ -227,6 +303,7 @@ class _CalendarState extends State<_Calendar> {
                 subtitle: const Text('Deadline'),
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute<void>(
+                    settings: const RouteSettings(name: 'deadline_detail'),
                     builder: (_) => DeadlineDetailScreen(id: item.id),
                   ),
                 ),
@@ -239,7 +316,10 @@ class _CalendarState extends State<_Calendar> {
                 leading: const Icon(Icons.timer_outlined),
                 subtitle: Text('${item.plannedMinutes} phút'),
                 onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute<void>(builder: (_) => const StudyScreen()),
+                  MaterialPageRoute<void>(
+                    settings: const RouteSettings(name: 'study_sessions'),
+                    builder: (_) => const StudyScreen(),
+                  ),
                 ),
               ),
             ),

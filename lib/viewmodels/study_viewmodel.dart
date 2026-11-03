@@ -4,12 +4,14 @@ import 'package:flutter/foundation.dart';
 
 import '../models/study_session.dart';
 import '../services/study_service.dart';
+import '../services/telemetry_service.dart';
 
 class StudyViewModel extends ChangeNotifier {
-  StudyViewModel(this._repository) {
+  StudyViewModel(this._repository, {this._telemetry = const NoTelemetry()}) {
     retry();
   }
   final StudyRepository _repository;
+  final Telemetry _telemetry;
   StreamSubscription<List<StudySession>>? _subscription;
   bool _disposed = false;
   List<StudySession> _items = [];
@@ -53,8 +55,14 @@ class StudyViewModel extends ChangeNotifier {
     return _perform(() => _repository.plan(title.trim(), plannedAt, minutes));
   }
 
-  Future<bool> start(String id) => _perform(() => _repository.start(id));
-  Future<bool> finish(String id) => _perform(() => _repository.finish(id));
+  Future<bool> start(String id) => _perform(() async {
+    await _repository.start(id);
+    await _telemetry.event('start_study_session', {'session_id': id});
+  });
+  Future<bool> finish(String id) => _perform(() async {
+    await _repository.finish(id);
+    await _telemetry.event('complete_study_session', {'session_id': id});
+  });
   Future<bool> _perform(Future<void> Function() action) async {
     if (busy || _disposed) return false;
     busy = true;
@@ -64,6 +72,7 @@ class StudyViewModel extends ChangeNotifier {
       await action();
       return true;
     } catch (_) {
+      await _telemetry.handled('study_write');
       error = 'Chưa lưu được phiên học. Kiểm tra mạng và tải lại trạng thái.';
       return false;
     } finally {

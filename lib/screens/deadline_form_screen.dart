@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import '../models/deadline.dart';
 import '../theme/app_theme.dart';
 import '../viewmodels/deadlines_viewmodel.dart';
+import '../viewmodels/courses_viewmodel.dart';
+import 'courses_screen.dart';
 
 class DeadlineFormScreen extends StatefulWidget {
   const DeadlineFormScreen({super.key, this.item});
@@ -46,6 +48,7 @@ class _DeadlineFormScreenState extends State<DeadlineFormScreen> {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<DeadlinesViewModel>();
+    final courses = context.watch<CoursesViewModel>();
     return PopScope(
       canPop: _saved || (!_dirty && !vm.saving),
       onPopInvokedWithResult: (didPop, result) async {
@@ -91,14 +94,47 @@ class _DeadlineFormScreenState extends State<DeadlineFormScreen> {
                 validator: (value) => Deadline.validateTitle(value ?? ''),
               ),
               const SizedBox(height: AppTheme.gap),
-              TextFormField(
-                controller: _course,
-                enabled: !vm.saving,
-                maxLength: 80,
-                decoration: const InputDecoration(labelText: 'Mã môn học'),
-                validator: (value) => value == null || value.trim().isEmpty
-                    ? 'Nhập mã môn học.'
+              if (courses.loading) const LinearProgressIndicator(),
+              if (courses.error != null) Text(courses.error!),
+              DropdownButtonFormField<String>(
+                key: ValueKey(_course.text),
+                initialValue:
+                    courses.items.any((item) => item.id == _course.text)
+                    ? _course.text
                     : null,
+                isExpanded: true,
+                decoration: const InputDecoration(labelText: 'Môn học'),
+                items: courses.items
+                    .map(
+                      (course) => DropdownMenuItem(
+                        value: course.id,
+                        child: Text(
+                          '${course.code} — ${course.name}',
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    )
+                    .toList(),
+                onChanged: vm.saving || courses.loading
+                    ? null
+                    : (value) => _course.text = value ?? '',
+                validator: (value) =>
+                    value == null ||
+                        !courses.items.any((item) => item.id == value)
+                    ? 'Chọn môn học có trong danh sách.'
+                    : null,
+              ),
+              TextButton.icon(
+                onPressed: vm.saving
+                    ? null
+                    : () => Navigator.of(context).push(
+                        MaterialPageRoute<void>(
+                          settings: const RouteSettings(name: 'courses'),
+                          builder: (_) => const CoursesScreen(),
+                        ),
+                      ),
+                icon: const Icon(Icons.add),
+                label: const Text('Thêm hoặc xem môn học'),
               ),
               const SizedBox(height: AppTheme.gap),
               OutlinedButton.icon(

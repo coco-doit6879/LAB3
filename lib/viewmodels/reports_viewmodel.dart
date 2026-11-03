@@ -5,12 +5,14 @@ import 'package:flutter/foundation.dart';
 import '../models/deadline.dart';
 import '../models/report.dart';
 import '../services/report_service.dart';
+import '../services/telemetry_service.dart';
 
 class ReportsViewModel extends ChangeNotifier {
-  ReportsViewModel(this._repository) {
+  ReportsViewModel(this._repository, {this._telemetry = const NoTelemetry()}) {
     retry();
   }
   final ReportRepository _repository;
+  final Telemetry _telemetry;
   StreamSubscription<List<Report>>? _subscription;
   bool _disposed = false;
   List<Report> _items = [];
@@ -61,7 +63,9 @@ class ReportsViewModel extends ChangeNotifier {
         _notify();
       });
       success = 'Đã tải PDF lên và lưu thông tin báo cáo.';
+      await _telemetry.event('export_pdf', {'item_count': items.length});
     } catch (_) {
+      await _telemetry.handled('pdf_export');
       error = 'Chưa xuất được PDF. Kiểm tra mạng, quyền lưu trữ và cấu hình Firebase Storage rồi thử lại.';
     } finally {
       busy = false;

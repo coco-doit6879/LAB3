@@ -22,7 +22,10 @@ class DeadlinesScreen extends StatelessWidget {
             tooltip: 'Hồ sơ',
             icon: const Icon(Icons.account_circle_outlined),
             onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(builder: (_) => const ProfileScreen()),
+              MaterialPageRoute<void>(
+                settings: const RouteSettings(name: 'profile'),
+                builder: (_) => const ProfileScreen(),
+              ),
             ),
           ),
         ],
@@ -84,6 +87,9 @@ class DeadlinesScreen extends StatelessWidget {
                           trailing: const Icon(Icons.chevron_right),
                           onTap: () => Navigator.of(context).push(
                             MaterialPageRoute<void>(
+                              settings: const RouteSettings(
+                                name: 'deadline_detail',
+                              ),
                               builder: (_) => DeadlineDetailScreen(id: item.id),
                             ),
                           ),
@@ -102,7 +108,10 @@ class DeadlinesScreen extends StatelessWidget {
     );
   }
 
-  void _create(BuildContext context) => Navigator.of(
-    context,
-  ).push(MaterialPageRoute<void>(builder: (_) => const DeadlineFormScreen()));
+  void _create(BuildContext context) => Navigator.of(context).push(
+    MaterialPageRoute<void>(
+      settings: const RouteSettings(name: 'deadline_form'),
+      builder: (_) => const DeadlineFormScreen(),
+    ),
+  );
 }

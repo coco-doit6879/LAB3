@@ -6,10 +6,11 @@ class BootstrapViewModel extends ChangeNotifier {
   BootstrapViewModel(this._service);
   final BootstrapService _service;
   bool loading = false;
+  bool _disposed = false;
   bool ready = false;
   String? error;
   Future<void> initialize() async {
-    if (loading) return;
+    if (loading || _disposed) return;
     loading = true;
     error = null;
     notifyListeners();
@@ -21,7 +22,13 @@ class BootstrapViewModel extends ChangeNotifier {
       error = 'Chưa kết nối được Firebase. Hãy kiểm tra mạng và cấu hình dự án Android.';
     } finally {
       loading = false;
-      notifyListeners();
+      if (!_disposed) notifyListeners();
     }
+  }
+
+  @override
+  void dispose() {
+    _disposed = true;
+    super.dispose();
   }
 }

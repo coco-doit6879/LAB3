@@ -65,7 +65,23 @@ service cloud.firestore {
         && request.resource.data.itemCount is int && request.resource.data.itemCount >= 0
         && request.resource.data.createdAt == request.time;
     }
-    // Unimplemented collections remain denied until their schemas are defined.
+    match /users/{uid}/notifications/{messageId} {
+      allow read: if owner(uid);
+      allow create: if owner(uid)
+        && request.resource.data.keys().hasAll(['title', 'body', 'targetType', 'targetId', 'read', 'receivedAt'])
+        && request.resource.data.keys().hasOnly(['title', 'body', 'targetType', 'targetId', 'read', 'receivedAt'])
+        && request.resource.data.title is string && request.resource.data.title.size() <= 200
+        && request.resource.data.body is string && request.resource.data.body.size() <= 2000
+        && request.resource.data.targetType in ['deadline', 'notifications']
+        && (request.resource.data.targetId == null ||
+          (request.resource.data.targetId is string && request.resource.data.targetId.size() <= 200))
+        && request.resource.data.read == false
+        && request.resource.data.receivedAt == request.time;
+      allow update: if owner(uid)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read'])
+        && request.resource.data.read == true;
+    }
+    // Unknown paths stay denied.
     match /{document=**} { allow read, write: if false; }
   }
 }

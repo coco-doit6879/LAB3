@@ -46,3 +46,7 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+# Local CLI dependencies and emulator/test logs.
+node_modules/
+*-debug.log
+firebase-debug.log

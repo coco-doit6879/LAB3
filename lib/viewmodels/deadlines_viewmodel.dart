@@ -4,14 +4,21 @@ import 'package:flutter/foundation.dart';
 
 import '../models/deadline.dart';
 import '../services/deadline_repository.dart';
+import '../services/telemetry_service.dart';
 
 enum DeadlineFilter { all, pending, completed }
 
 class DeadlinesViewModel extends ChangeNotifier {
-  DeadlinesViewModel(this._repository) {
+  DeadlinesViewModel(
+    this._repository, {
+    this._telemetry = const NoTelemetry(),
+  }) {
     retry();
   }
   final DeadlineRepository _repository;
+  final Telemetry _telemetry;
+  void recordView(String id) =>
+      _telemetry.event('view_deadline', {'item_id': id});
   StreamSubscription<List<Deadline>>? _subscription;
   bool _disposed = false;
   List<Deadline> _items = [];
@@ -68,14 +75,19 @@ class DeadlinesViewModel extends ChangeNotifier {
     }
     return _perform(() async {
       if (item.id.isEmpty) {
-        await _repository.create(item);
+        final id = await _repository.create(item);
+        await _telemetry.event('create_deadline', {'item_id': id});
       } else {
         await _repository.update(item);
+        await _telemetry.event('update_deadline', {'item_id': item.id});
       }
     });
   }
 
-  Future<bool> remove(String id) => _perform(() => _repository.delete(id));
+  Future<bool> remove(String id) => _perform(() async {
+    await _repository.delete(id);
+    await _telemetry.event('delete_deadline', {'item_id': id});
+  });
   Future<bool> _perform(Future<void> Function() action) async {
     if (saving || _disposed) return false;
     saving = true;
@@ -85,6 +97,7 @@ class DeadlinesViewModel extends ChangeNotifier {
       await action();
       return true;
     } catch (_) {
+      await _telemetry.handled('deadline_write');
       error = 'Chưa lưu được thay đổi. Hãy thử lại.';
       return false;
     } finally {
