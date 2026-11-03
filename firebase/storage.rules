@@ -1,0 +1,13 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /reports/{uid}/{fileName} {
+      allow read, delete: if request.auth != null && request.auth.uid == uid;
+      allow create: if request.auth != null && request.auth.uid == uid
+        && fileName.matches('deadline-mate-[a-zA-Z0-9]+[.]pdf')
+        && request.resource.size > 0 && request.resource.size <= 10 * 1024 * 1024
+        && request.resource.contentType == 'application/pdf'
+        && request.resource.metadata.ownerId == uid;
+    }
+  }
+}
