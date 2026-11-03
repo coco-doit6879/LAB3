@@ -1,0 +1,21 @@
+{
+  "conditions": [],
+  "parameters": {
+    "dashboard_item_limit": {
+      "defaultValue": { "value": "5" },
+      "description": "Maximum pending deadlines shown on the dashboard; app clamps to 1-50.",
+      "valueType": "NUMBER"
+    },
+    "enable_pdf_export": {
+      "defaultValue": { "value": "true" },
+      "description": "Enable or disable the PDF export action.",
+      "valueType": "BOOLEAN"
+    },
+    "study_banner": {
+      "defaultValue": { "value": "Một việc mỗi lúc. Một bước gần mục tiêu hơn." },
+      "description": "Study encouragement text displayed on the dashboard.",
+      "valueType": "STRING"
+    }
+  },
+  "parameterGroups": {}
+}

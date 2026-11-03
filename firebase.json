@@ -1,8 +1,11 @@
 {
   "firestore": {
+    "database": "(default)",
+    "location": "asia-southeast1",
     "rules": "firebase/firestore.rules"
   },
   "storage": { "rules": "firebase/storage.rules" },
+  "remoteconfig": { "template": "firebase/remoteconfig.template.json" },
   "emulators": {
     "firestore": { "port": 8188 },
     "storage": { "port": 9299 },

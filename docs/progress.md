@@ -19,7 +19,7 @@ MVVM + Provider; Google authentication/auth gate; deadline CRUD/realtime/query; 
 ## Còn phải hoàn thành và chứng minh
 
 - Đã cài/chạy APK cập nhật và xem Login; còn đăng nhập bằng tài khoản test và kiểm tra UI/flows đầy đủ trên Android.
-- Tạo Firestore database thật, deploy rules sau review; CRUD và dữ liệu Console.
+- Database thật đã tạo (Standard/freeTier, asia-southeast1) và Rules đã deploy; còn CRUD theo UID và dữ liệu Console. Remote Config đã publish/đọc lại ba tham số; còn bằng chứng app phản ứng. Xem backend-deployment.md.
 - Đã chuyển adapter PDF sang Cloudinary theo lựa chọn sinh viên; preset Unsigned đã lưu. Còn kiểm chứng giới hạn preset, upload và mở PDF thật.
 - Firebase Console evidence cho FCM các trạng thái, Remote Config đổi hành vi, Analytics DebugView, Crashlytics handled/test crash.
 - Đã kiểm thử Storage Rules và sửa lỗi ghi đè; còn đưa bằng chứng review vào PR thật.

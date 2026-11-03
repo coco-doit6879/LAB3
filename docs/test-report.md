@@ -2,6 +2,8 @@
 
 ## Latest verification after Cloudinary migration
 
+Live backend milestone: student authenticated CLI; Firestore API enabled, default Standard/freeTier database created at asia-southeast1, Rules compiled/released with deploy exit 0. Database get confirmed server metadata. Remote Config initially empty; three parameters published and downloaded back with expected types/values. See backend-deployment.md. Historical pending-deployment statements below are superseded. No signed-in app/cloud CRUD, live PDF or RC behavior proof is implied.
+
 Shared component integration: all screens now use AppButton/AppField/AppTopBar/AppDialog where applicable; StatusPanel delegates loading/empty/error states. After loading indicators and token cleanup, full suite rerun: 21 passed; analyze clean. Tests cover the existing recovery/form/navigation behavior, not every component interaction state or visual Figma parity. See components.md for exact scope and exceptions.
 
 Latest flow-alignment follow-up: full suite rerun, **21 tests pass**, analysis clean. The existing failed-save form case now retries successfully after an injected matching snapshot and verifies arrival at Deadline detail (including edit action). This proves the fake-repository route behavior, not real cloud persistence. Calendar now displays the session status and completed elapsed minutes; that display still needs signed-in Android evidence.

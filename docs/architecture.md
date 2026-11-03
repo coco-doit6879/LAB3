@@ -44,7 +44,7 @@ Các tài liệu nằm dưới `/users/{uid}/`; không cần có parent document
 | reports | fileName, url, ownerId, itemCount, objectPath, storageProvider, createdAt | Lịch sử realtime; tạo metadata sau upload |
 | notifications | title, body, targetType, targetId, read, receivedAt | Lịch sử realtime; lưu theo message ID; cập nhật read |
 
-Rules giới hạn trường, kiểu và độ dài; bảo vệ createdAt, transition phiên học và URL metadata. Rules không chứng minh URL tồn tại, PDF tải được hoặc người gửi FCM là một tác nhân tin cậy. Các ca Rules đã chạy trong emulator demo, chưa có bằng chứng deploy rules lên project thật.
+Rules giới hạn trường, kiểu và độ dài; bảo vệ createdAt, transition phiên học và URL metadata. Rules không chứng minh URL tồn tại, PDF tải được hoặc người gửi FCM là một tác nhân tin cậy. Rules đã pass emulator và deploy lên database thật, xem backend-deployment.md; đọc/ghi bằng UID thật còn cần kiểm chứng.
 
 ## Ba luồng chính
 

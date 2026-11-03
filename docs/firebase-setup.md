@@ -22,12 +22,12 @@ In Authentication → Sign-in method, enable Google and select the project suppo
 
 ## Remaining setup
 
-- Create Cloud Firestore database, then deploy the checked-in rules after emulator tests. Do not use open test-mode rules as the submission.
+- Firestore database and checked-in Rules have now been deployed: Standard/freeTier, asia-southeast1. See backend-deployment.md. Signed-in CRUD and Console screenshots remain pending.
 - Student selected Cloudinary; the active PDF adapter now uses it. Project remains Spark and no billing was enabled. See cloudinary-setup.md for public build configuration and pending live verification. Firebase Storage rules remain as a tested alternative.
 - Analytics enabled status, DebugView, Crashlytics onboarding and event receipt need actual verification.
-- Remote Config: publish dashboard_item_limit=5 (Number), enable_pdf_export=true (Boolean), study_banner (String). App defaults exist; refresh minimum interval is one minute.
+- Remote Config now has dashboard_item_limit=5 (Number), enable_pdf_export=true (Boolean), study_banner (String) published and read back from server. App behavior before/after changes remains to verify; refresh minimum interval is one minute.
 - FCM instructions are in fcm-demo.md.
-- Firebase CLI is installed locally but is not authenticated. scripts/firebase-login.ps1 supports manual login without sharing authorization codes in chat. UI configuration already provided the Android config, so CLI login is not needed merely to download this file.
+- Student successfully authenticated Firebase CLI. No login code/password is stored in the repository. Direct PowerShell command (avoids script execution-policy restrictions): `& 'D:\PRM\tools\firebase-cli\node_modules\.bin\firebase.cmd' login`.
 
 Official references: https://firebase.google.com/docs/flutter/setup and https://firebase.google.com/docs/crashlytics/android/get-started .
 

@@ -20,6 +20,8 @@ Five findings across robustness and UX/error recovery were acted on. Do not desc
 
 ## Rules review
 
+Deployment follow-up: 11 Firestore + 7 Storage emulator cases passed; Firestore Rules subsequently compiled and released successfully on deadline-mate-feff4. See backend-deployment.md for the local Rules SHA-256 and actual CLI result. The paragraph below records the earlier review stage; it is superseded for test counts and deployment status. Real UID/cloud access checks remain pending.
+
 Reviewed firebase/firestore.rules against ownership and schema requirements. Ten local emulator tests prove the specific listed cases in test-report.md; no open catch-all rule was found. Report metadata URL checks do not prove an object exists, and Storage rules have not yet been emulator-tested. Deploy only after completing the remaining checks. No cloud rules deployment is claimed.
 
 ## Required PR evidence still missing
