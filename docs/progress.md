@@ -18,7 +18,7 @@ MVVM + Provider; Google authentication/auth gate; deadline CRUD/realtime/query; 
 
 ## Còn phải hoàn thành và chứng minh
 
-- Đã đăng nhập Google, giữ session sau cập nhật APK và tạo/list môn demo thành công. Đã sửa lỗi dialog Provider và system Back bằng regression + thử thật; còn kiểm tra đầy đủ ba luồng, Deadline CRUD và logout/isolation.
+- Đã đăng nhập Google, tạo/list môn demo; Deadline CRUD/complete/cancel-delete và Study plan/start/finish/cancel đã chạy trên app Firebase thật. Xem live-flow-results.md; còn PDF, lỗi mạng, Console evidence, logout/isolation và suite .mob.
 - Database thật đã tạo (Standard/freeTier, asia-southeast1) và Rules đã deploy; còn CRUD theo UID và dữ liệu Console. Remote Config đã publish/đọc lại ba tham số; còn bằng chứng app phản ứng. Xem backend-deployment.md.
 - Đã chuyển adapter PDF sang Cloudinary theo lựa chọn sinh viên; preset Unsigned đã lưu. Còn kiểm chứng giới hạn preset, upload và mở PDF thật.
 - Firebase Console evidence cho FCM các trạng thái, Remote Config đổi hành vi, Analytics DebugView, Crashlytics handled/test crash.

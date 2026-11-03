@@ -1,0 +1,13 @@
+{
+  "version": "0.2",
+  "steps": [
+    { "action": "tap", "predicate": { "text": "Lưu deadline", "type": "button" } },
+    { "action": "assert_exists", "predicate": { "text": "Nhập tiêu đề deadline." }, "timeout_ms": 5000 },
+    { "action": "type", "predicate": { "text_contains": "Tiêu đề", "type": "input" }, "text": "LAB3 Demo A", "clear_first": true },
+    { "action": "press_key", "key": "enter" },
+    { "action": "wait_for", "predicate": { "text_regex": "^Môn học(?:,.*)?$", "type": "button" }, "timeout_ms": 10000 },
+    { "action": "tap", "predicate": { "text_regex": "^Môn học(?:,.*)?$", "type": "button" } },
+    { "action": "wait_for", "stable": true, "timeout_ms": 3000 },
+    { "action": "observe", "include": ["ui_tree"] }
+  ]
+}

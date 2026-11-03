@@ -1,0 +1,13 @@
+{
+  "version": "0.2",
+  "steps": [
+    { "action": "tap", "predicate": { "text_contains": "Tab 3 of 4", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text": "Lịch học" }, "timeout_ms": 10000 },
+    { "action": "tap", "predicate": { "text": "Phiên học", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text": "Lập phiên học", "type": "button" }, "timeout_ms": 10000 },
+    { "action": "tap", "predicate": { "text": "Lập phiên học", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text": "Bạn sẽ học gì?", "type": "input" }, "timeout_ms": 10000 },
+    { "action": "wait_for", "stable": true, "timeout_ms": 3000 },
+    { "action": "observe", "include": ["ui_tree"] }
+  ]
+}

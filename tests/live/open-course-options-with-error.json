@@ -1,0 +1,8 @@
+{
+  "version": "0.2",
+  "steps": [
+    { "action": "tap", "predicate": { "text_regex": "^Môn học(?:,.*)?$", "type": "button" } },
+    { "action": "wait_for", "stable": true, "timeout_ms": 3000 },
+    { "action": "observe", "include": ["ui_tree"] }
+  ]
+}

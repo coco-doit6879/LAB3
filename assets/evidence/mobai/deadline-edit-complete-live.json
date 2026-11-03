@@ -1,0 +1,254 @@
+{
+  "success": true,
+  "step_results": [
+    {
+      "success": true,
+      "step_index": 0,
+      "action": "tap",
+      "started_at_ms": 1793724602849,
+      "duration_ms": 999,
+      "result": {
+        "matched_element": {
+          "index": 24,
+          "type": "android.widget.Button",
+          "text": "Sửa deadline",
+          "bounds": {
+            "x": 66,
+            "y": 890,
+            "width": 948,
+            "height": 132
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 1,
+      "action": "wait_for",
+      "started_at_ms": 1793724604648,
+      "duration_ms": 297,
+      "result": {
+        "matched_element": {
+          "index": 16,
+          "type": "android.widget.EditText",
+          "text": "Tiêu đề",
+          "bounds": {
+            "x": 66,
+            "y": 356,
+            "width": 948,
+            "height": 220
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 2,
+      "action": "type",
+      "started_at_ms": 1793724604946,
+      "duration_ms": 1773,
+      "result": {
+        "matched_element": {
+          "index": 16,
+          "type": "android.widget.EditText",
+          "text": "Tiêu đề",
+          "bounds": {
+            "x": 66,
+            "y": 356,
+            "width": 948,
+            "height": 220
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 3,
+      "action": "press_key",
+      "started_at_ms": 1793724606761,
+      "duration_ms": 564,
+      "result": {}
+    },
+    {
+      "success": true,
+      "step_index": 4,
+      "action": "wait_for",
+      "started_at_ms": 1793724607420,
+      "duration_ms": 846,
+      "result": {
+        "matched_element": {
+          "index": 27,
+          "type": "android.widget.Button",
+          "text": "Lưu deadline",
+          "bounds": {
+            "x": 66,
+            "y": 1126,
+            "width": 948,
+            "height": 132
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 5,
+      "action": "tap",
+      "started_at_ms": 1793724608266,
+      "duration_ms": 260,
+      "result": {
+        "matched_element": {
+          "index": 27,
+          "type": "android.widget.Button",
+          "text": "Lưu deadline",
+          "bounds": {
+            "x": 66,
+            "y": 1126,
+            "width": 948,
+            "height": 132
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 6,
+      "action": "wait_for",
+      "started_at_ms": 1793724608932,
+      "duration_ms": 1732,
+      "result": {
+        "matched_element": {
+          "index": 12,
+          "type": "android.view.View",
+          "text": "Chi tiết deadline",
+          "bounds": {
+            "x": 198,
+            "y": 175,
+            "width": 441,
+            "height": 77
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 7,
+      "action": "assert_exists",
+      "started_at_ms": 1793724610664,
+      "duration_ms": 28,
+      "result": {
+        "matched_element": {
+          "index": 15,
+          "type": "android.view.View",
+          "text": "LAB3 Demo A - updated",
+          "bounds": {
+            "x": 66,
+            "y": 356,
+            "width": 948,
+            "height": 94
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 8,
+      "action": "tap",
+      "started_at_ms": 1793724610693,
+      "duration_ms": 264,
+      "result": {
+        "matched_element": {
+          "index": 22,
+          "type": "android.widget.Button",
+          "text": "Hoàn thành deadline",
+          "bounds": {
+            "x": 66,
+            "y": 758,
+            "width": 948,
+            "height": 132
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 9,
+      "action": "wait_for",
+      "started_at_ms": 1793724611352,
+      "duration_ms": 1008,
+      "result": {
+        "matched_element": {
+          "index": 19,
+          "type": "android.view.View",
+          "text": "Đã hoàn thành",
+          "bounds": {
+            "x": 66,
+            "y": 626,
+            "width": 948,
+            "height": 66
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 10,
+      "action": "assert_exists",
+      "started_at_ms": 1793724612360,
+      "duration_ms": 41,
+      "result": {
+        "matched_element": {
+          "index": 22,
+          "type": "android.widget.Button",
+          "text": "Đánh dấu chưa xong",
+          "bounds": {
+            "x": 66,
+            "y": 758,
+            "width": 948,
+            "height": 132
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 11,
+      "action": "wait_for",
+      "started_at_ms": 1793724612402,
+      "duration_ms": 338,
+      "result": {}
+    },
+    {
+      "success": true,
+      "step_index": 12,
+      "action": "observe",
+      "started_at_ms": 1793724612741,
+      "duration_ms": 46,
+      "result": {
+        "observations": {
+          "native": {
+            "ui_tree": "    [2] FrameLayout #content (0,0 1080x2340)\n                      [11] Button \"Back\" (11,147 132x132)\n                      [12] View \"Chi tiết deadline\" (198,175 441x77)\n                        [15] View \"LAB3 Demo A - updated\" (66,356 948x94)\n                        [17] View \"Môn học: PRM393 — Flutter và Firebase\" (66,494 948x66)\n                        [18] View \"Hạn: 04/11/2026 23:47\" (66,560 948x66)\n                        [19] View \"Đã hoàn thành\" (66,626 948x66)\n                          [22] Button \"Đánh dấu chưa xong\" (66,758 948x132)\n                          [24] Button \"Sửa deadline\" (66,890 948x132)\n                          [26] Button \"Xóa deadline\" (66,1022 948x132)\n"
+          }
+        }
+      }
+    }
+  ],
+  "total_time_ms": 9938,
+  "metadata": {
+    "interactive_elements": {
+      "buttons": 4,
+      "switches": 0,
+      "text_fields": 0
+    },
+    "visible_text": [
+      "Back",
+      "Chi tiết deadline",
+      "LAB3 Demo A - updated",
+      "Môn học: PRM393 — Flutter và Firebase",
+      "Hạn: 04/11/2026 23:47",
+      "Đã hoàn thành",
+      "Đánh dấu chưa xong",
+      "Sửa deadline",
+      "Xóa deadline"
+    ]
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "success": true,
+  "step_results": [
+    {
+      "success": true,
+      "step_index": 0,
+      "action": "tap",
+      "started_at_ms": 1793724477527,
+      "duration_ms": 746,
+      "result": {
+        "matched_element": {
+          "index": 11,
+          "type": "android.widget.Button",
+          "text": "Back",
+          "bounds": {
+            "x": 11,
+            "y": 147,
+            "width": 132,
+            "height": 132
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 1,
+      "action": "wait_for",
+      "started_at_ms": 1793724479047,
+      "duration_ms": 416,
+      "result": {
+        "matched_element": {
+          "index": 22,
+          "type": "android.widget.Button",
+          "text": "Tạo deadline",
+          "bounds": {
+            "x": 66,
+            "y": 879,
+            "width": 948,
+            "height": 132
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 2,
+      "action": "tap",
+      "started_at_ms": 1793724479463,
+      "duration_ms": 262,
+      "result": {
+        "matched_element": {
+          "index": 22,
+          "type": "android.widget.Button",
+          "text": "Tạo deadline",
+          "bounds": {
+            "x": 66,
+            "y": 879,
+            "width": 948,
+            "height": 132
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 3,
+      "action": "wait_for",
+      "started_at_ms": 1793724480423,
+      "duration_ms": 296,
+      "result": {
+        "matched_element": {
+          "index": 16,
+          "type": "android.widget.EditText",
+          "text": "Tiêu đề",
+          "bounds": {
+            "x": 66,
+            "y": 356,
+            "width": 948,
+            "height": 220
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 4,
+      "action": "wait_for",
+      "started_at_ms": 1793724480720,
+      "duration_ms": 334,
+      "result": {}
+    },
+    {
+      "success": true,
+      "step_index": 5,
+      "action": "observe",
+      "started_at_ms": 1793724481055,
+      "duration_ms": 47,
+      "result": {
+        "observations": {
+          "native": {
+            "ui_tree": "    [2] FrameLayout #content (0,0 1080x2340)\n                      [11] Button \"Back\" (11,147 132x132)\n                      [12] View \"Tạo deadline\" (198,175 346x77)\n                          [16] EditText \"Tiêu đề\" [editable] (66,356 948x220)\n                            [17] View \"120 characters remaining\" (851,521 108x55)\n                          [19] Button \"Môn học\" (66,620 948x154)\n                            [21] Button \"Thêm hoặc xem môn học\" (66,774 948x132)\n                            [24] Button \"04/11/2026 23:47\" (66,950 948x132)\n                            [27] Button \"Lưu deadline\" (66,1126 948x132)\n"
+          }
+        }
+      }
+    }
+  ],
+  "total_time_ms": 3574,
+  "metadata": {
+    "interactive_elements": {
+      "buttons": 5,
+      "switches": 0,
+      "text_fields": 1
+    },
+    "visible_text": [
+      "Back",
+      "Tạo deadline",
+      "Tiêu đề",
+      "120 characters remaining",
+      "Môn học",
+      "Thêm hoặc xem môn học",
+      "04/11/2026 23:47",
+      "Lưu deadline"
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "success": true,
+  "step_results": [
+    {
+      "success": true,
+      "step_index": 0,
+      "action": "tap",
+      "started_at_ms": 1793724554779,
+      "duration_ms": 837,
+      "result": {
+        "matched_element": {
+          "index": 20,
+          "type": "android.widget.Button",
+          "text": "Môn học, Chọn môn học có trong danh sách.",
+          "bounds": {
+            "x": 66,
+            "y": 620,
+            "width": 948,
+            "height": 220
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 1,
+      "action": "wait_for",
+      "started_at_ms": 1793724556331,
+      "duration_ms": 355,
+      "result": {}
+    },
+    {
+      "success": true,
+      "step_index": 2,
+      "action": "observe",
+      "started_at_ms": 1793724556687,
+      "duration_ms": 31,
+      "result": {
+        "observations": {
+          "native": {
+            "ui_tree": "    [2] FrameLayout #content (0,0 1080x2340)\n                  [9] Spinner (22,642 1058x176)\n                        [12] MenuItem \"PRM393 — Flutter và Firebase\" [focused] (22,664 1058x132)\n                [13] View \"Dismiss\" (0,0 1080x2340)\n"
+          }
+        }
+      }
+    }
+  ],
+  "total_time_ms": 1938,
+  "metadata": {
+    "interactive_elements": {
+      "buttons": 0,
+      "switches": 0,
+      "text_fields": 0
+    },
+    "visible_text": [
+      "PRM393 — Flutter và Firebase",
+      "Dismiss"
+    ]
+  }
+}

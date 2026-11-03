@@ -1,0 +1,182 @@
+{
+  "success": true,
+  "step_results": [
+    {
+      "success": true,
+      "step_index": 0,
+      "action": "tap",
+      "started_at_ms": 1793724663524,
+      "duration_ms": 852,
+      "result": {
+        "matched_element": {
+          "index": 26,
+          "type": "android.widget.Button",
+          "text": "Xóa deadline",
+          "bounds": {
+            "x": 66,
+            "y": 1022,
+            "width": 948,
+            "height": 132
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 1,
+      "action": "wait_for",
+      "started_at_ms": 1793724665084,
+      "duration_ms": 57,
+      "result": {
+        "matched_element": {
+          "index": 14,
+          "type": "android.view.View",
+          "text": "Xóa deadline?",
+          "bounds": {
+            "x": 205,
+            "y": 1007,
+            "width": 670,
+            "height": 88
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 2,
+      "action": "tap",
+      "started_at_ms": 1793724665142,
+      "duration_ms": 274,
+      "result": {
+        "matched_element": {
+          "index": 17,
+          "type": "android.widget.Button",
+          "text": "Giữ lại",
+          "bounds": {
+            "x": 476,
+            "y": 1271,
+            "width": 178,
+            "height": 132
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 3,
+      "action": "wait_for",
+      "started_at_ms": 1793724665845,
+      "duration_ms": 290,
+      "result": {
+        "matched_element": {
+          "index": 12,
+          "type": "android.view.View",
+          "text": "Chi tiết deadline",
+          "bounds": {
+            "x": 198,
+            "y": 175,
+            "width": 441,
+            "height": 77
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 4,
+      "action": "assert_exists",
+      "started_at_ms": 1793724666136,
+      "duration_ms": 33,
+      "result": {
+        "matched_element": {
+          "index": 15,
+          "type": "android.view.View",
+          "text": "LAB3 Demo A - updated",
+          "bounds": {
+            "x": 66,
+            "y": 356,
+            "width": 948,
+            "height": 94
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 5,
+      "action": "tap",
+      "started_at_ms": 1793724666170,
+      "duration_ms": 276,
+      "result": {
+        "matched_element": {
+          "index": 26,
+          "type": "android.widget.Button",
+          "text": "Xóa deadline",
+          "bounds": {
+            "x": 66,
+            "y": 1022,
+            "width": 948,
+            "height": 132
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 6,
+      "action": "wait_for",
+      "started_at_ms": 1793724666825,
+      "duration_ms": 224,
+      "result": {
+        "matched_element": {
+          "index": 14,
+          "type": "android.view.View",
+          "text": "Xóa deadline?",
+          "bounds": {
+            "x": 205,
+            "y": 1007,
+            "width": 670,
+            "height": 88
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 7,
+      "action": "wait_for",
+      "started_at_ms": 1793724667050,
+      "duration_ms": 669,
+      "result": {}
+    },
+    {
+      "success": true,
+      "step_index": 8,
+      "action": "observe",
+      "started_at_ms": 1793724667719,
+      "duration_ms": 39,
+      "result": {
+        "observations": {
+          "native": {
+            "ui_tree": "    [2] FrameLayout #content (0,0 1080x2340)\n                            [14] View \"Xóa deadline?\" (205,1007 670x88)\n                              [16] View \"Thao tác này không thể hoàn tác.\" (205,1139 670x66)\n                          [17] Button \"Giữ lại\" (476,1271 178x132)\n                            [19] Button \"Xóa\" (676,1271 199x132)\n                [20] View \"Dismiss\" (0,0 1080x2340)\n"
+          }
+        }
+      }
+    }
+  ],
+  "total_time_ms": 4235,
+  "metadata": {
+    "interactive_elements": {
+      "buttons": 2,
+      "switches": 0,
+      "text_fields": 0
+    },
+    "visible_text": [
+      "Xóa deadline?",
+      "Thao tác này không thể hoàn tác.",
+      "Giữ lại",
+      "Xóa",
+      "Dismiss"
+    ]
+  }
+}

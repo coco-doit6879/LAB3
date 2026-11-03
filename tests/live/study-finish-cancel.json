@@ -1,0 +1,15 @@
+{
+  "version": "0.2",
+  "steps": [
+    { "action": "tap", "predicate": { "text": "Phiên học", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text": "Kết thúc phiên học", "type": "button" }, "timeout_ms": 10000 },
+    { "action": "tap", "predicate": { "text": "Kết thúc phiên học", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text": "Kết thúc phiên học?" }, "timeout_ms": 10000 },
+    { "action": "tap", "predicate": { "text": "Học tiếp", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text_contains": "Đang học" }, "timeout_ms": 10000 },
+    { "action": "tap", "predicate": { "text": "Kết thúc phiên học", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text": "Kết thúc phiên học?" }, "timeout_ms": 10000 },
+    { "action": "wait_for", "stable": true, "timeout_ms": 3000 },
+    { "action": "observe", "include": ["ui_tree"] }
+  ]
+}

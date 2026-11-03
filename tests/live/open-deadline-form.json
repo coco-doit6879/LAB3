@@ -1,0 +1,11 @@
+{
+  "version": "0.2",
+  "steps": [
+    { "action": "tap", "predicate": { "text": "Back", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text": "Tạo deadline", "type": "button" }, "timeout_ms": 10000 },
+    { "action": "tap", "predicate": { "text": "Tạo deadline", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text": "Tiêu đề", "type": "input" }, "timeout_ms": 10000 },
+    { "action": "wait_for", "stable": true, "timeout_ms": 3000 },
+    { "action": "observe", "include": ["ui_tree"] }
+  ]
+}

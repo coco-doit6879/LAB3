@@ -1,0 +1,14 @@
+{
+  "version": "0.2",
+  "steps": [
+    { "action": "tap", "predicate": { "text": "Xóa deadline", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text": "Xóa deadline?" }, "timeout_ms": 10000 },
+    { "action": "tap", "predicate": { "text": "Giữ lại", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text": "Chi tiết deadline" }, "timeout_ms": 10000 },
+    { "action": "assert_exists", "predicate": { "text": "LAB3 Demo A - updated" } },
+    { "action": "tap", "predicate": { "text": "Xóa deadline", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text": "Xóa deadline?" }, "timeout_ms": 10000 },
+    { "action": "wait_for", "stable": true, "timeout_ms": 3000 },
+    { "action": "observe", "include": ["ui_tree"] }
+  ]
+}

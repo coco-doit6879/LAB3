@@ -1,0 +1,13 @@
+{
+  "version": "0.2",
+  "steps": [
+    { "action": "tap", "predicate": { "text": "PRM393 — Flutter và Firebase" } },
+    { "action": "wait_for", "predicate": { "text": "Lưu deadline", "type": "button" }, "timeout_ms": 10000 },
+    { "action": "tap", "predicate": { "text": "Lưu deadline", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text": "Chi tiết deadline" }, "timeout_ms": 30000 },
+    { "action": "assert_exists", "predicate": { "text": "LAB3 Demo A" }, "timeout_ms": 10000 },
+    { "action": "assert_exists", "predicate": { "text": "Môn học: PRM393 — Flutter và Firebase" } },
+    { "action": "wait_for", "stable": true, "timeout_ms": 3000 },
+    { "action": "observe", "include": ["ui_tree"] }
+  ]
+}

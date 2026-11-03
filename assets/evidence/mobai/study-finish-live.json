@@ -1,0 +1,207 @@
+{
+  "success": true,
+  "step_results": [
+    {
+      "success": true,
+      "step_index": 0,
+      "action": "tap",
+      "started_at_ms": 1793724883746,
+      "duration_ms": 779,
+      "result": {
+        "matched_element": {
+          "index": 19,
+          "type": "android.widget.Button",
+          "text": "Kết thúc",
+          "bounds": {
+            "x": 627,
+            "y": 1304,
+            "width": 277,
+            "height": 132
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 1,
+      "action": "wait_for",
+      "started_at_ms": 1793724884915,
+      "duration_ms": 895,
+      "result": {
+        "matched_element": {
+          "index": 16,
+          "type": "android.view.View",
+          "text": "Ôn LAB3 Demo\n03/11 23:51 · 25 phút\nĐã kết thúc · 0 phút",
+          "bounds": {
+            "x": 44,
+            "y": 334,
+            "width": 992,
+            "height": 319
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 2,
+      "action": "assert_not_exists",
+      "started_at_ms": 1793724885810,
+      "duration_ms": 21,
+      "result": {}
+    },
+    {
+      "success": true,
+      "step_index": 3,
+      "action": "tap",
+      "started_at_ms": 1793724885832,
+      "duration_ms": 252,
+      "result": {
+        "matched_element": {
+          "index": 11,
+          "type": "android.widget.Button",
+          "text": "Back",
+          "bounds": {
+            "x": 11,
+            "y": 147,
+            "width": 132,
+            "height": 132
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 4,
+      "action": "wait_for",
+      "started_at_ms": 1793724886501,
+      "duration_ms": 619,
+      "result": {
+        "matched_element": {
+          "index": 11,
+          "type": "android.view.View",
+          "text": "Lịch học",
+          "bounds": {
+            "x": 44,
+            "y": 175,
+            "width": 229,
+            "height": 77
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 5,
+      "action": "assert_exists",
+      "started_at_ms": 1793724887120,
+      "duration_ms": 132,
+      "result": {
+        "matched_element": {
+          "index": 66,
+          "type": "android.widget.Button",
+          "text": "Ôn LAB3 Demo\nĐã hoàn thành · 25 phút dự kiến · 0 phút thực tế",
+          "bounds": {
+            "x": 44,
+            "y": 1478,
+            "width": 992,
+            "height": 264
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 6,
+      "action": "assert_exists",
+      "started_at_ms": 1793724887252,
+      "duration_ms": 91,
+      "result": {
+        "matched_element": {
+          "index": 66,
+          "type": "android.widget.Button",
+          "text": "Ôn LAB3 Demo\nĐã hoàn thành · 25 phút dự kiến · 0 phút thực tế",
+          "bounds": {
+            "x": 44,
+            "y": 1478,
+            "width": 992,
+            "height": 264
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 7,
+      "action": "wait_for",
+      "started_at_ms": 1793724887344,
+      "duration_ms": 345,
+      "result": {}
+    },
+    {
+      "success": true,
+      "step_index": 8,
+      "action": "observe",
+      "started_at_ms": 1793724887689,
+      "duration_ms": 136,
+      "result": {
+        "observations": {
+          "native": {
+            "ui_tree": "    [2] FrameLayout #content (0,0 1080x2340)\n                      [11] View \"Lịch học\" (44,175 229x77)\n                      [12] Button \"Phiên học\" (948,147 132x132)\n                          [16] Button \"Select year\\nNovember 2026\" (88,334 640x143)\n                          [17] View \"Tuesday, November 3, 2026, Today\" (44,334 992x1067)\n                              [19] Button \"Previous month\" (761,340 132x132)\n                              [20] Button \"Next month\" (893,340 132x132)\n                                          [34] Button \"1, Sunday, November 1, 2026\" (77,609 132x132)\n                                          [35] Button \"2, Monday, November 2, 2026\" (209,609 133x132)\n                                          [36] Button \"3, Tuesday, November 3, 2026, Today\" [selected] (342,609 132x132)\n                                          [37] Button \"4, Wednesday, November 4, 2026\" (474,609 132x132)\n                                          [38] Button \"5, Thursday, November 5, 2026\" (606,609 132x132)\n                                          [39] Button \"6, Friday, November 6, 2026\" (738,609 133x132)\n                                          [40] Button \"7, Saturday, November 7, 2026\" (871,609 132x132)\n                                          [41] Button \"8, Sunday, November 8, 2026\" (77,741 132x132)\n                                          [42] Button \"9, Monday, November 9, 2026\" (209,741 133x132)\n                                          [43] Button \"10, Tuesday, November 10, 2026\" (342,741 132x132)\n                                          [44] Button \"11, Wednesday, November 11, 2026\" (474,741 132x132)\n                                          [45] Button \"12, Thursday, November 12, 2026\" (606,741 132x132)\n                                          [46] Button \"13, Friday, November 13, 2026\" (738,741 133x132)\n                                          [47] Button \"14, Saturday, November 14, 2026\" (871,741 132x132)\n                                          [48] Button \"15, Sunday, November 15, 2026\" (77,873 132x132)\n                                          [49] Button \"16, Monday, November 16, 2026\" (209,873 133x132)\n                                          [50] Button \"17, Tuesday, November 17, 2026\" (342,873 132x132)\n                                          [51] Button \"18, Wednesday, November 18, 2026\" (474,873 132x132)\n                                          [52] Button \"19, Thursday, November 19, 2026\" (606,873 132x132)\n                                          [53] Button \"20, Friday, November 20, 2026\" (738,873 133x132)\n                                          [54] Button \"21, Saturday, November 21, 2026\" (871,873 132x132)\n                                          [55] Button \"22, Sunday, November 22, 2026\" (77,1005 132x132)\n                                          [56] Button \"23, Monday, November 23, 2026\" (209,1005 133x132)\n                                          [57] Button \"24, Tuesday, November 24, 2026\" (342,1005 132x132)\n                                          [58] Button \"25, Wednesday, November 25, 2026\" (474,1005 132x132)\n                                          [59] Button \"26, Thursday, November 26, 2026\" (606,1005 132x132)\n                                          [60] Button \"27, Friday, November 27, 2026\" (738,1005 133x132)\n                                          [61] Button \"28, Saturday, November 28, 2026\" (871,1005 132x132)\n                                          [62] Button \"29, Sunday, November 29, 2026\" (77,1137 132x132)\n                                          [63] Button \"30, Monday, November 30, 2026\" (209,1137 133x132)\n                        [64] View \"03/11/2026\" (44,1401 992x77)\n                          [66] Button \"Ôn LAB3 Demo\\nĐã hoàn thành · 25 phút dự kiến · 0 phút thực tế\" (44,1478 992x264)\n                      [68] Button \"Tổng quan\\nTab 1 of 4\" (0,2054 270x220)\n                      [69] Button \"Deadline\\nTab 2 of 4\" (270,2054 270x220)\n                      [70] Button \"Lịch học\\nTab 3 of 4\" [selected] (540,2054 270x220)\n                      [71] Button \"Báo cáo\\nTab 4 of 4\" (810,2054 270x220)\n"
+          }
+        }
+      }
+    }
+  ],
+  "total_time_ms": 4079,
+  "metadata": {
+    "interactive_elements": {
+      "buttons": 39,
+      "switches": 0,
+      "text_fields": 0
+    },
+    "visible_text": [
+      "Lịch học",
+      "Phiên học",
+      "Select year\nNovember 2026",
+      "Tuesday, November 3, 2026, Today",
+      "Previous month",
+      "Next month",
+      "1, Sunday, November 1, 2026",
+      "2, Monday, November 2, 2026",
+      "3, Tuesday, November 3, 2026, Today",
+      "4, Wednesday, November 4, 2026",
+      "5, Thursday, November 5, 2026",
+      "6, Friday, November 6, 2026",
+      "7, Saturday, November 7, 2026",
+      "8, Sunday, November 8, 2026",
+      "9, Monday, November 9, 2026",
+      "10, Tuesday, November 10, 2026",
+      "11, Wednesday, November 11, 2026",
+      "12, Thursday, November 12, 2026",
+      "13, Friday, November 13, 2026",
+      "14, Saturday, November 14, 2026",
+      "15, Sunday, November 15, 2026",
+      "16, Monday, November 16, 2026",
+      "17, Tuesday, November 17, 2026",
+      "18, Wednesday, November 18, 2026",
+      "19, Thursday, November 19, 2026",
+      "20, Friday, November 20, 2026",
+      "21, Saturday, November 21, 2026",
+      "22, Sunday, November 22, 2026",
+      "23, Monday, November 23, 2026",
+      "24, Tuesday, November 24, 2026",
+      "25, Wednesday, November 25, 2026",
+      "26, Thursday, November 26, 2026",
+      "27, Friday, November 27, 2026",
+      "28, Saturday, November 28, 2026",
+      "29, Sunday, November 29, 2026",
+      "30, Monday, November 30, 2026",
+      "03/11/2026",
+      "Ôn LAB3 Demo\nĐã hoàn thành · 25 phút dự kiến · 0 phút thực tế",
+      "Tổng quan\nTab 1 of 4",
+      "Deadline\nTab 2 of 4",
+      "Lịch học\nTab 3 of 4",
+      "Báo cáo\nTab 4 of 4"
+    ]
+  }
+}

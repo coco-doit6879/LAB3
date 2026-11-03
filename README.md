@@ -9,7 +9,7 @@
 - APK debug build thành công và đã cài/mở trên emulator-5554. Ảnh thật: assets/evidence/android-login.png.
 - Android app được đăng ký trên Firebase; Google provider Enabled; google-services.json mới có OAuth Android/web và SHA-1 khớp máy.
 
-Đã đăng nhập Google trên Android và tạo/list được môn demo trên Firestore-backed app sau khi sửa dialog/Back; chưa kiểm chứng đầy đủ ba luồng hoặc chạy đủ MobAI bắt buộc. Có smoke MobAI DSL pass 3/3 và log thêm môn thật; runner .mob chưa khởi tạo test project. Bài LAB chưa hoàn tất.
+Đã đăng nhập Google, tạo môn, chạy Deadline CRUD/complete và Study plan/start/finish trên Android với Firebase thật; log và giới hạn ở docs/live-flow-results.md. Còn flow PDF và nhiều bằng chứng dịch vụ, chưa chạy đủ MobAI bắt buộc; runner .mob chưa khởi tạo test project. Bài LAB chưa hoàn tất.
 
 ## Mã nguồn hiện có
 
@@ -29,6 +29,7 @@ Rules tests dùng demo project, không chạm dữ liệu thật; lệnh trong d
 - docs/backend-deployment.md: database/Rules và Remote Config đã triển khai thật, cùng phần còn cần kiểm chứng.
 - docs/implementation-ai-log.md: nhật ký thật theo yêu cầu/lượt tiếp tục; quyết định của sinh viên còn chờ xác nhận.
 - docs/live-verification-plan.md: thứ tự thu bằng chứng và điều kiện cho mười bài MobAI; chưa phải kết quả pass.
+- docs/live-flow-results.md: các bước đã chạy thật, log pass/fail và phạm vi chưa kiểm chứng.
 - docs/components.md: mapping thư viện widget, trạng thái và các ngoại lệ cần đối chiếu Figma.
 - docs/progress.md: phạm vi hoàn thành và còn thiếu.
 - docs/firebase-setup.md: cấu hình thật, SHA-1 và dịch vụ còn phải bật.

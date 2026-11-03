@@ -1,0 +1,18 @@
+{
+  "version": "0.2",
+  "steps": [
+    { "action": "type", "predicate": { "text": "Bạn sẽ học gì?", "type": "input" }, "text": "Ôn LAB3 Demo", "clear_first": true },
+    { "action": "press_key", "key": "enter" },
+    { "action": "wait_for", "predicate": { "text": "Lưu phiên học", "type": "button" }, "timeout_ms": 10000 },
+    { "action": "tap", "predicate": { "text": "Lưu phiên học", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text_contains": "Ôn LAB3 Demo" }, "timeout_ms": 30000 },
+    { "action": "assert_exists", "predicate": { "text_contains": "Đã lên kế hoạch" }, "timeout_ms": 10000 },
+    { "action": "tap", "predicate": { "text": "Bắt đầu học", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text_contains": "Đang học" }, "timeout_ms": 30000 },
+    { "action": "tap", "predicate": { "text": "Back", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text": "Lịch học" }, "timeout_ms": 10000 },
+    { "action": "assert_exists", "predicate": { "text_contains": "Đang học" }, "timeout_ms": 10000 },
+    { "action": "wait_for", "stable": true, "timeout_ms": 3000 },
+    { "action": "observe", "include": ["ui_tree"] }
+  ]
+}
