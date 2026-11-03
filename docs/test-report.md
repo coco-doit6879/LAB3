@@ -2,6 +2,8 @@
 
 ## Latest verification after Cloudinary migration
 
+Latest search/filter implementation: **21 Flutter tests pass**, analysis clean. A ViewModel case combines case-insensitive trimmed title search, course and status, verifies that an incoming stream update respects active filters, and confirms reset preserves source records. A widget case renders Deadline list at 360×800 with a simulated 280 px keyboard inset, enters a nonmatching query, resets filters and verifies the original record and cleared search field with no layout exception. These are fake-repository checks; cloud query and signed-in Android demonstration remain pending.
+
 Subsequent theme/component change: **19 Flutter tests pass**, analysis clean. Three new widget cases check navigation/card layout and callbacks at 360/412/800 dp. They do not replace full-screen Android accessibility checks. See fidelity-check.md for scope and token contrast calculations.
 
 Current local checks: 16 Flutter tests passed; analysis clean. Cloudinary adapter tests cover multipart fields, no privileged credential, progress/result parsing, missing configuration, invalid PDF, rejected upload and invalid delivery URL. They use an HTTP fake and do not prove a live upload.

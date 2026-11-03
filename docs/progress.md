@@ -9,7 +9,7 @@ MVVM + Provider; Google authentication/auth gate; deadline CRUD/realtime/query; 
 ## Đã kiểm chứng
 
 - Flutter analyze: No issues found.
-- 19 unit/widget tests pass, gồm navigation/card tại 360/412/800 dp.
+- 21 unit/widget tests pass, gồm navigation/card tại 360/412/800 dp, lọc kết hợp và khôi phục tìm kiếm khi bàn phím mở.
 - 18 Rules emulator tests pass: 11 Firestore và 7 Storage (project demo-deadlinemate).
 - Đăng ký Android app trên Firebase project thật.
 - Google provider Enabled đã xác minh trên Console; cấu hình mới có OAuth Android/web và SHA-1 khớp debug key của máy.

@@ -28,7 +28,18 @@ class DeadlinesViewModel extends ChangeNotifier {
   bool saving = false;
   String? error;
   DeadlineFilter filter = DeadlineFilter.all;
+  String searchQuery = '';
+  String? courseFilter;
+  bool get hasFilters =>
+      filter != DeadlineFilter.all ||
+      searchQuery.trim().isNotEmpty ||
+      courseFilter != null;
   List<Deadline> get visible => _items
+      .where(
+        (item) =>
+            item.title.toLowerCase().contains(searchQuery.trim().toLowerCase()),
+      )
+      .where((item) => courseFilter == null || item.courseId == courseFilter)
       .where(
         (item) => switch (filter) {
           DeadlineFilter.all => true,
@@ -44,6 +55,23 @@ class DeadlinesViewModel extends ChangeNotifier {
 
   void setFilter(DeadlineFilter value) {
     filter = value;
+    _notify();
+  }
+
+  void setSearch(String value) {
+    searchQuery = value;
+    _notify();
+  }
+
+  void setCourseFilter(String? value) {
+    courseFilter = value;
+    _notify();
+  }
+
+  void resetFilters() {
+    searchQuery = '';
+    courseFilter = null;
+    filter = DeadlineFilter.all;
     _notify();
   }
 

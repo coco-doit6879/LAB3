@@ -37,6 +37,31 @@ void main() {
     courseId: 'PRM393',
     dueAt: DateTime(2026, 11, 10),
   );
+  test(
+    'search, course and status combine and stay active on realtime updates',
+    () async {
+      final repo = TestRepository();
+      final vm = DeadlinesViewModel(repo);
+      repo.changes.add([
+        item,
+        item.copyWith(title: 'Nộp LAB khác', courseId: 'MAD101'),
+        item.copyWith(title: 'Nộp LAB đã xong', completed: true),
+      ]);
+      vm.setSearch('  LAB  ');
+      vm.setCourseFilter('PRM393');
+      vm.setFilter(DeadlineFilter.pending);
+      expect(vm.visible.map((value) => value.title), ['Nộp LAB 3']);
+      repo.changes.add([item.copyWith(completed: true)]);
+      expect(vm.visible, isEmpty);
+      expect(vm.items, hasLength(1));
+      expect(vm.hasFilters, isTrue);
+      vm.resetFilters();
+      expect(vm.hasFilters, isFalse);
+      expect(vm.visible.single.completed, isTrue);
+      vm.dispose();
+      await repo.changes.close();
+    },
+  );
   test('invalid input never writes, failed writes are not success', () async {
     final repo = TestRepository();
     final vm = DeadlinesViewModel(repo);

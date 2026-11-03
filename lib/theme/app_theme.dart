@@ -10,6 +10,8 @@ abstract final class AppTheme {
   static const error = Color(0xFFBA1A1A);
   static const fieldRadius = 12.0;
   static const minTarget = 48.0;
+  // Keep the last list row reachable above an extended floating action button.
+  static const floatingActionClearance = 96.0;
   static const gap = 16.0;
   static const wideGap = 24.0;
   static const maxWidth = 640.0;
