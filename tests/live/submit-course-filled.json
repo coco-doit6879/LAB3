@@ -1,0 +1,13 @@
+{
+  "version": "0.2",
+  "steps": [
+    { "action": "press_key", "key": "enter" },
+    { "action": "wait_for", "predicate": { "text": "Thêm môn học", "type": "button" }, "timeout_ms": 10000 },
+    { "action": "tap", "predicate": { "text": "Thêm môn học", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text": "Flutter và Firebase" }, "timeout_ms": 20000 },
+    { "action": "assert_exists", "predicate": { "text": "PRM393" }, "timeout_ms": 10000 },
+    { "action": "assert_not_exists", "predicate": { "text": "Tên môn", "type": "input" } },
+    { "action": "wait_for", "stable": true, "timeout_ms": 3000 },
+    { "action": "observe", "include": ["ui_tree"] }
+  ]
+}

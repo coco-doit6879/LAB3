@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 
 import '../theme/app_theme.dart';
 import '../viewmodels/deadlines_viewmodel.dart';
+import '../viewmodels/courses_viewmodel.dart';
 import '../widgets/status_panel.dart';
 import 'deadline_form_screen.dart';
 
@@ -53,7 +54,9 @@ class _DeadlineDetailScreenState extends State<DeadlineDetailScreen> {
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 const SizedBox(height: AppTheme.gap),
-                Text('Môn học: ${item.courseId}'),
+                Text(
+                  'Môn học: ${context.watch<CoursesViewModel>().labelFor(item.courseId)}',
+                ),
                 Text(
                   'Hạn: ${DateFormat('dd/MM/yyyy HH:mm').format(item.dueAt)}',
                 ),
@@ -90,6 +93,7 @@ class _DeadlineDetailScreenState extends State<DeadlineDetailScreen> {
                       ? null
                       : () async {
                           final confirmed = await showDialog<bool>(
+                            useRootNavigator: false,
                             context: context,
                             builder: (context) => AppDialog(
                               title: const Text('Xóa deadline?'),

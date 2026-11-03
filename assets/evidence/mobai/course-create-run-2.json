@@ -1,0 +1,78 @@
+{
+  "success": false,
+  "step_results": [
+    {
+      "success": true,
+      "step_index": 0,
+      "action": "type",
+      "started_at_ms": 1793724307061,
+      "duration_ms": 1669,
+      "result": {
+        "matched_element": {
+          "index": 17,
+          "type": "android.widget.EditText",
+          "text": "Tên môn",
+          "bounds": {
+            "x": 221,
+            "y": 952,
+            "width": 638,
+            "height": 220
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 1,
+      "action": "type",
+      "started_at_ms": 1793724308752,
+      "duration_ms": 2368,
+      "result": {
+        "matched_element": {
+          "index": 19,
+          "type": "android.widget.EditText",
+          "text": "Mã môn",
+          "bounds": {
+            "x": 221,
+            "y": 1172,
+            "width": 638,
+            "height": 220
+          }
+        }
+      }
+    },
+    {
+      "success": false,
+      "step_index": 2,
+      "action": "tap",
+      "started_at_ms": 1793724311461,
+      "duration_ms": 288,
+      "error": {
+        "code": "NO_MATCH",
+        "message": "no visible element matched, but 1 matching element(s) are on screen without being visible yet - still appearing, or covered by the keyboard or a sheet",
+        "predicate": {
+          "type": "button",
+          "text": "Thêm môn học"
+        },
+        "candidates": [
+          {
+            "index": 23,
+            "type": "android.widget.Button",
+            "text": "Thêm môn học",
+            "bounds": {
+              "x": 465,
+              "y": 1458,
+              "width": 394,
+              "height": 132
+            }
+          }
+        ],
+        "hint": "wait_for this predicate, then retry; if the keyboard or a sheet covers it, dismiss that first"
+      },
+      "debug": {
+        "ui_tree": "    [2] FrameLayout #content (0,0 1080x1387)\n                            [14] View \"Thêm môn học\" (221,820 638x88)\n                                [17] EditText \"Tên môn\" [content=\"Flutter và Firebase\", editable] (221,952 638x220)\n                                  [18] View \"61 characters remaining\" (696,1117 108x55)\n                                [19] EditText \"Mã môn\" [content=\"PRM393\", focused, editable] (221,1172 638x215)\n                                  [20] View \"14 characters remaining\" (719,1337 85x50)\n                [21] View \"Dismiss\" (0,0 1080x1387)\n"
+      }
+    }
+  ],
+  "total_time_ms": 4732
+}

@@ -46,6 +46,7 @@ class CoursesScreen extends StatelessWidget {
             ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => showDialog<void>(
+          useRootNavigator: false,
           context: context,
           builder: (_) => const _CourseDialog(),
         ),

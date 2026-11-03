@@ -26,4 +26,8 @@ Reviewed firebase/firestore.rules against ownership and schema requirements. Ten
 
 ## Required PR evidence still missing
 
+R7 (runtime correctness/high): showDialog used the root Navigator while CoursesViewModel lived above the authenticated inner Navigator. Student's real Android screenshot showed _CourseDialog could not resolve its provider. Reproduced with a nested-navigator widget test before fixing; dialog/picker routes now target the session Navigator and disappear when that session is removed. All 22 Flutter tests pass; analyze clean. This finding came from actual runtime evidence, not an external PR review. It does not replace the MobAI exercise.
+
+R8 (navigation/high): system Back was not forwarded to the authenticated nested Navigator. A live DSL attempt reached Launcher; a handlePopRoute regression independently reproduced the issue with a dialog still on the inner stack. SessionNavigator now uses NavigatorPopHandler/maybePop, preserving dirty-form PopScopes. The updated regression passes, along with all 22 tests. After reinstall, signed-in course creation/list succeeds; screenshot android-course-create-success.png and successful run-3 log are retained. The earlier failed DSL runs remain failures and do not count as passing .mob tests.
+
 Create a real GitHub PR into main, run the configured AI review tool including firestore.rules, record actual tool findings, screenshots and decisions, fix accepted findings and merge the PR. Do not invent findings or a PR URL. This document must be updated to describe the actual PR result before submission.

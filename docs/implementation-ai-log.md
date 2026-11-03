@@ -80,6 +80,14 @@ Kiểm chứng thực tế: CLI ban đầu báo API disabled; deploy bật API/t
 
 Quyết định agent: triển khai các target cần cho LAB trên project đã được sinh viên cung cấp; giữ Cloudinary làm storage. **Quyết định sinh viên: chờ xác nhận và lý do.**
 
-## Việc sinh viên cần hoàn tất thật
+## Bổ sung 7. Lỗi runtime do sinh viên phát hiện
+
+Đầu vào thực tế: sinh viên gửi ảnh lỗi ProviderNotFoundException của _CourseDialog, không kèm prompt văn bản. Ảnh nguyên gốc được lưu ở assets/evidence/course-dialog-provider-error.png; không dựng thêm một câu prompt kỹ thuật mà sinh viên chưa viết.
+
+Đầu ra và quyết định agent: sửa scope dialog/picker vào session Navigator; tiếp đó tái hiện lỗi system Back và thêm SessionNavigator/NavigatorPopHandler/maybePop. Đồng thời nhãn môn trong card/detail/PDF lấy code/name thay vì document ID.
+
+Kiểm chứng: regression Provider thất bại trước sửa; phần system Back cũng thất bại riêng trước wrapper. Sau sửa 22 tests pass, analyze sạch, APK build/cài thành công. Google session giữ nguyên; MobAI DSL mở dialog pass, các lần thử tạo môn có hai log fail được giữ, rồi resume run-3 pass 8/8 và quan sát môn PRM393 trong danh sách thật. Ảnh android-course-create-success.png đã xem lại. Chưa tính đây là full .mob suite hoặc deliberate-bug exercise. Quyết định sinh viên: chờ xác nhận và giải thích.
+
+## Hoàn tất nhật ký
 
 Với từng mục, đọc các file được nhắc, chạy/quan sát luồng liên quan và bổ sung quyết định chấp nhận/sửa/bỏ có lý do. Ghi những gì thực sự đã hiểu hoặc chưa hiểu; giữ kết quả lỗi và giới hạn kiểm chứng. Khi chạy các dịch vụ, MobAI, healing, bug-catching và PR review, thêm prompt/kết quả nguyên văn mới theo diễn biến thật. Không thay các trường đang chờ bằng câu xác nhận hộ sinh viên.

@@ -9,7 +9,7 @@ MVVM + Provider; Google authentication/auth gate; deadline CRUD/realtime/query; 
 ## Đã kiểm chứng
 
 - Flutter analyze: No issues found.
-- 21 unit/widget tests pass, gồm navigation/card tại 360/412/800 dp, lọc kết hợp và khôi phục tìm kiếm khi bàn phím mở.
+- 22 unit/widget tests pass, gồm navigation/card tại 360/412/800 dp, tìm kiếm và regression dialog/provider với Navigator lồng nhau.
 - 18 Rules emulator tests pass: 11 Firestore và 7 Storage (project demo-deadlinemate).
 - Đăng ký Android app trên Firebase project thật.
 - Google provider Enabled đã xác minh trên Console; cấu hình mới có OAuth Android/web và SHA-1 khớp debug key của máy.
@@ -18,7 +18,7 @@ MVVM + Provider; Google authentication/auth gate; deadline CRUD/realtime/query; 
 
 ## Còn phải hoàn thành và chứng minh
 
-- Đã cài/chạy APK cập nhật và xem Login; còn đăng nhập bằng tài khoản test và kiểm tra UI/flows đầy đủ trên Android.
+- Đã đăng nhập Google, giữ session sau cập nhật APK và tạo/list môn demo thành công. Đã sửa lỗi dialog Provider và system Back bằng regression + thử thật; còn kiểm tra đầy đủ ba luồng, Deadline CRUD và logout/isolation.
 - Database thật đã tạo (Standard/freeTier, asia-southeast1) và Rules đã deploy; còn CRUD theo UID và dữ liệu Console. Remote Config đã publish/đọc lại ba tham số; còn bằng chứng app phản ứng. Xem backend-deployment.md.
 - Đã chuyển adapter PDF sang Cloudinary theo lựa chọn sinh viên; preset Unsigned đã lưu. Còn kiểm chứng giới hạn preset, upload và mở PDF thật.
 - Firebase Console evidence cho FCM các trạng thái, Remote Config đổi hành vi, Analytics DebugView, Crashlytics handled/test crash.

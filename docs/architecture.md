@@ -8,6 +8,8 @@ Tài liệu mô tả mã nguồn hiện có ngày 03/11/2026. Đây là phần g
 
 AuthViewModel nghe AuthRepository.changes. GoogleAuthService lấy Google ID token, đổi sang Firebase credential và theo dõi authStateChanges. AuthGate chỉ tạo cây màn hình nghiệp vụ khi có Firebase UID. MultiProvider mang ValueKey(uid), bên trong có Navigator riêng: đăng xuất hoặc đổi UID hủy cả route stack, ViewModels và subscriptions của phiên cũ.
 
+SessionNavigator dùng NavigatorPopHandler và maybePop để chuyển system Back vào stack bên trong, đồng thời tôn trọng PopScope của form bẩn và HomeShell. Dialog/date/time picker dùng useRootNavigator=false để giữ phạm vi provider và vòng đời của phiên. Lỗi ProviderNotFound trong dialog đã được tái hiện và sửa bằng test cùng thử nghiệm Android thật.
+
 ```mermaid
 flowchart LR
   UI[View: screens và widgets] -->|Lệnh và dữ liệu form| VM[ViewModel: ChangeNotifier]

@@ -9,6 +9,7 @@ import '../theme/app_theme.dart';
 import '../models/study_session.dart';
 import '../viewmodels/auth_viewmodel.dart';
 import '../viewmodels/deadlines_viewmodel.dart';
+import '../viewmodels/courses_viewmodel.dart';
 import '../viewmodels/study_viewmodel.dart';
 import '../viewmodels/config_viewmodel.dart';
 import '../viewmodels/notifications_viewmodel.dart';
@@ -106,6 +107,7 @@ class _Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final deadlines = context.watch<DeadlinesViewModel>();
+    final courses = context.watch<CoursesViewModel>();
     final user = context.watch<AuthViewModel>().user;
     final config = context.watch<ConfigViewModel>().config;
     return Scaffold(
@@ -203,6 +205,7 @@ class _Dashboard extends StatelessWidget {
                   .take(config.dashboardLimit))
             DeadlineCard(
               deadline: item,
+              courseLabel: courses.labelFor(item.courseId),
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute<void>(
                   settings: const RouteSettings(name: 'deadline_detail'),

@@ -6,9 +6,15 @@ import '../theme/app_theme.dart';
 
 /// Shared deadline summary. State is expressed with both an icon and text.
 class DeadlineCard extends StatelessWidget {
-  const DeadlineCard({super.key, required this.deadline, required this.onTap});
+  const DeadlineCard({
+    super.key,
+    required this.deadline,
+    required this.courseLabel,
+    required this.onTap,
+  });
 
   final Deadline deadline;
+  final String courseLabel;
   final VoidCallback onTap;
 
   @override
@@ -20,7 +26,7 @@ class DeadlineCard extends StatelessWidget {
       ),
       title: Text(deadline.title),
       subtitle: Text(
-        '${deadline.courseId} · ${DateFormat('dd/MM/yyyy HH:mm').format(deadline.dueAt)}\n'
+        '$courseLabel · ${DateFormat('dd/MM/yyyy HH:mm').format(deadline.dueAt)}\n'
         '${deadline.completed ? 'Đã hoàn thành' : 'Chưa hoàn thành'}',
       ),
       trailing: const Icon(Icons.chevron_right),

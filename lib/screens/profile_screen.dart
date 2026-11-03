@@ -96,6 +96,7 @@ class ProfileScreen extends StatelessWidget {
             TextButton(
               onPressed: () async {
                 final confirmed = await showDialog<bool>(
+                  useRootNavigator: false,
                   context: context,
                   builder: (context) => AppDialog(
                     title: const Text('Thử crash ứng dụng?'),

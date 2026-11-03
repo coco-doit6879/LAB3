@@ -11,7 +11,11 @@ import 'telemetry_service.dart';
 
 abstract interface class ReportRepository {
   Stream<List<Report>> watch();
-  Future<void> export(List<Deadline> items, void Function(double) onProgress);
+  Future<void> export(
+    List<Deadline> items,
+    void Function(double) onProgress, {
+    Map<String, String> courseLabels = const {},
+  });
   Future<void> open(String url);
 }
 
@@ -46,8 +50,9 @@ class FirestoreReportService implements ReportRepository {
   @override
   Future<void> export(
     List<Deadline> items,
-    void Function(double) onProgress,
-  ) async {
+    void Function(double) onProgress, {
+    Map<String, String> courseLabels = const {},
+  }) async {
     if (!_storage.configured) throw const StorageConfigurationException();
     final regular = pw.Font.ttf(
       await rootBundle.load('assets/fonts/NotoSans-Regular.ttf'),
@@ -84,7 +89,7 @@ class FirestoreReportService implements ReportRepository {
                 .map(
                   (item) => [
                     item.title,
-                    item.courseId,
+                    courseLabels[item.courseId] ?? 'Môn học không còn khả dụng',
                     '${item.dueAt.day}/${item.dueAt.month}/${item.dueAt.year}',
                     item.completed ? 'Đã xong' : 'Chưa xong',
                   ],

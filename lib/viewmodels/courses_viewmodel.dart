@@ -14,6 +14,12 @@ class CoursesViewModel extends ChangeNotifier {
   bool _disposed = false;
   List<Course> _items = [];
   List<Course> get items => List.unmodifiable(_items);
+  Map<String, String> get labels => Map.unmodifiable({
+    for (final course in _items) course.id: '${course.code} — ${course.name}',
+  });
+  String labelFor(String id) =>
+      labels[id] ??
+      (loading ? 'Đang tải môn học…' : 'Môn học không còn khả dụng');
   bool loading = true;
   bool busy = false;
   String? error;

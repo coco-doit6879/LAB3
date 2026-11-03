@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../theme/app_theme.dart';
 import '../viewmodels/config_viewmodel.dart';
 import '../viewmodels/deadlines_viewmodel.dart';
+import '../viewmodels/courses_viewmodel.dart';
 import '../viewmodels/reports_viewmodel.dart';
 
 class ReportsScreen extends StatelessWidget {
@@ -15,6 +16,7 @@ class ReportsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final vm = context.watch<ReportsViewModel>();
     final deadlines = context.watch<DeadlinesViewModel>();
+    final courses = context.watch<CoursesViewModel>();
     final config = context.watch<ConfigViewModel>().config;
     return Scaffold(
       appBar: AppTopBar(title: const Text('Báo cáo')),
@@ -29,12 +31,20 @@ class ReportsScreen extends StatelessWidget {
             'Phạm vi: bộ lọc deadline đang chọn · ${deadlines.visible.length} mục',
           ),
           const SizedBox(height: AppTheme.gap),
+          if (courses.loading) const Text('Đang tải tên môn học cho báo cáo…'),
+          if (courses.error != null)
+            TextButton(
+              onPressed: courses.retry,
+              child: const Text('Thử tải lại môn học để xuất báo cáo'),
+            ),
           if (!config.enableExport)
             const Text('Xuất PDF đang tắt theo cấu hình từ xa.'),
           AppButton.icon(
             loading: vm.busy,
             onPressed:
                 vm.busy ||
+                    courses.loading ||
+                    courses.error != null ||
                     deadlines.loading ||
                     deadlines.error != null ||
                     !config.enableExport
@@ -42,6 +52,7 @@ class ReportsScreen extends StatelessWidget {
                 : () => vm.export(
                     deadlines.visible,
                     enabled: config.enableExport,
+                    courseLabels: courses.labels,
                   ),
             icon: const Icon(Icons.picture_as_pdf_outlined),
             label: Text(vm.busy ? 'Đang xuất và tải lên…' : 'Xuất báo cáo PDF'),

@@ -1,0 +1,72 @@
+{
+  "success": false,
+  "step_results": [
+    {
+      "success": true,
+      "step_index": 0,
+      "action": "type",
+      "started_at_ms": 1793724048486,
+      "duration_ms": 2169,
+      "result": {
+        "matched_element": {
+          "index": 17,
+          "type": "android.widget.EditText",
+          "text": "Tên môn",
+          "bounds": {
+            "x": 221,
+            "y": 952,
+            "width": 638,
+            "height": 220
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 1,
+      "action": "type",
+      "started_at_ms": 1793724050668,
+      "duration_ms": 1111,
+      "result": {
+        "matched_element": {
+          "index": 19,
+          "type": "android.widget.EditText",
+          "text": "Mã môn",
+          "bounds": {
+            "x": 221,
+            "y": 1172,
+            "width": 638,
+            "height": 215
+          }
+        }
+      }
+    },
+    {
+      "success": true,
+      "step_index": 2,
+      "action": "press_key",
+      "started_at_ms": 1793724051798,
+      "duration_ms": 318,
+      "result": {}
+    },
+    {
+      "success": false,
+      "step_index": 3,
+      "action": "tap",
+      "started_at_ms": 1793724052145,
+      "duration_ms": 1018,
+      "error": {
+        "code": "NO_MATCH",
+        "message": "no element found matching predicate",
+        "predicate": {
+          "type": "button",
+          "text": "Thêm môn học"
+        }
+      },
+      "debug": {
+        "ui_tree": "    [2] FrameLayout #content (0,0 1080x2340)\n      [3] FrameLayout #launcher (0,0 1080x2340)\n        [4] FrameLayout #drag_layer (0,0 1080x2340)\n          [5] View #scrim_view (0,0 1080x2340)\n          [6] ScrollView #workspace [scrollable] (0,0 1080x2340)\n                [9] FrameLayout #search_container_workspace (50,163 980x239)\n                  [10] FrameLayout #bc_smartspace_view (50,164 980x238)\n                    [11] ViewPager \"At a glance\" #smartspace_card_pager [scrollable] (50,164 980x238)\n                      [12] RecyclerView (50,164 980x238)\n                          [14] ViewGroup #base_template_card_with_date (50,164 980x238)\n                            [15] ViewGroup #text_group (64,259 953x48)\n                              [16] TextView \"Tue, Nov 3\" #date (64,259 196x48)\n                [18] TextView \"Gmail\" (305,1493 216x239)\n                [19] TextView \"Photos\" (560,1493 216x239)\n                [20] TextView \"YouTube\" (815,1493 215x239)\n          [21] View \"Home\" #accessibility_action_view (0,136 1080x2138)\n          [22] FrameLayout #page_indicator (0,1755 1080x66)\n              [24] LinearLayout #page_indicator_content_container (523,1755 33x66)\n                [25] View #page_indicator_dots (523,1772 33x33)\n          [26] ViewGroup #hotseat (0,1821 1080x519)\n              [28] TextView \"Phone\" (67,1821 182x205)\n              [29] TextView \"Messages\" (322,1821 182x205)\n              [30] TextView \"Chrome\" (577,1821 182x205)\n              [31] TextView \"Expo Go\" [desc=\"Predicted app: Expo Go\"] (832,1821 181x205)\n            [32] LauncherAppWidgetHostView \"Google\" #search_container_hotseat (74,2052 932x173)\n              [33] FrameLayout #googleapp_search_widget_ghost_tap_targets (74,2061 932x154)\n                [34] LinearLayout #googleapp_search_widget_ghost_tap_targets_4dp (74,2061 932x154)\n                  [35] FrameLayout #googleapp_search_widget_ghost_google_logo (74,2061 132x154)\n                  [36] FrameLayout #googleapp_search_widget_ghost_text_search (206,2061 536x154)\n                  [37] FrameLayout #googleapp_search_widget_ghost_voice_search (742,2061 132x154)\n                  [38] FrameLayout #googleapp_search_widget_ghost_lens (874,2061 132x154)\n                [39] FrameLayout #googleapp_search_widget_two_right_icons (74,2072 932x132)\n                  [40] ImageView #googleapp_search_widget_background_protection (74,2072 932x132)\n                  [41] ImageView \"Google search\" #googleapp_search_widget_background (74,2072 932x132)\n                  [42] LinearLayout #googleapp_search_plate (74,2072 932x132)\n                      [44] ImageButton \"Google app\" #googleapp_search_widget_google_logo (74,2072 132x132)\n                    [45] FrameLayout #googleapp_search_edit_frame (206,2072 536x132)\n                      [47] ImageButton \"Voice search\" #googleapp_search_widget_voice_btn (742,2072 132x132)\n                      [49] ImageButton \"Camera search\" #googleapp_search_widget_lens_btn (874,2072 132x132)\n          [50] FrameLayout #overview_actions_view (0,1848 1080x492)\n"
+      }
+    }
+  ],
+  "total_time_ms": 5195
+}

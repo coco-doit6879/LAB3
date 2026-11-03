@@ -33,5 +33,5 @@ Official references: https://firebase.google.com/docs/flutter/setup and https://
 
 ## OAuth update verified
 
-Student enabled Google provider. Refreshed google-services.json supplied by the student was verified and copied to android/app. It contains client types 1 and 3, and its Android certificate hash matches the debug SHA-1 above. The initial no-OAuth configuration described earlier is historical; it has been replaced. No successful user login is claimed yet.
+Student enabled Google provider. Refreshed google-services.json supplied by the student was verified and copied to android/app. It contains client types 1 and 3, and its Android certificate hash matches the debug SHA-1 above. The initial no-OAuth configuration described earlier is historical; it has been replaced. Student subsequently completed Google login on Android; Dashboard/session persisted and course-create/list succeeded. Full business flows and logout/isolation still need verification.
 

@@ -83,6 +83,7 @@ class StudyScreen extends StatelessWidget {
                                             : () async {
                                                 final confirmed =
                                                     await showDialog<bool>(
+                                                      useRootNavigator: false,
                                                       context: context,
                                                       builder: (context) => AppDialog(
                                                         title: const Text(
@@ -190,6 +191,7 @@ class _PlanSessionScreenState extends State<_PlanSessionScreen> {
                 ? null
                 : () async {
                     final date = await showDatePicker(
+                      useRootNavigator: false,
                       context: context,
                       initialDate: _plannedAt,
                       firstDate: DateTime(2020),
@@ -197,6 +199,7 @@ class _PlanSessionScreenState extends State<_PlanSessionScreen> {
                     );
                     if (date == null || !context.mounted) return;
                     final time = await showTimePicker(
+                      useRootNavigator: false,
                       context: context,
                       initialTime: TimeOfDay.fromDateTime(_plannedAt),
                     );

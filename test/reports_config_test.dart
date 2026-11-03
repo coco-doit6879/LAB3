@@ -17,6 +17,7 @@ class FakeConfig implements ConfigRepository {
 
 class FakeReports implements ReportRepository {
   int exports = 0;
+  Map<String, String> receivedLabels = const {};
   bool fail = false;
   @override
   Stream<List<Report>> watch() => const Stream.empty();
@@ -25,9 +26,11 @@ class FakeReports implements ReportRepository {
   @override
   Future<void> export(
     List<Deadline> items,
-    void Function(double) onProgress,
-  ) async {
+    void Function(double) onProgress, {
+    Map<String, String> courseLabels = const {},
+  }) async {
     exports++;
+    receivedLabels = courseLabels;
     onProgress(0.5);
     if (fail) throw StateError('upload failed');
   }
@@ -63,7 +66,14 @@ void main() {
       expect(vm.error, isNotNull);
       expect(vm.busy, isFalse);
       repo.fail = false;
-      await vm.export([], enabled: true);
+      final labels = {'course-document-id': 'PRM393 — Flutter và Firebase'};
+      await vm.export([], enabled: true, courseLabels: labels);
+      labels.clear();
+      expect(
+        repo.receivedLabels['course-document-id'],
+        'PRM393 — Flutter và Firebase',
+      );
+      expect(() => repo.receivedLabels.clear(), throwsUnsupportedError);
       expect(vm.success, isNotNull);
       expect(vm.error, isNull);
       vm.dispose();

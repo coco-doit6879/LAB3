@@ -26,6 +26,7 @@ void main() {
               body: ListView(
                 children: [
                   DeadlineCard(
+                    courseLabel: 'PRM393 — Flutter và Firebase',
                     deadline: Deadline(
                       id: 'sample',
                       title: 'Hoàn thiện báo cáo và phần trình bày cho bài thực hành Flutter và Firebase',

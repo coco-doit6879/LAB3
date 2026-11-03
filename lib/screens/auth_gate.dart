@@ -1,4 +1,5 @@
 import '../widgets/app_button.dart';
+import '../widgets/session_navigator.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -78,12 +79,9 @@ class _SessionGate extends StatelessWidget {
           ),
         ),
       ],
-      child: Navigator(
+      child: SessionNavigator(
         observers: [AnalyticsRouteObserver(FirebaseTelemetry())],
-        onGenerateRoute: (_) => MaterialPageRoute<void>(
-          settings: const RouteSettings(name: 'dashboard'),
-          builder: (_) => const HomeShell(),
-        ),
+        home: const HomeShell(),
       ),
     );
   }

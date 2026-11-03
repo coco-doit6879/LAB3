@@ -1,0 +1,12 @@
+{
+  "version": "0.2",
+  "steps": [
+    { "action": "wait_for", "predicate": { "text": "Quản lý môn học", "type": "button" }, "timeout_ms": 20000 },
+    { "action": "tap", "predicate": { "text": "Quản lý môn học", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text": "Môn học" }, "timeout_ms": 10000 },
+    { "action": "tap", "predicate": { "text": "Thêm môn học", "type": "button" } },
+    { "action": "wait_for", "predicate": { "text_contains": "Tên môn" }, "timeout_ms": 10000 },
+    { "action": "wait_for", "stable": true, "timeout_ms": 3000 },
+    { "action": "observe", "include": ["ui_tree"] }
+  ]
+}

@@ -178,6 +178,7 @@ class _DeadlinesScreenState extends State<DeadlinesScreen> {
                   final item = visible[index];
                   return DeadlineCard(
                     deadline: item,
+                    courseLabel: courses.labelFor(item.courseId),
                     onTap: () => Navigator.of(context).push(
                       MaterialPageRoute<void>(
                         settings: const RouteSettings(name: 'deadline_detail'),

@@ -63,6 +63,7 @@ class _DeadlineFormScreenState extends State<DeadlineFormScreen> {
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop || vm.saving) return;
         final discard = await showDialog<bool>(
+          useRootNavigator: false,
           context: context,
           builder: (context) => AppDialog(
             title: const Text('Bỏ thay đổi?'),
@@ -151,6 +152,7 @@ class _DeadlineFormScreenState extends State<DeadlineFormScreen> {
                     ? null
                     : () async {
                         final date = await showDatePicker(
+                          useRootNavigator: false,
                           context: context,
                           initialDate: _due,
                           firstDate: DateTime(2020),
@@ -158,6 +160,7 @@ class _DeadlineFormScreenState extends State<DeadlineFormScreen> {
                         );
                         if (date == null || !context.mounted) return;
                         final time = await showTimePicker(
+                          useRootNavigator: false,
                           context: context,
                           initialTime: TimeOfDay.fromDateTime(_due),
                         );

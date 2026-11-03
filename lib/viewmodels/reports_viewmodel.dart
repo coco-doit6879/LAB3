@@ -46,7 +46,11 @@ class ReportsViewModel extends ChangeNotifier {
     _notify();
   }
 
-  Future<void> export(List<Deadline> items, {required bool enabled}) async {
+  Future<void> export(
+    List<Deadline> items, {
+    required bool enabled,
+    Map<String, String> courseLabels = const {},
+  }) async {
     if (busy || _disposed) return;
     if (!enabled) {
       error = 'Xuất PDF đang tắt theo cấu hình từ xa.';
@@ -62,7 +66,7 @@ class ReportsViewModel extends ChangeNotifier {
       await _repository.export(List.unmodifiable(items), (value) {
         progress = value;
         _notify();
-      });
+      }, courseLabels: Map.unmodifiable(courseLabels));
       success = 'Đã tải PDF lên và lưu thông tin báo cáo.';
       await _telemetry.event('export_pdf', {'item_count': items.length});
     } catch (exception) {
