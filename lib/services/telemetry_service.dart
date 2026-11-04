@@ -49,6 +49,7 @@ class FirebaseTelemetry implements Telemetry {
 
   @override
   Future<void> handled(String operation) async {
+    if (kIsWeb) return;
     try {
       await FirebaseCrashlytics.instance.setCustomKey('operation', operation);
       // Do not upload exception text: it can contain private data or tokens.
@@ -65,6 +66,7 @@ class FirebaseTelemetry implements Telemetry {
   static Future<void> identify(String? uid) async {
     try {
       await FirebaseAnalytics.instance.setUserId(id: uid);
+      if (kIsWeb) return;
       await FirebaseCrashlytics.instance.setUserIdentifier(uid ?? '');
       await FirebaseCrashlytics.instance.setCustomKey(
         'app_topic',
@@ -76,6 +78,7 @@ class FirebaseTelemetry implements Telemetry {
   }
 
   static void installErrorHandlers() {
+    if (kIsWeb) return;
     FlutterError.onError = (details) {
       FlutterError.presentError(details);
       FirebaseCrashlytics.instance.recordFlutterFatalError(details);
@@ -87,7 +90,7 @@ class FirebaseTelemetry implements Telemetry {
   }
 
   static void testCrash() {
-    if (kDebugMode) FirebaseCrashlytics.instance.crash();
+    if (kDebugMode && !kIsWeb) FirebaseCrashlytics.instance.crash();
   }
 }
 

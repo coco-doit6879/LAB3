@@ -3,6 +3,7 @@ import '../widgets/app_top_bar.dart';
 import '../widgets/app_button.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
 
 import '../theme/app_theme.dart';
@@ -60,10 +61,14 @@ class ProfileScreen extends StatelessWidget {
           if (auth.error != null) Text(auth.error!),
           const SizedBox(height: AppTheme.wideGap),
           Text('Thông báo', style: Theme.of(context).textTheme.titleLarge),
+          if (kIsWeb)
+            const Text(
+              'Bản web hiện xem được lịch sử; thông báo đẩy cần cấu hình thêm.',
+            ),
           Text('Quyền: ${notifications.permission}'),
           if (notifications.error != null) Text(notifications.error!),
           OutlinedButton(
-            onPressed: notifications.busy
+            onPressed: notifications.busy || kIsWeb
                 ? null
                 : notifications.requestPermission,
             child: const Text('Xin quyền và lấy token FCM'),
@@ -88,8 +93,14 @@ class ProfileScreen extends StatelessWidget {
             style: Theme.of(context).textTheme.titleLarge,
           ),
           if (diagnostics.message != null) Text(diagnostics.message!),
+          if (!diagnostics.supported)
+            const Text(
+              'Trình diễn Crashlytics trên bản Android; bản web không hỗ trợ.',
+            ),
           OutlinedButton(
-            onPressed: diagnostics.busy ? null : diagnostics.handledDemo,
+            onPressed: diagnostics.busy || !diagnostics.supported
+                ? null
+                : diagnostics.handledDemo,
             child: const Text('Ghi lỗi đã xử lý'),
           ),
           if (diagnostics.canCrash)

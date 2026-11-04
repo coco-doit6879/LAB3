@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../models/app_user.dart';
@@ -28,6 +29,11 @@ class GoogleAuthService implements AuthRepository {
       });
   @override
   Future<void> signIn() async {
+    if (kIsWeb) {
+      await _auth.signInWithPopup(GoogleAuthProvider());
+      await FirebaseTelemetry().event('login', {'method': 'google'});
+      return;
+    }
     await (_initialization ??= GoogleSignIn.instance.initialize());
     final account = await GoogleSignIn.instance.authenticate();
     final token = account.authentication.idToken;

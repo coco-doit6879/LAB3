@@ -1,6 +1,6 @@
 # Deadline Mate — SE194007
 
-Ứng dụng Android quản lý deadline và phiên học. Tên hiển thị: **Deadline Mate**. Firebase project: **deadline-mate-feff4**. Repository nộp theo đề: **PRM393_Lab03_SE194007**.
+Ứng dụng Android/Web quản lý deadline và phiên học. Tên hiển thị: **Deadline Mate**. Firebase project: **deadline-mate-feff4**. Repository: **LAB3**, theo yêu cầu đặt tên mới của sinh viên. Đề gốc quy định PRM393_Lab03_<StudentID>; cần xác nhận giảng viên chấp nhận tên LAB3 khi nộp.
 
 ## Trạng thái đã kiểm chứng
 
@@ -16,6 +16,8 @@
 MVVM + Provider; theme; Login/Profile và auth gate theo UID; deadline CRUD/realtime/sort/filter, list/detail/create/edit; Courses; Dashboard; Calendar; Study sessions plan/start/finish; PDF tiếng Việt/upload/history; Remote Config; FCM inbox/routing; Analytics; Crashlytics handlers/demo. Có mã không đồng nghĩa tính năng đã pass trên dịch vụ thật.
 
 ## Chạy và kiểm tra
+
+**Edge:** mở `http://localhost:8085` khi server đang chạy. Để chạy lại, mở `scripts/run-edge.cmd`; xem docs/web-setup.md về đăng nhập và khác biệt web/Android. Web đã đăng nhập và đọc Dashboard thật; chưa kiểm chứng mọi luồng trên trình duyệt.
 
 Flutter cục bộ: D:\PRM\tools\flutter\bin\flutter.bat. Java: C:\Program Files\Android\Android Studio\jbr. Android package: vn.deadlinemate.deadline_mate.
 

@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 
 import '../models/app_notification.dart';
 import '../firebase_options.dart';
@@ -65,6 +66,9 @@ class FirebaseNotificationService implements NotificationRepository {
 
   @override
   Stream<NotificationDelivery> deliveries() {
+    // Web preview retains the Firestore inbox; browser push needs a separately
+    // configured service worker and VAPID key before it can be enabled.
+    if (kIsWeb) return const Stream.empty();
     late final StreamController<NotificationDelivery> controller;
     StreamSubscription<RemoteMessage>? foreground;
     StreamSubscription<RemoteMessage>? opened;
@@ -139,12 +143,14 @@ class FirebaseNotificationService implements NotificationRepository {
   @override
   Future<void> markRead(String id) => _items.doc(id).update({'read': true});
   @override
-  Future<String> requestPermission() async =>
-      (await FirebaseMessaging.instance.requestPermission())
-          .authorizationStatus
-          .name;
+  Future<String> requestPermission() async => kIsWeb
+      ? 'Chưa cấu hình thông báo trình duyệt'
+      : (await FirebaseMessaging.instance.requestPermission())
+            .authorizationStatus
+            .name;
   @override
   Future<String?> token() {
+    if (kIsWeb) return Future.value(null);
     // Console test messages require the legacy registration token, not an FID.
     // Keep this compatibility call until Console support for direct-send FIDs is verified.
     // ignore: deprecated_member_use

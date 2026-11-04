@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 
 import 'telemetry_service.dart';
 
@@ -13,6 +14,8 @@ class BootstrapService {
       options: DefaultFirebaseOptions.currentPlatform,
     );
     FirebaseTelemetry.installErrorHandlers();
-    FirebaseMessaging.onBackgroundMessage(backgroundMessageHandler);
+    if (!kIsWeb) {
+      FirebaseMessaging.onBackgroundMessage(backgroundMessageHandler);
+    }
   }
 }

@@ -7,8 +7,10 @@ class DiagnosticsViewModel extends ChangeNotifier {
   bool busy = false;
   bool _disposed = false;
   String? message;
-  bool get canCrash => kDebugMode;
+  bool get supported => !kIsWeb;
+  bool get canCrash => kDebugMode && supported;
   Future<void> handledDemo() async {
+    if (!supported) return;
     if (busy) return;
     busy = true;
     notifyListeners();
