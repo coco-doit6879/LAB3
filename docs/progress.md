@@ -21,8 +21,8 @@ Trạng thái thiết bị gần nhất: sau khi hoàn tất assertions RC 5→2
 ## Còn phải hoàn thành và chứng minh
 
 - Đã đăng nhập Google, tạo/list môn demo; Deadline CRUD/complete/cancel-delete và Study plan/start/finish/cancel đã chạy trên app Firebase thật. Xem live-flow-results.md; còn PDF, lỗi mạng, Console evidence, logout/isolation và suite .mob.
-- Database thật đã tạo (Standard/freeTier, asia-southeast1) và Rules đã deploy; còn CRUD theo UID và dữ liệu Console. Remote Config đã publish/đọc lại ba tham số; còn bằng chứng app phản ứng. Xem backend-deployment.md.
-- Đã chuyển adapter PDF sang Cloudinary theo lựa chọn sinh viên; preset Unsigned đã lưu. Còn kiểm chứng giới hạn preset, upload và mở PDF thật.
+- Database thật đã tạo (Standard/freeTier, asia-southeast1) và Rules đã deploy; còn kiểm chứng cách ly giữa hai tài khoản và dữ liệu Console. Hai hành vi Remote Config đã có bằng chứng app phản ứng và khôi phục baseline; xem remote-config-demo.md.
+- Đã chuyển adapter PDF sang Cloudinary theo lựa chọn sinh viên; preset Unsigned đã lưu. Còn lưu/xác minh Allowed formats=pdf, upload và mở PDF thật. Preset không hỗ trợ giới hạn dung lượng riêng; app kiểm tra 10 MiB trước HTTP.
 - Hai hành vi Remote Config đã kiểm thử thật và khôi phục baseline (remote-config-demo.md). Còn ảnh/video Console, FCM các trạng thái, Analytics DebugView và Crashlytics handled/test crash.
 - Đã kiểm thử Storage Rules và sửa lỗi ghi đè; còn đưa bằng chứng review vào PR thật.
 - Figma/design LAB 2 cập nhật; đối chiếu từng màn hình, tokens/components và accessibility 360/412 dp.
@@ -32,8 +32,14 @@ Trạng thái thiết bị gần nhất: sau khi hoàn tất assertions RC 5→2
 Bài LAB chưa hoàn tất. Xem test-report.md để biết chính xác phạm vi kiểm chứng, không dùng unit tests thay bằng chứng E2E.
 
 
-## Vòng review tiếp theo
+## Lịch sử các vòng trước (không phải trạng thái hiện tại)
 
 Bản Cloudinary đã build thành công bằng `--no-pub --dart-define-from-file=config/cloudinary.json`, cài cập nhật vào emulator-5554 với kết quả Success và gửi lệnh mở MainActivity. Chưa có bằng chứng đăng nhập hay upload thật từ bản này. Tài liệu design-change-log.md và handoff-gaps.md đã được bổ sung, vẫn ghi rõ Figma và kiểm chứng cloud còn thiếu.
 
 Đã sửa 5 phát hiện review cục bộ, ghi trong code-review.md; chưa thay thế review PR GitHub. 13 Flutter tests pass, analyze sạch và APK đã rebuild. MobAI CLI/bridge hoạt động, login-gate DSL pass 3/3; .mob runner còn lỗi test-project initialization. Log pass và log lỗi đều lưu nguyên trong assets/evidence/mobai. Chưa hoàn thành 10 E2E scripts.
+
+## Cập nhật mã nguồn 2026-11-04
+
+Đã cấu hình MaterialApp dùng tiếng Việt và localization delegates từ Flutter SDK để lịch/dialog không theo tiếng Anh của thiết bị. Full suite mới: 23 tests pass; analyze không có lỗi. Chưa build/cài bản sửa này và chưa có ảnh emulator tiếng Việt; APK đã cài trước đó vẫn là bản cũ. Các ảnh lịch tiếng Anh lịch sử không được thay bằng tuyên bố đã kiểm chứng native mới.
+
+Cập nhật tiếp: APK tiếng Việt đã build, cài -r thành công và gửi lệnh mở MainActivity trên Pixel_4a sau khi boot hoàn tất. Hash và phạm vi bằng chứng ghi ở test-report.md. Chưa quan sát UI bản mới; không coi lệnh mở app là chứng minh màn hình/calendar đã hiển thị đúng.

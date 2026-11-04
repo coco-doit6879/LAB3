@@ -40,4 +40,4 @@ Các JSON là kết quả **MobAI DSL**, chưa phải suite mười file `.mob`.
 
 ## Chưa hoàn tất
 
-Flow 3 PDF/upload/open; live Remote Config change; FCM foreground/background/terminated; DebugView; Crashlytics handled/crash; logout/isolation; Console screenshots; Figma comparisons; mười `.mob` và hai bài tập; PR review/merge và hồ sơ cuối. Các pass ở đây không thay thế những yêu cầu đó.
+Flow 3 PDF/upload/open; FCM foreground/background/terminated; DebugView; Crashlytics handled/crash; logout/isolation; Console screenshots; Figma comparisons; mười `.mob` và hai bài tập; PR review/merge và hồ sơ cuối. Hai hành vi Remote Config đã được kiểm chứng riêng trong remote-config-demo.md; còn ảnh/video Console và kiểm thử defaults offline. Các pass ở đây không thay thế những yêu cầu đó.

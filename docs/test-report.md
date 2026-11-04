@@ -90,3 +90,11 @@ MobAI CLI 3.5.1 recognized emulator-5554 and started its Android automation brid
 The .mob script was created from the observed UI but the CLI test runner returned `testing not initialized - open a project first`; its real error is preserved in login-gate-run-1.json. The DSL execution is recorded separately and does not count as a passing .mob run. No healing, deliberate-bug exercise or required 10-script suite is claimed.
 
 Official standalone mobai-ci v0.13.2 release assets checked in this session have macOS/Linux binaries and no Windows binary. Do not claim that a Windows CI runner was installed. The desktop app test-project initialization or another supported MobAI setup still needs resolution.
+
+## 2026-11-04 — Vietnamese Material localization
+
+Production MaterialApp now explicitly selects vi and the Flutter SDK localization delegates. The added widget test exercises that production configuration on an en_US device locale and verifies Vietnamese calendar month text and the SDK cancel label. First test run failed because the expected spelling was Hủy while the SDK uses Huỷ; the expectation was corrected to the actual SDK translation. Full flutter test --no-pub: 23 passed. flutter analyze --no-pub: No issues found (55.7s). No new APK build, emulator screenshot or Figma comparison is claimed for this change.
+
+## 2026-11-04 — APK localization build/install
+
+Built successfully with flutter build apk --debug --no-pub --dart-define-from-file=config/cloudinary.json. APK SHA-256: 24CCBCAF32A1A4E50BE1737AC389153F3D93A3728A435AF89E3D487216FEAA39. Gradle emitted a future built-in Kotlin compatibility warning for Firebase plugins; current build succeeded. Pixel_4a was stopped, restarted once, then sys.boot_completed returned 1. ADB install -r returned Success and am start dispatched MainActivity. These outputs establish build/install/start dispatch only; they do not establish the currently visible screen, retained authentication, or native Vietnamese calendar rendering. Those UI checks and screenshots remain pending.

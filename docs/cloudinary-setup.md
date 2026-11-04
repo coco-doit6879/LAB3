@@ -24,6 +24,6 @@ Cloudinary delivery URLs are public bearer links, even though Firestore metadata
 
 ## Verification completed locally
 
-- Flutter analysis: clean; latest full suite has 21 passing tests. Adapter checks include multipart upload contract, rejection handling, URL validation, missing configuration, invalid PDF header and oversized PDF rejection before HTTP.
+- Flutter analysis: clean; latest recorded full suite has 22 passing tests (see test-report.md). Adapter checks include multipart upload contract, rejection handling, URL validation, missing configuration, invalid PDF header and oversized PDF rejection before HTTP.
 - 18 emulator security rules tests passed: 11 Firestore and 7 Storage. Storage rules remain tested as an optional Firebase alternative; the active PDF adapter is Cloudinary.
-- These checks do not establish that Google sign-in or PDF upload works against the live project. Firestore deployment is now separately verified in backend-deployment.md.
+- These adapter checks do not establish that PDF upload works against the live project. Google sign-in and Firestore course/deadline/study flows have separate live evidence in live-flow-results.md; deployment evidence is in backend-deployment.md.
