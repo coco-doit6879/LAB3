@@ -51,7 +51,7 @@ Rules giới hạn trường, kiểu và độ dài; bảo vệ createdAt, trans
 ## Ba luồng chính
 
 1. Tạo deadline: form giữ draft ID và input khi lỗi → save transaction → mở detail khi tạo mới; chỉnh sửa trả về detail hiện có. Listener cập nhật list/detail. Lọc tìm kiếm, môn và trạng thái không làm mất dữ liệu nguồn.
-2. Phiên học: plan → start transaction → finish có xác nhận → completed. Thời lượng lấy từ timestamps, không đếm theo widget rebuild. Lịch hiển thị trạng thái và số phút thực tế khi hoàn thành. Việc tạo plan hiện vẫn dùng auto-ID; retry sau một kết quả ghi không rõ ràng cần kiểm tra trên Android trước khi tuyên bố phục hồi hoàn chỉnh.
+2. Phiên học: plan → start transaction → finish có xác nhận → completed. Thời lượng lấy từ timestamps, không đếm theo widget rebuild. Form giữ một draft ID cho các lần thử lưu; service tạo bằng transaction, đọc lại cùng ID khi retry và không ghi đè phiên đã tồn tại. Nếu dữ liệu đầu vào khác bản đã lưu, service báo lỗi thay vì tạo bản trùng hoặc báo thành công sai. Transaction dùng timeout 20 giây/maxAttempts 3. Widget test kiểm tra giữ input/cùng ID qua lỗi và ID khác cho form mới; tình huống mất acknowledgement trên Android/Firestore thật vẫn chưa kiểm chứng.
 3. Báo cáo: chụp danh sách deadline đang lọc → tạo PDF tiếng Việt với font đóng gói → upload Cloudinary raw → lưu URL/public ID/provider theo owner → hiện lịch sử. Chỉ báo thành công sau khi metadata ghi xong. Nếu metadata thất bại sau upload có thể còn asset mồ côi; unsigned client không có quyền xóa tùy ý.
 
 ## Dịch vụ bổ sung

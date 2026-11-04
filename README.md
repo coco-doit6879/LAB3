@@ -5,7 +5,7 @@
 ## Trạng thái đã kiểm chứng
 
 - Flutter analyze: No issues found.
-- 23 unit/widget tests pass; 18 Rules emulator tests pass (11 Firestore, 7 Storage).
+- 24 unit/widget tests pass; 18 Rules emulator tests pass (11 Firestore, 7 Storage). Bản sửa retry phiên học mới nhất chưa build/cài lên emulator.
 - APK debug build thành công và đã cài/mở trên emulator-5554. Ảnh thật: assets/evidence/android-login.png.
 - Android app được đăng ký trên Firebase; Google provider Enabled; google-services.json mới có OAuth Android/web và SHA-1 khớp máy.
 

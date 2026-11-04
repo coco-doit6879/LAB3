@@ -102,3 +102,9 @@ Built successfully with flutter build apk --debug --no-pub --dart-define-from-fi
 ## 2026-11-04 — Native UI after localization update
 
 MobAI observe succeeded after a transient host startup timeout (the host subsequently reported its existing PID; no duplicate host was started). assets/evidence/mobai/localization-build-login-observe.json shows the app's signed-out login screen after the APK update/emulator restart. The user was asked to sign in manually. Screenshot android-login-localized-build.png was visually inspected: it captures the subsequent Đang đăng nhập… loading state, not a successful login. A follow-up observation also showed loading and no Dashboard. No authentication form was automated. Cause of the missing historical session is unproven; no claim of a persistence defect or successful session restoration is made. Calendar UI verification remains pending login.
+
+## 2026-11-04 — Stable study-plan retry ID
+
+PlanSessionScreen now allocates one draft ID for its lifetime and reuses it after failed submissions. FirestoreStudyService.plan reads that document in a transaction: absent creates it; matching existing plan returns without writes; mismatching existing values fail without overwrite or false success. No state or createdAt is reset. Plan/start/finish transactions use 20-second timeout and at most three attempts. Rules were not changed.
+
+New widget test uses a failing fake repository: two failed submissions retain the title and same ID; a successful retry uses that ID and leaves the form; opening a new form obtains a different ID. Targeted tests: 3 passed. Full suite: 24 passed. Analyze: No issues found (59.9s). This proves form/VM behavior, not Firestore transaction behavior under a lost acknowledgement; that remains a required native test. No APK rebuild/install occurred after this study change, to avoid interrupting the ongoing manual Google authentication.

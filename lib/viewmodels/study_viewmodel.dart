@@ -43,8 +43,16 @@ class StudyViewModel extends ChangeNotifier {
     _notify();
   }
 
-  Future<bool> plan(String title, DateTime plannedAt, int minutes) async {
-    if (title.trim().isEmpty ||
+  String allocateDraftId() => _repository.allocateId();
+
+  Future<bool> plan(
+    String id,
+    String title,
+    DateTime plannedAt,
+    int minutes,
+  ) async {
+    if (id.isEmpty ||
+        title.trim().isEmpty ||
         title.trim().length > 120 ||
         minutes < 5 ||
         minutes > 180) {
@@ -52,7 +60,9 @@ class StudyViewModel extends ChangeNotifier {
       _notify();
       return false;
     }
-    return _perform(() => _repository.plan(title.trim(), plannedAt, minutes));
+    return _perform(
+      () => _repository.plan(id, title.trim(), plannedAt, minutes),
+    );
   }
 
   Future<bool> start(String id) => _perform(() async {

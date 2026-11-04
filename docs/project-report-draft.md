@@ -13,7 +13,7 @@ Sinh viên chọn đề tài Deadline Mate trong cuộc hội thoại làm bài.
 Ba luồng được triển khai:
 
 1. Quản lý deadline: danh sách → tạo → kiểm tra dữ liệu → lưu → chi tiết → đánh dấu hoàn thành. Form giữ dữ liệu khi lưu thất bại; bản nháp dùng ID ổn định để thử lại. Luồng chỉnh sửa và xóa có xác nhận cũng có trong app.
-2. Hoàn thành phiên học: Lịch học → lập kế hoạch → bắt đầu → quay lại lịch → kết thúc có xác nhận → xem trạng thái completed và thời lượng thực tế.
+2. Hoàn thành phiên học: Lịch học → lập kế hoạch → bắt đầu → quay lại lịch → kết thúc có xác nhận → xem trạng thái completed và thời lượng thực tế. Bản sửa mới giữ draft ID khi thử lưu lại, có widget test; phục hồi mất acknowledgement trên Firestore thật còn phải kiểm tra.
 3. Xuất báo cáo: bộ lọc deadline → Báo cáo → tạo PDF tiếng Việt → upload → lưu URL/metadata → lịch sử → mở tài liệu. Luồng thứ ba mới có mã và kiểm thử hợp đồng; chưa hoàn thành kiểm thử dịch vụ thật.
 
 ## 2. Kiến trúc và MVVM
@@ -67,7 +67,7 @@ Theme, components, ba luồng và navigation đã được đặc tả; các tha
 
 ## 7. Kiểm thử MobAI và AI review
 
-Full Flutter suite gần nhất: 23 tests pass; flutter analyze --no-pub không có lỗi. APK đã build/cài thành công sau localization. Đây là kiểm thử state/widget và khả năng build, không thay thế E2E.
+Full Flutter suite gần nhất: 24 tests pass; flutter analyze --no-pub không có lỗi. APK đã build/cài thành công sau localization; bản sửa retry phiên học mới hơn chưa build/cài. Đây là kiểm thử state/widget và khả năng build, không thay thế E2E.
 
 MobAI DSL đã ghi nhận login-gate smoke và các bước thao tác dữ liệu, gồm các lượt fail được giữ nguyên và lượt tiếp tục riêng. Chưa có mười .mob chạy sạch; test runner còn cần khởi tạo project. Healing và bài tập đưa bug vào để test bắt lỗi chưa hoàn tất. Không quy đổi các DSL pass thành mười bài .mob bắt buộc. Kịch bản/điều kiện ở live-verification-plan.md và kết quả thực tế ở test-report.md.
 

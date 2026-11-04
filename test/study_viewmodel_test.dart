@@ -9,11 +9,21 @@ class FakeStudyRepository implements StudyRepository {
   final controller = StreamController<List<StudySession>>.broadcast(sync: true);
   int plans = 0;
   bool fail = false;
+  final submittedIds = <String>[];
+  @override
+  String allocateId() => 'study-draft-${++_ids}';
+  int _ids = 0;
   @override
   Stream<List<StudySession>> watch() => controller.stream;
   @override
-  Future<void> plan(String title, DateTime plannedAt, int minutes) async {
+  Future<void> plan(
+    String id,
+    String title,
+    DateTime plannedAt,
+    int minutes,
+  ) async {
     plans++;
+    submittedIds.add(id);
     if (fail) throw StateError('offline');
   }
 
@@ -63,15 +73,16 @@ void main() {
     () async {
       final repo = FakeStudyRepository();
       final vm = StudyViewModel(repo);
-      expect(await vm.plan('Flutter', DateTime.now(), 4), isFalse);
-      expect(await vm.plan('Flutter', DateTime.now(), 181), isFalse);
+      expect(await vm.plan('draft', 'Flutter', DateTime.now(), 4), isFalse);
+      expect(await vm.plan('draft', 'Flutter', DateTime.now(), 181), isFalse);
+      expect(await vm.plan('', 'Flutter', DateTime.now(), 25), isFalse);
       expect(repo.plans, 0);
       repo.fail = true;
       expect(await vm.start('session'), isFalse);
       expect(vm.error, isNotNull);
       expect(vm.busy, isFalse);
       repo.fail = false;
-      expect(await vm.plan('Flutter', DateTime.now(), 25), isTrue);
+      expect(await vm.plan('draft', 'Flutter', DateTime.now(), 25), isTrue);
       expect(repo.plans, 1);
       vm.dispose();
       await repo.controller.close();

@@ -43,3 +43,7 @@ Bản Cloudinary đã build thành công bằng `--no-pub --dart-define-from-fil
 Đã cấu hình MaterialApp dùng tiếng Việt và localization delegates từ Flutter SDK để lịch/dialog không theo tiếng Anh của thiết bị. Full suite mới: 23 tests pass; analyze không có lỗi. Chưa build/cài bản sửa này và chưa có ảnh emulator tiếng Việt; APK đã cài trước đó vẫn là bản cũ. Các ảnh lịch tiếng Anh lịch sử không được thay bằng tuyên bố đã kiểm chứng native mới.
 
 Cập nhật tiếp: APK tiếng Việt đã build, cài -r thành công và gửi lệnh mở MainActivity trên Pixel_4a sau khi boot hoàn tất. Hash và phạm vi bằng chứng ghi ở test-report.md. Chưa quan sát UI bản mới; không coi lệnh mở app là chứng minh màn hình/calendar đã hiển thị đúng.
+
+## Cập nhật phục hồi phiên học 2026-11-04
+
+Mã nguồn mới giữ draft ID qua các lần thử lưu phiên học; service dùng transaction để không tạo bản trùng khi cùng ID đã tồn tại. Không ghi đè dữ liệu hoặc trạng thái phiên cũ; đầu vào khác bản đã lưu trả lỗi. Full suite 24 tests pass, analyze sạch. Bản sửa này chưa build/cài và chưa kiểm chứng mất acknowledgement trên cloud; emulator vẫn đang ở bước xác thực Google thủ công.

@@ -154,9 +154,16 @@ class _PlanSessionScreen extends StatefulWidget {
 }
 
 class _PlanSessionScreenState extends State<_PlanSessionScreen> {
+  late final String _draftId;
   final _title = TextEditingController();
   final _minutes = TextEditingController(text: '25');
   DateTime _plannedAt = DateTime.now();
+  @override
+  void initState() {
+    super.initState();
+    _draftId = context.read<StudyViewModel>().allocateDraftId();
+  }
+
   @override
   void dispose() {
     _title.dispose();
@@ -224,6 +231,7 @@ class _PlanSessionScreenState extends State<_PlanSessionScreen> {
                 ? null
                 : () async {
                     final success = await vm.plan(
+                      _draftId,
                       _title.text,
                       _plannedAt,
                       int.tryParse(_minutes.text) ?? 0,
