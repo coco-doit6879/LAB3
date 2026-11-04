@@ -27,6 +27,8 @@ Bấm Tiếp tục với Google và tự chọn tài khoản trong popup. Không
 
 ## Khác biệt nền tảng
 
+Luồng phiên học trên Edge đã được chạy thêm: validation title trống, plan/start/cancel-finish/finish và Calendar phản ánh completed. Bằng chứng và giới hạn ở [web-live-results.md](web-live-results.md). Không tính lượt này là bài MobAI.
+
 Firestore CRUD/realtime, Courses, Study, Reports và Remote Config dùng chung service và dữ liệu theo UID. Cần kiểm thử riêng từng luồng trên web; không suy từ Android đã pass sang web đã pass. PDF browser upload/open còn chưa kiểm chứng; preset Cloudinary vẫn cần xác nhận Allowed formats=pdf.
 
 Crashlytics trong dự án này không có implementation web. Web bỏ cài Crashlytics handlers/identity/errors, ẩn test crash và vô hiệu nút handled-demo kèm giải thích; Analytics vẫn được gọi. Không báo đã gửi Crashlytics trên web.
