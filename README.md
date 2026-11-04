@@ -5,7 +5,7 @@
 ## Trạng thái đã kiểm chứng
 
 - Flutter analyze: No issues found.
-- 22 unit/widget tests pass; 18 Rules emulator tests pass (11 Firestore, 7 Storage).
+- 23 unit/widget tests pass; 18 Rules emulator tests pass (11 Firestore, 7 Storage).
 - APK debug build thành công và đã cài/mở trên emulator-5554. Ảnh thật: assets/evidence/android-login.png.
 - Android app được đăng ký trên Firebase; Google provider Enabled; google-services.json mới có OAuth Android/web và SHA-1 khớp máy.
 
@@ -25,6 +25,7 @@ Rules tests dùng demo project, không chạm dữ liệu thật; lệnh trong d
 
 ## Tài liệu
 
+- docs/project-report-draft.md: nội dung nháp theo mục 12.2; chưa phải bản nộp, chưa dàn trang và còn thiếu bằng chứng.
 - docs/architecture.md: giải thích MVVM, dữ liệu, ba luồng và giới hạn hiện có để vấn đáp.
 - docs/backend-deployment.md: database/Rules và Remote Config đã triển khai thật, cùng phần còn cần kiểm chứng.
 - docs/remote-config-demo.md: hai hành vi RC đã chạy trước/sau và khôi phục, gồm ảnh và server readback.

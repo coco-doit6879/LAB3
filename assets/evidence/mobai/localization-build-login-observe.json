@@ -1,0 +1,32 @@
+{
+  "success": true,
+  "step_results": [
+    {
+      "success": true,
+      "step_index": 0,
+      "action": "observe",
+      "started_at_ms": 1793805832297,
+      "duration_ms": 875,
+      "result": {
+        "observations": {
+          "native": {
+            "ui_tree": "    [2] FrameLayout #content (0,0 1080x2340)\n                  [9] View \"Deadline Mate\" (66,1103 948x94)\n                  [10] View \"Bớt lo deadline. Tập trung từng phiên học.\" (66,1241 948x66)\n                    [12] Button \"Tiếp tục với Google\" (66,1373 948x132)\n"
+          }
+        }
+      }
+    }
+  ],
+  "total_time_ms": 875,
+  "metadata": {
+    "interactive_elements": {
+      "buttons": 1,
+      "switches": 0,
+      "text_fields": 0
+    },
+    "visible_text": [
+      "Deadline Mate",
+      "Bớt lo deadline. Tập trung từng phiên học.",
+      "Tiếp tục với Google"
+    ]
+  }
+}
