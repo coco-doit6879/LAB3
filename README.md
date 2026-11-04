@@ -1,4 +1,6 @@
-# Deadline Mate — SE194007
+# Deadline Mate — LAB3
+
+Repository Public: [coco-doit6879/LAB3](https://github.com/coco-doit6879/LAB3).
 
 Ứng dụng Android/Web quản lý deadline và phiên học. Tên hiển thị: **Deadline Mate**. Firebase project: **deadline-mate-feff4**. Repository: **LAB3**, theo yêu cầu đặt tên mới của sinh viên. Đề gốc quy định PRM393_Lab03_<StudentID>; cần xác nhận giảng viên chấp nhận tên LAB3 khi nộp.
 

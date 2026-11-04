@@ -1,6 +1,6 @@
 # Tiến độ Deadline Mate
 
-Sinh viên: SE194007. Firebase project: deadline-mate-feff4. App hiển thị: Deadline Mate. Repository nộp: PRM393_Lab03_SE194007.
+Sinh viên: SE194007. Firebase project: deadline-mate-feff4. App hiển thị: Deadline Mate. Repository Public: https://github.com/coco-doit6879/LAB3 (tên LAB3 theo yêu cầu mới của sinh viên).
 
 ## Có mã nguồn
 
